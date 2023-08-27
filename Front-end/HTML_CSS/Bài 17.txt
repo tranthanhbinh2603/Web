@@ -1,0 +1,1 @@
+Attribute là thuộc tính css nằm trong thẻ html mở, giúp chỉnh sửa vẻ đẹp cho thẻ HTML
