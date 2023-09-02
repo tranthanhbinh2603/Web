@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS chỉnh vị trí</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 100%;
+            height: 100px;
+            background-color: yellow;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /*
+            center: Dính sát vào nhau
+            space-around: căn đều (như cách 2)
+            space-between: căn đều nhưng có cái dính ở đâu và cuối thằng cha
+            */
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <!-- Tự động chia đều -->
+        <h3>Center me</h3>
+        <h3>Center me</h3>
+        <h3>Center me</h3>
+    </div>
+</body>
+</html>
