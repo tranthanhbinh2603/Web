@@ -1,0 +1,3 @@
+- Mỗi phần tạo thành 1 thẻ 
+- Sử dụng phần Source để kiểm tra xem đã thêm CSS thành công chưa
+- CSS Reset.
