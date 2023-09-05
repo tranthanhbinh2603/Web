@@ -1,0 +1,11 @@
+Câu hỏi tạo ra nội dung:
+- Vị trí
+- Kích thước
+- Màu sắc
+- kiểu dáng
++ Kiểu chữ 
++ Hình tròn, vuông
+
+- Hover trong devtool để chọn element
+
+- Force Element state trong devtool
