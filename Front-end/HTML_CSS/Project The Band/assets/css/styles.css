@@ -62,6 +62,20 @@ html{
     background-color: white;
     list-style-type: none;
     box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+<<<<<<< HEAD
+=======
+}
+
+#nav .subnav a {
+    display: block;
+    padding: 8px 16px;
+    line-height: 22.5px;
+    width: 100%;
+}
+
+#nav  li:hover .subnav{
+    display: block;
+>>>>>>> c0dcc7dbe297768ea88e25b421ca9f757e5e1eac
 }
 
 #nav .subnav a {
@@ -97,7 +111,16 @@ html{
 
 
 #slider{
+<<<<<<< HEAD
     margin-top: 46px;
+=======
+    height: 500px;
+    background-color: black;
+}
+
+#nav .subnav li a{
+    text-align: left;
+>>>>>>> c0dcc7dbe297768ea88e25b421ca9f757e5e1eac
 }
 
 
