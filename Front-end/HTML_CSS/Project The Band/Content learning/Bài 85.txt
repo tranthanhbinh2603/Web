@@ -10,5 +10,5 @@ Câu hỏi tạo ra nội dung:
 
 - Force Element state trong devtool
 
-- Ctrl + D, mũi tên trái, Alt + Shift + mũi tên sang trái, paste (ctrl + v). Sau đó Alt + Click vào vị trí đầu. Rồi thêm dấu thăng bấm phím End.
+- Ctrl + Shift + L, Ctrl + D, mũi tên trái, Alt + Shift + mũi tên sang trái, paste (ctrl + v). Sau đó Alt + Click vào vị trí đầu. Rồi thêm dấu thăng bấm phím End.
 => Tạo class nhanh
