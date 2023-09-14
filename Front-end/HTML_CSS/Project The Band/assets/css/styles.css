@@ -197,6 +197,7 @@ html{
 
 #content .ticket-list {
     margin: 15px 0;
+    padding: 0 8px;
 }
 
 #content .ticket-list-item{
@@ -223,4 +224,72 @@ html{
     border-radius: 50%;
     color: white;
     margin: 0 0 -2px;
+}
+
+
+#content .location-item{
+    padding: 0 8px;
+    float: left;
+    width: 33.3333%;
+    margin: 0 0 64px 0;
+}
+
+#content .postion-box{
+    background-color: white;
+    
+}
+
+#content .postion-image{
+    width: 100%;
+}
+
+#content .postion-header{
+    margin: 15px 16px;
+    color: #000;
+    font-weight: bold;
+}
+
+#content .postion-image:hover{
+    opacity: 0.6;
+}
+
+#content .postion-date{
+    margin: 15px 16px;
+    color: #000;
+    opacity: 0.6;
+}
+
+#content .postion-content{
+    margin: 15px 16px;
+    color: #000;
+}
+
+#content .postion-button{
+    padding: 8px 16px;
+    margin-bottom: 16px;
+    margin-left: 15px;
+    color: #fff;
+    background-color: #000;
+    display: inline-block;
+}
+
+#content .postion-button:hover{
+    color: #000;
+    background-color: #ccc;
+}
+
+.buybox{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.buybox .buybox-container{
+    background-color: #fff;
 }
