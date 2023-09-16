@@ -123,23 +123,44 @@
             </div>
             <header class="buybox-header">
                 <i class="ti-bag"></i>
-                Tickets
+                <div class="buybox-head-text">Tickets</div>
             </header>            
             <div class="buybox-body">
-                <i class="ti-shopping-cart"></i>
-                Tickets, $15 per person
-                <input type="text" class="buybox-input">
+                <div class="buybox-body-title">
+                    <i class="ti-shopping-cart"></i>
+                    <div class="buybox-body-content">Tickets, $15 per person</div>
+                </div>
+                <input type="text" class="buybox-input" placeholder="How many?">
             </div>
             <div class="buybox-body">
-                <i class="ti-user"></i>
-                Send to
-                <input type="email" class="buybox-input">
+                <div class="buybox-body-title">
+                    <i class="ti-user"></i>
+                    <div class="buybox-body-content">Send to</div>
+                </div>
+                <input type="text" class="buybox-input" placeholder="Enter email">
+            </div>
+            <div class="buybox-button">
+                <button class="buybox-summit">PAY <i class="ti-check"></i></button>
             </div>
             <div class="buybox-footer">
                 Need <a href="">help?</a>
             </div>
         </div>
     </div>
+
+    <script>
+        const buyBtns = document.querySelectorAll(".postion-button")
+        const closeBtn = document.querySelectorAll(".buybox-close")
+        const containBuyBox = document.querySelector(".buybox")
+
+        function showBuyBox(){
+            containBuyBox.classList.add("open")
+        }
+
+        for (const buyBtn of buyBtns){
+            buyBtn.addEventListener('click', showBuyBox)
+        }
+    </script>
 
 </body>
 </html>

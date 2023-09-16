@@ -283,13 +283,98 @@ html{
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    bottom: 0;    
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+}
+
+.open{
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .buybox .buybox-container{
     background-color: #fff;
+    position: relative;
+    width: 868px;
+}
+
+.buybox .buybox-header{
+    padding: 42px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #009688;
+    font-size: 30px;
+}
+
+.buybox .ti-bag{
+    color: white;
+    margin-right: 16px;
+}
+
+.buybox .buybox-head-text {
+    display: contents;
+    color: white;
+    letter-spacing: 4px;
+}
+
+.buybox .buybox-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px 16px;
+    color: white;
+}
+
+.buybox .buybox-body{
+    padding: 0 16px;
+}
+
+.buybox .buybox-close:hover{
+    color: #000;
+    background-color: #ccc;
+}
+
+.buybox .buybox-body-content{
+    display: contents;
+    
+}
+
+.buybox .buybox-body-title{
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.buybox .buybox-input{
+    display: block;   
+    margin-bottom: 20px; 
+    border: 1px solid #ccc;
+    padding: 8px;
+    width: 100%;
+}
+
+.buybox .buybox-button{
+    padding: 0 16px;
+    
+}
+
+.buybox .buybox-summit{
+    width: 100%;
+    padding: 16px;
+    color: #fff;
+    background-color: #009688;
+    font-weight: bold;
+    border: none;
+}
+
+.buybox .buybox-footer{
+    float: right;
+    margin: 15px;
+}
+
+.buybox .buybox-summit:hover{
+    color: #000;
+    background-color: #ccc;
 }
