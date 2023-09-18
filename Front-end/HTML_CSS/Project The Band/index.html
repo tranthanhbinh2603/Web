@@ -150,16 +150,28 @@
 
     <script>
         const buyBtns = document.querySelectorAll(".postion-button")
-        const closeBtn = document.querySelectorAll(".buybox-close")
+        const closeBtn = document.querySelector(".buybox-close")
         const containBuyBox = document.querySelector(".buybox")
+        const conainerBuyBox = document.querySelector(".buybox-container")
 
         function showBuyBox(){
             containBuyBox.classList.add("open")
         }
 
+        function deleteBuyBox(){
+            containBuyBox.classList.remove("open")
+        }
+
         for (const buyBtn of buyBtns){
             buyBtn.addEventListener('click', showBuyBox)
         }
+        closeBtn.addEventListener('click', deleteBuyBox)
+
+        containBuyBox.addEventListener('click', deleteBuyBox)
+
+        conainerBuyBox.addEventListener('click', function(event) {
+            event.stopPropagation()
+        })
     </script>
 
 </body>

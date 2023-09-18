@@ -286,6 +286,7 @@ html{
     bottom: 0;    
     background-color: rgba(0, 0, 0, 0.4);
     display: none;
+    
 }
 
 .open{
@@ -298,6 +299,7 @@ html{
     background-color: #fff;
     position: relative;
     width: 868px;
+    animation: buyboxFade ease 0.4;
 }
 
 .buybox .buybox-header{
@@ -377,4 +379,13 @@ html{
 .buybox .buybox-summit:hover{
     color: #000;
     background-color: #ccc;
+}
+
+@keyframes buyboxFade {
+    from {
+        transform: translateY(-100px);
+    }
+    to {
+        transform: translateY(0);
+    }
 }
