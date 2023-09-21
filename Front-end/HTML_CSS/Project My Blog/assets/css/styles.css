@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Raleway", sans-serif;
+    background-color: #f1f1f1;
+    margin: 0 16px;
+}
+
+.box-black {
+    background-color: black;
+    color: white;
+    display: inline-block;
+    padding: 2px 8px;
+    font-size: 15px;
+}
+
+.left-col-66 {
+    float: left;
+    width: calc(100% / 3 * 2);
+    margin-right: 16px;
+}
+
+.right-col-33 {
+    float: left;
+    width: calc(100% / 3);
+    margin-left: 16px;
+}
+
+#header {
+    padding: 32px 0;
+}
+
+#header .title {
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 10px 0;
+    font-size: 40px;
+}
+
+#header .content {
+    text-align: center;
+    font-size: 15px;
+}
+
+#content .main {
+    background-color: white;
+}
+
+#content .m-box-content{
+    padding: 0 16px;
+}
+
+#content .main .m-image {
+    width: 100%;
+}
+
+#content .main .m-header {
+    margin: 10px 0;
+    font-weight: 550;
+    font-size: 27px;
+}
+
+#content .main .m-sub-header {
+    margin: 10px 0;
+    font-size: 20px;
+    font-weight: 370;
+}
+
+#content .light {
+    display: inline-block;
+    font-weight: 340;
+    font-style: italic;
+} 
+
+#content .main .m-content {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+#content .main .btn {
+    padding: 16px 24px;
+    background-color: white;
+    border: 1px solid #ccc;
+    font-family: "Raleway", sans-serif;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+#content .main .m-comment{
+    float: right;
+}
+
+#content .main .m-com1{
+    
+}
