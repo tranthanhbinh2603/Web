@@ -5,7 +5,7 @@
 }
 
 html {
-    font-family: "Raleway", sans-serif;
+    font-family: "Raleway";
     background-color: #f1f1f1;
     margin: 0 16px;
 }
@@ -20,14 +20,34 @@ html {
 
 .left-col-66 {
     float: left;
-    width: calc(100% / 3 * 2);
-    margin-right: 16px;
+    width: calc(99% / 3 * 2);
 }
 
 .right-col-33 {
     float: left;
-    width: calc(100% / 3);
-    margin-left: 16px;
+    width: calc(99% / 3);
+}
+
+.left-col-20{
+    float: left;
+    width: calc(99% / 5);
+}
+
+.right-col-80{
+    float: left;
+    width: calc(99% / 5 * 4);
+}
+
+#content::after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
+#box::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 #header {
@@ -47,8 +67,15 @@ html {
     font-size: 15px;
 }
 
+.shadow {
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 20%), 0 4px 20px 0 rgb(0 0 0 / 19%);
+}
+
 #content .main {
     background-color: white;
+    margin-top: 16px;
+    margin-bottom: 32px;
+    margin-right: 32px;
 }
 
 #content .m-box-content{
@@ -91,12 +118,82 @@ html {
     font-family: "Raleway", sans-serif;
     font-weight: bolder;
     font-size: 15px;
+    margin-bottom: 15px;
+}
+
+#content .main .btn:hover{
+    background-color: #ccc;
 }
 
 #content .main .m-comment{
     float: right;
 }
 
-#content .main .m-com1{
-    
+#content .main .m-comm1{
+    font-weight: 700;
+    line-height: 60px;
+    padding-right: 10px;
 }
+
+#content .main .m-comm2{
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: black;
+    color: white;
+}
+
+#content .main .m-comm3{
+    display: inline-block;
+    padding: 2px 8px;
+    background-color: black;
+    color: white;
+    border-radius: 13px;
+}
+
+#content .nav {
+    margin-top: 16px;
+    background-color: white;
+}
+
+#content .nav img{
+    width: 100%;
+}
+
+#content .nav .m-header {
+    margin: 10px 0;
+    font-weight: 550;
+    font-size: 27px;
+}
+
+#content .nav .m-content {
+    margin-top: 25px;
+    padding-bottom: 25px;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+#content .nav .box-title{
+    background-color: #f1f1f1;
+    font-size: 20px;
+}
+
+#content .box {
+    padding: 8px 16px;
+}
+
+#content .box .title-box{
+    padding: 10px 0;
+} 
+
+#content .left-col-20 img {
+    padding-right: 25px;
+}
+
+#content .right-col-80 .title-text {
+    font-size: 18px;
+}
+
+#content .right-col-80 .sub-title-text {
+    font-size: 15px;
+}
+
