@@ -135,6 +135,7 @@ html {
 
 #content .main .btn:hover{
     background-color: #ccc;
+    cursor: pointer;
 }
 
 #content .main .m-comment{
@@ -196,6 +197,7 @@ html {
 
 #content .box:hover {
     background-color: #ccc;
+    cursor: pointer;
 }
 
 #content .box .title-box{
@@ -230,12 +232,37 @@ html {
 }
 
 #footer .btn {
-    padding: 12px 24px;
+    padding: 16px 26px;
     margin-top: 32px;
-    margin-bottom: 16px;
+    margin-bottom: 31px;
     border: none;
     margin-left: 16px;
     background-color: #000;
     color: #ccc;
     font-family: "Raleway", sans-serif;
+    font-size: 16px;
+}
+
+#footer .btn:hover {
+    color: #000;
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+#footer .credit{
+    padding-bottom: 52px;
+    padding-left: 16px;
+    color: white;
+}
+
+#footer .credit a{
+    color: white;
+}
+
+#footer .disable{
+    opacity: 0.4;    
+}
+
+#footer .disable:hover{
+    cursor: not-allowed;
 }
