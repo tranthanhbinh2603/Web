@@ -93,10 +93,12 @@ html{
     text-align: left;
 }
 
+#menu-icon, 
 #search-icon{
     float: right;
 }
 
+#menu-icon .me,
 #search-icon .sea{
     color: white;
     padding: 0 24px;
@@ -104,6 +106,7 @@ html{
     display: block;
 }
 
+#menu-icon:hover .me,
 #search-icon:hover .sea{
     background-color: red;
 }

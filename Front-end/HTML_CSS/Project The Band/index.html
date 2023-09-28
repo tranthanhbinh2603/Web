@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Band Project</title>
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
     <link rel="stylesheet" href="assets/font/themify-icons/themify-icons.css">
 </head>
@@ -31,6 +32,9 @@
             <div id="search-icon">
                 <i class="sea ti-search"></i>
             </div> 
+            <div id="menu-icon">
+                <i id="ti-menu" class="me ti-menu"></i>
+            </div>
         </div>
 
         <div id="slider">
@@ -192,6 +196,9 @@
         const closeBtn = document.querySelector(".buybox-close")
         const containBuyBox = document.querySelector(".buybox")
         const conainerBuyBox = document.querySelector(".buybox-container")
+        const menuBTN = document.getElementById("ti-menu")
+        const header = document.getElementById("header")
+        const size_menu = menuBTN.clientHeight;
 
         function showBuyBox(){
             containBuyBox.classList.add("open")
@@ -211,6 +218,12 @@
         conainerBuyBox.addEventListener('click', function(event) {
             event.stopPropagation()
         })
+        menuBTN.onclick = function () {
+            if (size_menu === header.clientHeight)
+                header.style.height = 'fit-content'
+            else 
+                header.style.height = '46px'
+        }
     </script>
 
 </body>
