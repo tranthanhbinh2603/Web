@@ -38,4 +38,36 @@
         top: 0;
         right: 0;
     }
+
+    #content .team-item-image {
+        width: 75%;
+    }
+
+    #content .team-item {
+        width: 100%;
+    }
+
+    #content .location-item {
+        width: 100%;
+        margin-bottom: 32px;
+    }
+
+    .content-form-column {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .box-form{
+        width: 100%;
+    }
+
+    .box-left {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .content-form-contact .btn {
+        width: 100%;
+        margin-top: 20px;
+    }
 }
