@@ -5,7 +5,9 @@
 }
 
 @media(min-width: 740px) and (max-width: 1023px){
-
+    #menu-icon {
+        display: none;
+    }
 }
 
 @media(max-width: 739px){
