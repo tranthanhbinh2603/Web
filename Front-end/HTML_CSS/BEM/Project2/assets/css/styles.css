@@ -4,30 +4,86 @@
     box-sizing: border-box;
 }
 
+:root {
+    --green: #c5f7dc;
+    --dark-green: #3ac279;
+    --yellow: #ffe8c3;
+    --dark-yellow: #e89f29;
+    --blue: #cde2ff;
+    --dark-blue: #3d84e5;
+    --red: #ffcfcb;
+    --dark-red: #e9594c;
+  }
+
 body {
     font-family: 'Montserrat';
 }
 
-.toast-message{
-    background-color: #c5f7dc;
+#toast {
+    position: fixed;
+    top: 32px;
+    right: 16px;
+}
+
+.toast-message{    
     max-width: 400px;
     min-width: 400px;
     display: flex;   
     align-items: center; 
-    position: absolute;
-    top: 32px;
-    right: 16px;
-    animation: fadeIN ease 0.3s;
+    margin-bottom: 16px;
+    position: relative;
+    transition: all linear 0.3s;
+}
+
+.toast-message--success {
+    background-color: var(--green);
+}
+
+.toast-message--success .toast-message__div{
+    background-color: var(--dark-green);
+}
+
+.toast-message--error {
+    background-color: var(--red);
+}
+
+.toast-message--error .toast-message__div{
+    background-color: var(--dark-red);
+}
+
+.toast-message--warning {
+    background-color: var(--yellow);
+}
+
+.toast-message--warning .toast-message__div{
+    background-color: var(--dark-yellow);
+}
+
+.toast-message--info {
+    background-color: var(--blue);
+}
+
+.toast-message--info .toast-message__div{
+    background-color: var(--dark-blue);
 }
 
 @keyframes fadeIN {
     from {
         opacity: 0;
-        right: calc(0% - 400px);
+        transform: translate(110%);
     }
     to {
         opacity: 1;
-        right: 16px;
+        transform: translate(0);
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
     }
 }
 
@@ -39,7 +95,7 @@ body {
 }
 
 .toast-message .toast-message__div{
-    background-color: #3ac279;
+    
     height: 79px;
     flex: 0.02;
 }
@@ -73,4 +129,44 @@ body {
 
 .toast-close {
     flex: 0.2;
+}
+
+.main {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn{
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    margin-right: 8px;
+    padding: 16px;
+}
+
+.btn:hover{
+    opacity: 0.8;
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.btn--success {
+    background-color: var(--green);
+}
+
+.btn--warning {
+    background-color: var(--yellow);
+}
+
+.btn--info{
+    background-color: var(--blue);
+}
+
+.btn--error {
+    background-color: var(--red);
 }
