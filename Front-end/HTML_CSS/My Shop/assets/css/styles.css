@@ -1,0 +1,41 @@
+.subnav {
+    display: flex;
+    justify-content: space-between;
+    height: 120px;
+    padding-top: 12px;
+    
+}
+
+.header {
+    height: 120px;
+    background-image: linear-gradient(0, #fe6333 ,#f53e2d);
+}
+
+.subnav__list--item{
+    margin-right: 8px;
+    position: relative;
+}
+
+.subnav__list--item-strong{
+    font-weight: 600;
+}
+
+.subnav__list,
+.subnav__list--item {
+    list-style-type: none;
+    display: inline-block;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.subnav__separator::after{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 1px;
+    height: 12px;
+    background-color: white;
+    right: -7px;
+    top: 2px;
+
+}
