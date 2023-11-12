@@ -190,3 +190,33 @@
 .subnav__list--item:hover .subnav_notify{
     display: block;
 }
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+.modal__overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 0;
+}
+
+.modal__body{
+    position: relative;
+    margin: auto;
+    z-index: 1;
+}
