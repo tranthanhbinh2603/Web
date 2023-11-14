@@ -219,4 +219,44 @@
     position: relative;
     margin: auto;
     z-index: 1;
+    background-color: #ffffff;
+    padding: 0 30px;
+    min-width: 400px;
+}
+
+.modal__body-header{
+    margin: 40px 0 40px 0;
+}
+
+.modal__body-header h3{
+    font-size: 24px;
+}
+
+.modal__body-input{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal__body-input-data{
+    margin-bottom: 32px;
+    padding: 8px 20px;
+    border: 1px solid #dbdbdb;
+}
+
+.modal__body-button-1{
+    border: none;
+    background-color: #f3816b;
+    width: 100%;
+    padding: 12px 0;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.modal__body-button-flex{
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal__body-button-2{
+    text-align: left;
 }
