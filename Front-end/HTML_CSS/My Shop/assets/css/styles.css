@@ -15,6 +15,7 @@
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     min-height: 26px;
 }
 
@@ -53,7 +54,7 @@
     filter: invert(98%) sepia(100%) saturate(0%) hue-rotate(119deg) brightness(101%) contrast(103%);
 }
 
-.subnav__hover:hover .subnav_ishover{
+.subnav__hover:hover{
     opacity: 0.7;
     cursor: pointer;
 }
@@ -208,6 +209,7 @@
     right: 0;
     bottom: 0;
     display: flex;
+    display: none;
 }
 
 .modal__overlay{
@@ -216,6 +218,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.3);
     z-index: 0;
+    
 }
 
 .modal__body{
@@ -305,4 +308,8 @@
 .modal__body-button-3:hover, 
 .modal--icon:hover{
     cursor: pointer;
+}
+
+.modal__open{
+    display: flex;
 }

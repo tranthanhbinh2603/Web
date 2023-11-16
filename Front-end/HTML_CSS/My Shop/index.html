@@ -73,7 +73,7 @@
                             Trợ giúp
                         </li>
                         <li class="subnav__list--item subnav__list--item-strong subnav__separator subnav__hover">Đăng kí</li>
-                        <li class="subnav__list--item subnav__list--item-strong subnav__hover">Đăng nhập</li>
+                        <li class="subnav__list--item subnav__list--item-strong subnav__hover subnav__login">Đăng nhập</li>
                     </ul>
                 </div>
             </div>
@@ -92,7 +92,7 @@
         <div class="modal__body">
             <div class="modal__body-header">
                 <h3>Đăng nhập</h3>
-                <img class="modal--icon" src="assets/img/close.svg" alt="facebook">
+                <img class="modal--icon modal__close" src="assets/img/close.svg" alt="close">
             </div>
 
             <div class="modal__body-input">
@@ -124,5 +124,23 @@
 
         </div>
     </div>
+
+    <script>
+        const modal = document.querySelector(".modal")
+        const closeBTN = document.querySelector(".modal__close")
+        const loginBTN = document.querySelector(".subnav__login")
+
+        function showLogin(){
+            modal.classList.add("modal__open")
+        }
+
+        function hideLogin(){
+            modal.classList.remove("modal__open")
+        }
+
+        loginBTN.addEventListener('click', showLogin)
+        closeBTN.addEventListener('click', hideLogin)
+
+    </script>
 </body>
 </html>
