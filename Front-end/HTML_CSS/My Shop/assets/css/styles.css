@@ -1,8 +1,15 @@
+/* .header{
+    height: 120px;
+} */
+
+.header {
+    height: 120px;
+}
+
 .subnav {
     display: flex;
     justify-content: space-between;
-    height: 120px;
-    padding-top: 12px;
+    padding-top: 8px;
 }
 
 .header {
@@ -312,4 +319,20 @@
 
 .modal__open{
     display: flex;
+}
+
+.search{
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+.search__logo{
+    height: 45px;
+}
+
+.search__main{
+    background-color: white;
+    height: 40px;
+    flex: 1;
 }
