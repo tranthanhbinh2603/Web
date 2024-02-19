@@ -1,5 +1,9 @@
---root{
+--root {
     --black: #000;
+}
+
+.password-suggestion {
+    display: none;
 }
 
 * {
@@ -8,7 +12,7 @@
     box-sizing: inherit;
 }
 
-html{
+html {
     font-size: 62.5%;
     line-height: 1.6rem;
     font-family: 'Roboto';
