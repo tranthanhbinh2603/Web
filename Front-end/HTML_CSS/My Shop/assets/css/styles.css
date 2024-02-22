@@ -29,7 +29,7 @@
 .subnav__list,
 .subnav__list--item {
     list-style-type: none;
-    display: inline-block;
+    display: flex;
     font-size: 1.5rem;
     color: white;
 
@@ -42,9 +42,8 @@
     width: 1px;
     height: 12px;
     background-color: white;
-    right: -7px;
-    top: 2px;
-
+    right: -5px;
+    top: 6px;
 }
 
 .modal--icon {
@@ -104,6 +103,7 @@
     animation: subnavNotifyGrow ease-in 0.2s;
     transform-origin: calc(100% - 20px) top;
     display: none;
+    z-index: 1;
 }
 
 @keyframes subnavNotifyGrow {
@@ -512,4 +512,84 @@
     content: "";
     display: block;
     top: 100%;
+}
+
+.subnav__list--user {
+    display: flex;
+    position: relative;
+}
+
+.subnav__list--user img {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.subnav__list--user span {
+    font-weight: 500;
+    margin-left: 4px;
+}
+
+.subnav__list--user:hover {
+    background-color: #c44f37;
+}
+
+.subnav__list--user:hover .listUser__option {
+    display: block;
+}
+
+.listUser__option {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    z-index: 1;
+    width: 130%;
+    margin-top: 8px;
+    border-radius: 3px;
+    display: none;
+}
+
+.listUser__option li {
+    color: black;
+    list-style: none;
+    padding: 8px 12px;
+
+}
+
+.listUser__option li:hover {
+    background-color: rgb(245, 245, 245);
+    cursor: pointer;
+}
+
+.listUser__option li:first-child {
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+
+.listUser__option li:last-child {
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.listUser__option::before {
+    content: "";
+    border-width: 15px;
+    border-style: solid;
+    border-color: transparent transparent white transparent;
+    position: absolute;
+    right: 8px;
+    top: -29px;
+    z-index: 100;
+}
+
+.listUser__option::after {
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 107%;
+    height: 15%;
+    content: "";
+    display: block;
+    top: -9%;
 }
