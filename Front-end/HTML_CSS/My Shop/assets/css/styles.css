@@ -331,7 +331,7 @@
 .search__main {
     background-color: white;
     margin-left: 64px;
-    margin-top: -10px;
+    margin-top: 5px;
     height: 40px;
     flex: 1;
     align-items: center;
