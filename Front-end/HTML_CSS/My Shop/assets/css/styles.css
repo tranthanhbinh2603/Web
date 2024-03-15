@@ -424,7 +424,7 @@
 .search__main-btn {
     width: 60px;
     height: 33px;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     background-color: #f04e2d;
@@ -596,7 +596,7 @@
 
 .app_container {
     background-color: #f4f3f4;
-    padding: 20px;
+    padding: 36px 20px 20px 20px;
 }
 
 .category {
@@ -661,4 +661,130 @@
 
 .container {
     margin-left: 24px;
+}
+
+.home__fitler {
+    background-color: #ecebec;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 45px;
+}
+
+.home__fitler_1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.home__fitler svg,
+.home__fitler img {
+    width: 10px;
+}
+
+.home__filter-btn {
+    min-width: 80px;
+    height: 28px;
+    font-size: 1.2rem;
+    padding: 0px 16px;
+    margin: 0 8px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: none;
+    margin-right: 3px;
+}
+
+.home__filter-btn:hover {
+    cursor: pointer;
+}
+
+.home__filter-btn-active {
+    background-color: #f04e2d;
+}
+
+.home__fitler-page,
+.home__filter-filter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home__filter-filter {
+    background-color: white;
+    min-width: 200px;
+    height: 28px;
+    margin-left: 8px;
+    position: relative;
+}
+
+.home__fitler-pagenavigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home__fitler-title,
+.home__filter-filter-label {
+    font-size: 1.4rem;
+    padding: 0 12px;
+}
+
+.home__filter-filter-label-down {
+    margin-top: 4px;
+    padding: 16px 16px;
+}
+
+.home__filter-filter-full {
+    position: absolute;
+    top: 120%;
+    left: 0;
+    background-color: white;
+    width: 100%;
+    display: none
+}
+
+.home__filter-filter:hover .home__filter-filter-full {
+    display: block;
+}
+
+.home__filter-list li {
+    font-size: 1.4rem;
+    padding: 8px 12px;
+    list-style: none;
+}
+
+.home__filter-list li:hover {
+    background-color: #c9c9c9;
+    cursor: pointer;
+}
+
+
+.home__filter-filter-full::after {
+    position: absolute;
+    left: 0;
+    top: 16px;
+    width: 107%;
+    height: 15%;
+    content: "";
+    display: block;
+    top: -9%;
+}
+
+.home__fitler-page {
+    font-size: 1.4rem;
+}
+
+.home__fitler-pagenavigation div {
+    background-color: white;
+    padding: 8px 16px;
+}
+
+.home__fitler-before {
+    margin-left: 8px;
+    border-right: #ecebec solid 1px;
 }
