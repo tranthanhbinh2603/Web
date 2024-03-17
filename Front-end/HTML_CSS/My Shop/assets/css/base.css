@@ -49,3 +49,9 @@ html {
     width: 79.5%;
     /*10/12*100*/
 }
+
+.grid__column-2-product {
+    margin-left: 12px;
+    margin-right: 12px;
+    width: 17.5%;
+}
