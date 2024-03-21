@@ -46,12 +46,12 @@ html {
 .grid__column-10 {
     margin-left: 12px;
     margin-right: 12px;
-    width: 79.5%;
+    width: 79%;
     /*10/12*100*/
 }
 
 .grid__column-2-product {
-    margin-left: 12px;
-    margin-right: 12px;
+    margin-left: 4px;
+    margin-right: 4px;
     width: 17.5%;
 }
