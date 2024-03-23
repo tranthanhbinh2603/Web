@@ -1,0 +1,311 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+}
+
+html{
+    font-family: 'Lato',sans-serif;
+    font-size: 18px;
+    color: black;
+    background-color: white;
+    text-rendering: optimizeLegibility;
+    display: inline-block;
+}
+
+/*****************Những thuộc tính dùng lại nhiều lần******************/
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.p-long{
+    font-size: 150%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h3{
+    padding-top: 30px;
+    padding-bottom: 10px;
+    background-color: rgb(246, 110, 19);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 130%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    text-transform: uppercase;
+}
+
+.header-section{
+    font-size: 200%;
+    text-align: center;
+    color: rgb(216, 113, 17);
+    margin-top: 70px;
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+section{
+    padding-bottom: 20px;
+}
+
+/*********************HEADER**************************/
+
+header{
+    background-image: linear-gradient(45deg, rgba(246, 110, 19,0.75), rgba(255, 188, 128,0.75)), url("../img/backgr1.png");
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /*view height*/
+    background-attachment: fixed;
+}
+
+
+.Logo{
+    height: 100px;
+    float: left;
+}
+
+
+.navLinkHeader{
+    float: right;
+    list-style-type: none;
+    
+}
+
+.navLinkHeader li{
+    display: inline-block; /*List hiển thị dưới dạng hàng ngang*/
+    margin-top: 20px;
+    margin-right: 50px;
+}
+
+.navLinkHeader li a{
+    color: #81463e;
+    font-size: 20px;
+    text-decoration: none;
+    transition: border-bottom 0.3s;
+}
+
+.boxheader{
+    width: 1000px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.boxheader p{
+    font-weight: 700;
+    font-size: 350%;
+    text-transform: uppercase;
+    word-spacing: 10px; 
+    line-height: 135%; 
+}
+
+.link{
+    display: inline-block;
+    width: 200px;
+    background-color: #FF6B6B;
+    text-align: center;
+    padding: 15px;
+    border-radius: 10px;
+    box-sizing: inline;
+    text-decoration: none;
+    margin-right: 50px;
+    color: black;
+    transition: all 0.1s;
+}
+
+.link:hover, .link:active{
+    background-color: #bd2525;
+}
+
+.boxheader a:hover, .boxheader a:active{
+    background-color: #bd2525;
+}
+
+.navLinkHeader li a:hover, .navLinkHeader li a:active{
+    border-bottom: 1px solid;
+}
+
+.about-picture{
+    position: relative;
+}
+
+.about-picture img{
+    width: 90%;
+}
+
+.row{
+    max-width: 1140px; 
+    /*Đặt set là 1140 mục đích là để tăng cái độ rộng của cái box. Nếu center thì nó sẽ đúng với đề bài hơn.*/
+    margin: 0 auto;
+}
+
+
+
+.header-section::after{
+    content: " ";
+    display: block;
+    height: 2px;
+    background-color: rgb(255, 159, 69);
+    width: 130px;        
+    margin: 0 auto;
+    margin-top: 8px;
+    margin-bottom: 30px;
+}
+
+.about-us-picture-title{
+    color:white;
+    opacity: 0;
+    transition: 0.7s;
+}
+
+.align-1, .align-2{
+    position: absolute;
+    transform: translate(90%, -300%);
+}
+
+.align-3, .align-4{
+    position: absolute;
+    transform: translate(55%, -300%);
+}
+
+.about-picture:hover .about-us-picture-title,
+.about-picture:active .about-us-picture-title{  
+    opacity: 1;
+}
+
+.about-picture:hover img,
+.about-picture:active img{  
+    filter: blur(3px) brightness(55%);
+}
+
+/***************************PRODUCT*************************/
+.products-section{
+    background-color: #f1eeeee5;
+}
+
+.product-box{
+    background-color: rgb(202, 198, 198);
+    border-radius: 20px; /*Phải bo để phù hợp với h3*/
+    box-shadow: 3px 5px 10px rgb(202, 198, 198);
+}
+
+.product-box p{
+    text-align: center;
+    font-size: 300%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.product-box span{
+    font-size: 80%;
+}
+
+.product-box > ul{
+    list-style: none;
+}
+
+.product-box li{
+    display: inline-block;
+    margin-left: 5%;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.product-box .small-icon{
+    margin-right: 10px;
+}
+
+.product-box .link{
+    margin-left: 13%;
+}
+
+/************FEATURES SECTIONS************/
+.features-section{
+    background-image: linear-gradient(45deg, rgba(246, 110, 19,0.75), rgba(255, 188, 128,0.75)), url("../img/backgr2.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.features-section ul{
+    list-style: none;
+}
+
+.features-section ul, li{
+    display: inline;
+}
+
+.features-section object{
+    width: 50px;
+}
+
+.features-section span{
+    display: inline-block;
+    font-weight: 900;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+
+/**------------SPONSOR SECTION-------------**/
+.sponsor-section img{
+    width: 150px;
+    transition: all .3s;
+}
+
+.sponsor-section ul{
+    margin-left: 23%;
+}
+
+.sponsor-section li{
+    float: left;
+    margin-right: 75px;
+}
+
+.sponsor-section figcaption{
+    text-align: center;
+    font-weight: 800;
+}
+
+.sponsor-section img:hover, .sponsor-section img:active{
+    transform: scale(1.2);
+}
+
+/**CONTACT SECTION**/
+.contact-section{
+    background-color: white;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.information{
+    list-style-type: none;
+
+}
+
+.social-icon{
+    list-style: none;
+    display: inline-block;
+}
+
+.information li{
+    margin-top: 70px;
+    word-spacing: 1px;
+}
+
+.information .small-icon{
+    margin-right: 5px;
+}
+
+/******FOOTER SECTION*******/
+.footer-section p{
+    text-align: center;
+    padding: 10px;
+    background-color: gray;
+}
+

@@ -1,0 +1,4 @@
+- Internal, external được ưu tiên theo hướng: Càng ở cuối file càng ưu tiên
+- Tag (1) < class (10) < id (100) < Inline (111)
+- Để cùng (vd #id.class) sẽ được cộng điểm. Vd trên là 110 điểm
+- * và cha của các thằng khác có giá trị là 0 điểm

@@ -1,0 +1,3 @@
+- Di chuyển vị trí trong Devtool
+- Tác dụng: Tag Element (xem elements, Styles), Console, Source, Network
+- Toggle Device Toolbar

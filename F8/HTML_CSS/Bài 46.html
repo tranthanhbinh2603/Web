@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pesudo Element</title>
+    <style>
+        .test::after{
+            content: "Tôi chèn cái này vào trước";
+            display: block;
+            width: 150px;
+            height: 150px;
+            background-color: yellow;
+        }
+        .test::before{
+            content: "Tôi chèn cái này vào sau";
+            display: block;
+            width: 150px;
+            height: 150px;        
+            background-color: yellow;    
+        }
+        h1::first-letter {
+            font-size: 50px;
+        }
+        h1::first-line {
+            color: red;
+        }
+        /*Nếu không để thẻ trước = Chọn hết*/
+        ::selection{
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="test">
+        <div>Ở giữa</div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <h1>Dòng 1 <br> Dòng 2</h1>
+    <h2>Cái này không ảnh hưởng</h2>
+</body>
+</html>

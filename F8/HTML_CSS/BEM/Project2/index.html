@@ -1,0 +1,99 @@
+<!-- https://dribbble.com/shots/12877453-Toast-message-Notification/attachments/4477061?mode=media -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>BEM LV 2</title>
+</head>
+<body>
+    <div id="toast">  
+                    
+    </div>
+    
+    <div class="main">
+        <div onclick="showSuccessToast();" class="btn btn--success">Success</div>
+        <div onclick="showWarningToast();" class="btn btn--warning">Warning</div>
+        <div onclick="showInfoToast();" class="btn btn--info">Information</div>
+        <div onclick="showErrorToast();" class="btn btn--error">Error</div>
+    </div>
+    <script>
+        function toast({
+            title = '',
+            message = '',
+            type = 'success',
+            duration = 3000
+        }) {
+            const toast = document.getElementById('toast')
+            if (toast){
+                const toast_div = document.createElement('div')
+                const autoRemove = setTimeout(function() {
+                    toast.removeChild(toast_div);
+                }, duration + 300);
+                toast_div.onclick = function(e){
+                    if (e.target.closest('.toast-close')){
+                        toast.removeChild(toast_div);
+                        clearTimeout(autoRemove);
+                    }
+                }
+                toast_div.classList.add('toast-message', `toast-message--${type}`)
+                const delay = (duration / 1000).toFixed(2)
+                toast_div.style.animation = `fadeIN ease 0.3s, fadeOut ease 0.3s ${delay}s forwards`
+                toast_div.innerHTML = `
+                <div class="toast-message__div"></div>
+                    <div class="icon_parent">
+                        <img class="toast-message__icon" src="assets/svg/success.svg" alt="">
+                    </div>
+                    <div class="toast-content">
+                        <div class="toast-message__title">${title}</div>
+                        <div class="toast-message__subtitle">${message}</div>
+                    </div>   
+                    <div class="toast-close">
+                        <img class="toast-message__close-icon" src="assets/svg/close.svg" alt="">
+                </div>           
+                `
+                toast.appendChild(toast_div)
+                
+                
+       
+            }
+        }
+        function showSuccessToast(){
+            toast({
+                title: 'Success',
+                message: 'Đăng nhập thành công!',
+                type: 'success',
+                duration: 3000
+            })
+        }
+        function showInfoToast(){
+            toast({
+                title: 'Info',
+                message: 'Hệ thống đang bảo trì',
+                type: 'info',
+                duration: 3000
+            })
+        }
+        function showWarningToast(){
+            toast({
+                title: 'Cảnh báo',
+                message: 'Nếu bạn sai mật khẩu 1 lần nữa, bạn sẽ bị xoá tài khoản',
+                type: 'warning',
+                duration: 3000
+            })
+        }
+        function showErrorToast(){
+            toast({
+                title: 'Sai mật khẩu',
+                message: 'Vui lòng kiểm tra mật khẩu và thử lại',
+                type: 'error',
+                duration: 3000
+            })
+        }
+
+
+
+    </script>
+</body>
+</html>
