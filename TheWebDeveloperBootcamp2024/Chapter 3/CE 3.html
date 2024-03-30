@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Coding Exercise</title>
+        <style>
+            body {
+                font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+                font-weight: 400;
+                line-height: 22.4px;
+                font-size: 16px;
+            }
+            p,
+            ul,
+            ol {
+                font-size: 16px;
+                font-weight: 400;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-weight: bold;
+            }
+            button {
+                background-color: black;
+                padding: 8px 12px 8px 12px;
+                border: none;
+                color: white;
+                font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+                font-weight: 700;
+                display: block;
+            }
+            button:hover {
+                background-color: #3e4143;
+            }
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                max-width: none;
+            }
+            code {
+                background-color: #fff;
+                border: 1px solid #d1d7dc;
+                color: #b4690e;
+                font-size: 90%;
+                padding: 0.2rem 0.4rem;
+            }
+            .code-snippet {
+                background-color: #fff;
+                border: 1px solid #d1d7dc;
+                color: #b4690e;
+                font-size: 90%;
+                padding: 0.2rem 0.4rem;
+            }
+            .code-block {
+                background-color: #fff;
+                color: #b4690e;
+                font-size: 90%;
+            }
+            .black-block {
+                color: #000000;
+            }
+            .italic-text {
+                font-style: italic;
+            }
+            #solution-container,
+            #hint-container,
+            #solution-sub-container,
+            #testcode-container,
+            #solucode-container,
+            #solution-button {
+                display: none;
+            }
+            img {
+                max-width: 700px;
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body onload="main()">
+        <h1 id="code-assignment-title"></h1>
+        <div id="code-assignment-description"></div>
+        <div>
+            <h2>Instruction</h2>
+            <div id="assignment-instructions"></div>
+        </div>
+        <div id="file-start"></div>
+        <div id="start-code"></div>
+        <div id="setup-code"></div>
+        <div id="solution-button">
+            <button id="solution-show" onclick="showSolution()">Click to see solution</button>
+        </div>
+        <div id="solution-container"></div>
+        <script>
+            var codingExerciseData = {"title": "Wolf Images & Links Exercise", "learningObj": "", "instructions": "<p>Let's get some practice with HTML Images and Anchor Elements.&nbsp; In <code>index.html</code>, please do the following:</p><ul><li><p>Create a link that goes to this url: <strong>https://en.wikipedia.org/wiki/Wolf</strong> Use whatever link text you would like!</p></li><li><p>Create an image element using this source: <strong>https://upload.wikimedia.org/wikipedia/commons/5/5f/Kolm%C3%A5rden_Wolf.jpg</strong></p></li><li><p>Make sure to include some alt text on the image!</p></li></ul>", "startCode": [["index.html", "<!-- A blank page...Don't worry you got this! -->\n<!-- link: https://en.wikipedia.org/wiki/Wolf -->\n<!-- image: https://upload.wikimedia.org/wikipedia/commons/5/5f/Kolm%C3%A5rden_Wolf.jpg -->"]], "setupCode": "", "hint": "<p>You need to use the anchor tag&nbsp;<code>&lt;a&gt;</code>&nbsp;to create a link, and the <code>href</code> attribute to set a link location.</p><p><br></p><p>You need to use the img tag <code>&lt;img&gt;</code> to add an image, and the <code>src</code> attribute to set the source link of the image. And then, the <code>alt</code> attribute to provide text information for the image.</p>", "solution": "<p>SOLUTION:</p><pre class=\"prettyprint linenums\">&lt;h1&gt;Wolves &lt;a href=\"https://en.wikipedia.org/wiki/Wolf\"&gt;(Read More)&lt;/a&gt;&lt;/h1&gt;\n&lt;img src=\"https://upload.wikimedia.org/wikipedia/commons/5/5f/Kolm%C3%A5rden_Wolf.jpg\" alt=\"Wolf Licking Lips\"&gt;</pre><p><br></p>", "code_testing": "describe('link', function() {\n    var link = document.getElementsByTagName('a');\n    \n    it('- Should exist', function() {\n        expect(link[0]).toBeDefined();\n    });\n    \n    it('- There should only be 1 (the other should be an image)', function() {\n        expect(link.length).toBe(1);\n    });\n    \n    it('- The link should \"link\" to the wiki entry on wolves', function() {\n        expect(link[0].getAttribute('href')).toBe('https://en.wikipedia.org/wiki/Wolf');\n    });\n    \n    it('- The link should have some descriptive text between its tags', function() {\n        expect(link[0].textContent).toMatch(/\\w+/);\n    });\n});\n\ndescribe('image', function() {\n    var image = document.getElementsByTagName('img');\n    \n    it('- Should exist', function() {\n        expect(image[0]).toBeDefined();\n    });\n    \n    it('- There should only be 1 (the other should be a link)', function() {\n        expect(image.length).toBe(1);\n    });\n    \n    it('- The image should \"src\" the image from wikipedia', function() {\n        // expect(image[0].getAttribute('src')).to<at('https://upload.wikimedia.org/wikipedia/commons/5/5f/Kolm%C3%A5rden_Wolf.jpg');\n        expect(image[0].getAttribute('src')).toMatch(/https?:\\/\\/upload.wikimedia.org\\/wikipedia\\/commons\\/5\\/5f\\/Kolm%C3%A5rden_Wolf.jpg/)\n        \n    });\n    \n    it('- The image needs an alt tag, with some descriptive content (I know, so easy to forget!)', function() {\n        expect(image[0].getAttribute('alt')).not.toBeNull();\n        expect(image[0].getAttribute('alt')).toMatch(/\\w+/);\n    });\n});\n", "code_solutions": [["index.html", "<h1>Wolves <a href=\"https://en.wikipedia.org/wiki/Wolf\">(Read More)</a></h1>\n<img src=\"https://upload.wikimedia.org/wikipedia/commons/5/5f/Kolm%C3%A5rden_Wolf.jpg\" alt=\"Wolf Licking Lips\">"]], "relativeLecture": ""};
+            function showSolution() {
+                var button = document.getElementById("solution-show");
+                var container = document.getElementById("solution-container");
+                container.style.display = "block";
+                button.style.display = "none";
+                if (container) {
+                    container.scrollIntoView({
+                        behavior: "smooth",
+                    });
+                }
+            }
+
+            function showOther(id_button, id_container) {
+                var button = document.getElementById(id_button);
+                var container = document.getElementById(id_container);
+                container.style.display = "block";
+                button.style.display = "none";
+            }
+
+            function main() {
+                document.getElementById("code-assignment-title").innerHTML = codingExerciseData.title;
+                if (codingExerciseData.learningObj != "") document.getElementById("code-assignment-description").innerHTML = codingExerciseData.learningObj;
+                document.getElementById("assignment-instructions").innerHTML = codingExerciseData.instructions;
+                string_list_file = ""
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (string_list_file === "") string_list_file += "<h3>List file</h3>";
+                    string_list_file += "<p>" + codingExerciseData.startCode[i][0] + "</p>";
+                }
+                document.getElementById("file-start").innerHTML = string_list_file;
+                string_startCode = ""
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (codingExerciseData.startCode[i][1] != ""){
+                        if (string_startCode === "") string_startCode += "<h3>Code start</h3>";
+                        string_startCode += "<b>"+codingExerciseData.startCode[i][0]+"</b><pre><code id=\"htmlCode-Start-"+(i+1)+"\"></code></pre>"
+                    } 
+                }
+                document.getElementById("start-code").innerHTML = string_startCode;
+                string_setupCode = ""
+                if (codingExerciseData.setupCode != "")
+                    string_setupCode = "<h3>Setup code: </h3><pre><code id=\"htmlCode-Setup\"></code></pre>"
+                document.getElementById("setup-code").innerHTML = string_setupCode;
+                var data_soulution = "";
+                if (codingExerciseData.hint != "")
+                    data_soulution += '<div id="hints"><h3>Hints: </h3><button id="hint-show" onclick="' + "showOther('hint-show', 'hint-container')" + '">Click to see hint</button><div id="hint-container">' + codingExerciseData.hint + "</div></div>";
+                if (codingExerciseData.solution != "") {
+                    data_soulution += '<div id="solution"><h3>Solution from the instructor: </h3>';
+                    data_soulution += "<button id='sub-solution-show' onclick=\"showOther('sub-solution-show', 'solution-sub-container')\">Click to see solution from instructor</button>";
+                    data_soulution += '<div id="solution-sub-container">' + codingExerciseData.solution + "</div></div>";
+                }
+                code_solution_final = ""
+                let haveEnd = false;
+                for (var i = 0; i < codingExerciseData.code_solutions.length; i++) {
+                    if (codingExerciseData.code_solutions[i][1] != ""){
+                        if (code_solution_final === "") {
+                            code_solution_final += "<div id='solution-code'><h3>Solutions code: </h3><button id='solucode-show' onclick=\"showOther('solucode-show', 'solucode-container')\">Click to see solution code</button><div id='solucode-container'>";
+                            haveEnd = true;
+                        }
+                        code_solution_final += "<b>" + codingExerciseData.code_solutions[i][0] + ": </b><pre><code id=\"htmlCode-solutionCode-"+ (i + 1) +"\"></code></pre>";  
+                    }
+                }
+                if (haveEnd == true) 
+                    code_solution_final += "</div></div>";
+                data_soulution += code_solution_final;
+                if (codingExerciseData.code_testing != "")
+                    data_soulution +=
+                        "<div id='test-code'><h3>Test code: </h3><button id='testcode-show' onclick=\"showOther('testcode-show', 'testcode-container')\">Click to see test code</button><pre id=\"testcode-container\"><code id=\"htmlCode-Test-Code\"></code><pre></div>";    
+                if (codingExerciseData.relativeLecture != "") data_soulution += '<div id="related_lectures"><h3>Related Lecture: </h3><span>' + codingExerciseData.relativeLecture + "</span></div>";
+                if (data_soulution != "")
+                    data_soulution = "<h2>Solution zone:</h2>" + data_soulution;
+                document.getElementById("solution-container").innerHTML = data_soulution;
+                if (data_soulution != "")
+                    document.getElementById("solution-button").style.display = 'block';
+                if (codingExerciseData.code_testing != ""){
+                    let htmlCodeElement1 = document.getElementById("htmlCode-Test-Code");
+                    htmlCodeElement1.textContent = codingExerciseData.code_testing;
+                }
+                for (var i = 0; i < codingExerciseData.code_solutions.length; i++) {
+                    if (codingExerciseData.code_solutions[i][1] != "")
+                        document.getElementById("htmlCode-solutionCode-"+ (i + 1)).textContent = codingExerciseData.code_solutions[i][1];
+                }
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (codingExerciseData.startCode[i][1] != "")
+                        document.getElementById("htmlCode-Start-"+(i+1)).textContent = codingExerciseData.startCode[i][1];
+                }
+                if (codingExerciseData.setupCode != "")
+                    document.getElementById("htmlCode-Setup").textContent = codingExerciseData.setupCode;
+            }
+        </script>
+    </body>
+</html>
