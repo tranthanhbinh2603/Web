@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Coding Exercise</title>
+        <style>
+            body {
+                font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+                font-weight: 400;
+                line-height: 22.4px;
+                font-size: 16px;
+            }
+            p,
+            ul,
+            ol {
+                font-size: 16px;
+                font-weight: 400;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-weight: bold;
+            }
+            button {
+                background-color: black;
+                padding: 8px 12px 8px 12px;
+                border: none;
+                color: white;
+                font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+                font-weight: 700;
+                display: block;
+            }
+            button:hover {
+                background-color: #3e4143;
+            }
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                max-width: none;
+            }
+            code {
+                background-color: #fff;
+                border: 1px solid #d1d7dc;
+                color: #b4690e;
+                font-size: 90%;
+                padding: 0.2rem 0.4rem;
+            }
+            .code-snippet {
+                background-color: #fff;
+                border: 1px solid #d1d7dc;
+                color: #b4690e;
+                font-size: 90%;
+                padding: 0.2rem 0.4rem;
+            }
+            .code-block {
+                background-color: #fff;
+                color: #b4690e;
+                font-size: 90%;
+            }
+            .black-block {
+                color: #000000;
+            }
+            .italic-text {
+                font-style: italic;
+            }
+            #solution-container,
+            #hint-container,
+            #solution-sub-container,
+            #testcode-container,
+            #solucode-container,
+            #solution-button {
+                display: none;
+            }
+            img {
+                max-width: 700px;
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body onload="main()">
+        <h1 id="code-assignment-title"></h1>
+        <div id="code-assignment-description"></div>
+        <div>
+            <h2>Instruction</h2>
+            <div id="assignment-instructions"></div>
+        </div>
+        <div id="file-start"></div>
+        <div id="start-code"></div>
+        <div id="setup-code"></div>
+        <div id="solution-button">
+            <button id="solution-show" onclick="showSolution()">Click to see solution</button>
+        </div>
+        <div id="solution-container"></div>
+        <script>
+            var codingExerciseData = {"title": "Forms Practice Exercise", "learningObj": "", "instructions": "<p>Let's get some practice with forms, inputs, labels, and buttons! Write a simple form with the following inputs:</p><ol><li><p>Username</p><ol><li><p>Text Input</p></li><li><p>Should have placeholder text of 'username'</p></li><li><p>Make sure to properly label the input (using id/for attributes)</p></li></ol></li><li><p>Password</p><ol><li><p>Password Input</p></li><li><p>Should have placeholder text of 'password'</p></li><li><p>Make sure to properly label the input (using id/for attributes)</p></li></ol></li><li><p>A Button</p><ol><li><p>With the inner text 'Register'</p></li></ol></li></ol><p><strong>I added in some &lt;div&gt; elements for spacing, but you don't need to:</strong></p><img src=\"https://img-b.udemycdn.com/redactor/raw/2020-10-05_19-31-26-91d8b5b5b0f2fe6b6757173418f001f7.png\">", "startCode": [["index.html", ""]], "setupCode": "", "hint": "<p>Create a &lt;form&gt; element, and inside of the form use the &lt;label&gt; and &lt;input&gt; elements, and a &lt;button&gt;.</p><p>Make sure to properly label the input (using id/for attributes).</p>", "solution": "<p>SOLUTION:</p><pre class=\"prettyprint linenums\">&lt;form&gt;\n    &lt;label for=\"username\"&gt;Username&lt;/label&gt;\n    &lt;input type=\"text\" placeholder=\"username\" id=\"username\"&gt;\n    &lt;label for=\"password\"&gt;Password&lt;/label&gt;\n    &lt;input type=\"password\" placeholder=\"password\" id=\"password\"&gt;\n    &lt;button&gt;Register&lt;/button&gt;\n&lt;/form&gt;</pre><p><br></p>", "code_testing": "describe('Form -', function() {\n    var form = document.getElementsByTagName('form');\n    \n    it('Should exist', function() {\n        expect(form[0]).toBeDefined();\n    });\n    \n    it('There should be only 1 form', function() {\n        expect(form.length).toBe(1);\n    });\n    \n    var inputTypes = [['1st', 'username', 'text'],['2nd', 'password', 'password']];\n    \n    var labels = form[0].getElementsByTagName('label');\n    var inputs = form[0].getElementsByTagName('input')\n    \n    inputTypes.forEach(function([inputNumber, inputName, textFieldType], index) {\n        it(`The ${inputNumber} label (${inputName}) should exist in the form`, function() {\n           expect(labels[index]).toBeDefined();\n        });\n        \n        \n        it(`The ${inputNumber} label should have inner content of ${inputName}`, function() {\n           expect(labels[index].textContent).toMatch(new RegExp(inputName, 'i')); \n        });\n        \n        it(`The ${inputNumber} input (${inputName}) should exist in the form`, function() {\n            expect(inputs[index]).toBeDefined();\n        });\n        \n        var forValue = labels[index].getAttribute('for');\n        \n        it(`The ${inputNumber} label should have a for attribute with content`, function() {\n           expect(forValue).toMatch(/\\w+/);\n        });\n        \n        it(`The ${inputNumber} label should have a for attribute that points to the ${inputNumber} input`, function() {\n            var associatedInput = form[0].querySelector(`#${forValue}`);\n            expect(associatedInput).toBeDefined();\n            expect(associatedInput).toBe(inputs[index]);\n        });\n        \n        it(`The ${inputNumber} input should have type of ${textFieldType}`, function() {\n           expect(inputs[index].getAttribute('type')).toBe(textFieldType); \n        });\n        \n        it(`The ${inputNumber} input should have placeholder text of ${inputName}`, function() {\n           expect(inputs[index].getAttribute('placeholder')).toMatch(new RegExp(inputName, 'i')); \n        });\n        \n       it(`The ${inputNumber} should have an id`, function() {\n           expect(inputs[index].getAttribute('id')).toMatch(/\\w+/); \n        });\n    })\n    \n    var button = form[0].getElementsByTagName('button');\n    \n    it(`Should contain a single button`, function() {\n        expect(button.length).toBe(1);\n    })\n    \n    it(`The button should say Register`, function() {\n        expect(button[0].textContent).toMatch(/Register/i)\n    })\n});\n", "code_solutions": [["index.html", "<form>\n  <label for=\"username\">Username</label>\n  <input type=\"text\" placeholder=\"username\" id=\"username\">\n  <label for=\"password\">Password</label>\n  <input type=\"password\" placeholder=\"password\" id=\"password\">\n  <button>Register</button>\n</form>"]], "relativeLecture": ""};
+            function showSolution() {
+                var button = document.getElementById("solution-show");
+                var container = document.getElementById("solution-container");
+                container.style.display = "block";
+                button.style.display = "none";
+                if (container) {
+                    container.scrollIntoView({
+                        behavior: "smooth",
+                    });
+                }
+            }
+
+            function showOther(id_button, id_container) {
+                var button = document.getElementById(id_button);
+                var container = document.getElementById(id_container);
+                container.style.display = "block";
+                button.style.display = "none";
+            }
+
+            function main() {
+                document.getElementById("code-assignment-title").innerHTML = codingExerciseData.title;
+                if (codingExerciseData.learningObj != "") document.getElementById("code-assignment-description").innerHTML = codingExerciseData.learningObj;
+                document.getElementById("assignment-instructions").innerHTML = codingExerciseData.instructions;
+                string_list_file = ""
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (string_list_file === "") string_list_file += "<h3>List file</h3>";
+                    string_list_file += "<p>" + codingExerciseData.startCode[i][0] + "</p>";
+                }
+                document.getElementById("file-start").innerHTML = string_list_file;
+                string_startCode = ""
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (codingExerciseData.startCode[i][1] != ""){
+                        if (string_startCode === "") string_startCode += "<h3>Code start</h3>";
+                        string_startCode += "<b>"+codingExerciseData.startCode[i][0]+"</b><pre><code id=\"htmlCode-Start-"+(i+1)+"\"></code></pre>"
+                    } 
+                }
+                document.getElementById("start-code").innerHTML = string_startCode;
+                string_setupCode = ""
+                if (codingExerciseData.setupCode != "")
+                    string_setupCode = "<h3>Setup code: </h3><pre><code id=\"htmlCode-Setup\"></code></pre>"
+                document.getElementById("setup-code").innerHTML = string_setupCode;
+                var data_soulution = "";
+                if (codingExerciseData.hint != "")
+                    data_soulution += '<div id="hints"><h3>Hints: </h3><button id="hint-show" onclick="' + "showOther('hint-show', 'hint-container')" + '">Click to see hint</button><div id="hint-container">' + codingExerciseData.hint + "</div></div>";
+                if (codingExerciseData.solution != "") {
+                    data_soulution += '<div id="solution"><h3>Solution from the instructor: </h3>';
+                    data_soulution += "<button id='sub-solution-show' onclick=\"showOther('sub-solution-show', 'solution-sub-container')\">Click to see solution from instructor</button>";
+                    data_soulution += '<div id="solution-sub-container">' + codingExerciseData.solution + "</div></div>";
+                }
+                code_solution_final = ""
+                let haveEnd = false;
+                for (var i = 0; i < codingExerciseData.code_solutions.length; i++) {
+                    if (codingExerciseData.code_solutions[i][1] != ""){
+                        if (code_solution_final === "") {
+                            code_solution_final += "<div id='solution-code'><h3>Solutions code: </h3><button id='solucode-show' onclick=\"showOther('solucode-show', 'solucode-container')\">Click to see solution code</button><div id='solucode-container'>";
+                            haveEnd = true;
+                        }
+                        code_solution_final += "<b>" + codingExerciseData.code_solutions[i][0] + ": </b><pre><code id=\"htmlCode-solutionCode-"+ (i + 1) +"\"></code></pre>";  
+                    }
+                }
+                if (haveEnd == true) 
+                    code_solution_final += "</div></div>";
+                data_soulution += code_solution_final;
+                if (codingExerciseData.code_testing != "")
+                    data_soulution +=
+                        "<div id='test-code'><h3>Test code: </h3><button id='testcode-show' onclick=\"showOther('testcode-show', 'testcode-container')\">Click to see test code</button><pre id=\"testcode-container\"><code id=\"htmlCode-Test-Code\"></code><pre></div>";    
+                if (codingExerciseData.relativeLecture != "") data_soulution += '<div id="related_lectures"><h3>Related Lecture: </h3><span>' + codingExerciseData.relativeLecture + "</span></div>";
+                if (data_soulution != "")
+                    data_soulution = "<h2>Solution zone:</h2>" + data_soulution;
+                document.getElementById("solution-container").innerHTML = data_soulution;
+                if (data_soulution != "")
+                    document.getElementById("solution-button").style.display = 'block';
+                if (codingExerciseData.code_testing != ""){
+                    let htmlCodeElement1 = document.getElementById("htmlCode-Test-Code");
+                    htmlCodeElement1.textContent = codingExerciseData.code_testing;
+                }
+                for (var i = 0; i < codingExerciseData.code_solutions.length; i++) {
+                    if (codingExerciseData.code_solutions[i][1] != "")
+                        document.getElementById("htmlCode-solutionCode-"+ (i + 1)).textContent = codingExerciseData.code_solutions[i][1];
+                }
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (codingExerciseData.startCode[i][1] != "")
+                        document.getElementById("htmlCode-Start-"+(i+1)).textContent = codingExerciseData.startCode[i][1];
+                }
+                if (codingExerciseData.setupCode != "")
+                    document.getElementById("htmlCode-Setup").textContent = codingExerciseData.setupCode;
+            }
+        </script>
+    </body>
+</html>
