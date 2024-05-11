@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Coding Exercise</title>
+        <style>
+            body {
+                font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+                font-weight: 400;
+                line-height: 22.4px;
+                font-size: 16px;
+            }
+            p,
+            ul,
+            ol {
+                font-size: 16px;
+                font-weight: 400;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-weight: bold;
+            }
+            button {
+                background-color: black;
+                padding: 8px 12px 8px 12px;
+                border: none;
+                color: white;
+                font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+                font-weight: 700;
+                display: block;
+            }
+            button:hover {
+                background-color: #3e4143;
+            }
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                max-width: none;
+            }
+            code {
+                background-color: #fff;
+                border: 1px solid #d1d7dc;
+                color: #b4690e;
+                font-size: 90%;
+                padding: 0.2rem 0.4rem;
+            }
+            .code-snippet {
+                background-color: #fff;
+                border: 1px solid #d1d7dc;
+                color: #b4690e;
+                font-size: 90%;
+                padding: 0.2rem 0.4rem;
+            }
+            .code-block {
+                background-color: #fff;
+                color: #b4690e;
+                font-size: 90%;
+            }
+            .black-block {
+                color: #000000;
+            }
+            .italic-text {
+                font-style: italic;
+            }
+            #solution-container,
+            #hint-container,
+            #solution-sub-container,
+            #testcode-container,
+            #solucode-container,
+            #solution-button {
+                display: none;
+            }
+            img {
+                max-width: 700px;
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body onload="main()">
+        <h1 id="code-assignment-title"></h1>
+        <div id="code-assignment-description"></div>
+        <div>
+            <h2>Instruction</h2>
+            <div id="assignment-instructions"></div>
+        </div>
+        <div id="file-start"></div>
+        <div id="start-code"></div>
+        <div id="setup-code"></div>
+        <div id="solution-button">
+            <button id="solution-show" onclick="showSolution()">Click to see solution</button>
+        </div>
+        <div id="solution-container"></div>
+        <script>
+            var codingExerciseData = {"title": "Basic Selectors Practice", "learningObj": "", "instructions": "<p>It's time to get some practice with the new CSS Selectors we just learned. Without touching any of the starter HTML code in <code>index.html</code>, write CSS in <code>app.css</code> according to these rules:</p><ul><li><p>Give all <code>li</code> elements the text color <code>blue</code></p></li><li><p>Give all elements with the class of <code>done</code> the text color <code>grey</code></p></li><li><p>Give the element with the id <code>clear</code> a <code>red</code> background and <code>white</code> text</p></li></ul><img src=\"https://img-b.udemycdn.com/redactor/raw/2020-10-05_20-50-29-37e3f2d1a8be5855bc9d8e3b4a208c10.png\">", "startCode": [["index.html", "<h1>Todos</h1>\n<ul>\n  <li class=\"done\">Walk Chickens</li>\n  <li>Clean Out Coop</li>\n  <li class=\"done\">Collect Chicken Eggs</li>\n  <li>Incubate Chicken Eggs</li>\n  <li>Hatch New Chickens!</li>\n</ul>\n<button id=\"clear\">Clear List</button>\n<button>Add Todo</button>"], ["app.css", "/* Make all LI's blue */\n\n/* Make everything with the class of 'done' grey*/\n\n/* Make the element with the id of 'clear' have a red BG and white text */\n"]], "setupCode": "", "hint": "<p>You will be using the <code>li</code>, <code>.done</code>, and <code>#clear</code> CSS&nbsp;selectors to set the necessary styles outlined in the instructions.</p>", "solution": "<p>SOLUTION&nbsp;(app.css):</p><pre class=\"prettyprint linenums\">/* Make all LI's blue */\nli {\n    color: blue;\n}\n\n/* Make everything with the class of 'done' grey*/\n.done {\n    color: grey;\n}\n\n/* Make the element with the id of 'clear' have a red BG and white text */\n#clear {\n    background-color: red;\n    color: white;\n}</pre><p><br></p>", "code_testing": "describe('Selectors -', () => {\n    it('Starter code shouldn\\'t be modified', () => {\n        expect(document.body.innerHTML.replace(/<script[^<]+<\\/script>/g, '').replace(/\\s+/g, '')).toBe(`\n            <h1>Todos</h1>\n            <ul>\n              <li class=\"done\">Walk Chickens</li>\n              <li>Clean Out Coop</li>\n              <li class=\"done\">Collect Chicken Eggs</li>\n              <li>Incubate Chicken Eggs</li>\n              <li>Hatch New Chickens!</li>\n            </ul>\n            <button id=\"clear\">Clear List</button>\n            <button>Add Todo</button>\n        `.replace(/\\s+/g, ''));\n    });\n    \n    const rgbaToColor = {\n        'rgb(0, 0, 255)': 'blue',\n        'rgb(128, 128, 128)': 'grey',\n        'rgb(255, 0, 0)': 'red',\n        'rgb(255, 255, 255)': 'white',\n    };\n    \n    const listItems = document.getElementsByTagName('li');\n    \n    const [doneItems, restItems] = Array.from(listItems).reduce(([d, r], currentElement) => {\n        return currentElement.classList.contains('done') ? [[...d, currentElement], r] : [d, [...r, currentElement]];\n    }, [[], []]);\n    \n    it('There should be 3 not \"done\" items', () => {\n        expect(restItems.length).toBe(3)\n    });\n    \n    const numbers = ['1st', '2nd', '3rd', '4th'];\n    \n    restItems.forEach((restItem, index) => {\n        it(`The ${numbers[index]} not \"done\" item should be \"blue\"`, () => {\n            const color = window.getComputedStyle(restItem).getPropertyValue('color');\n\n            expect(rgbaToColor[color] || color).toBe('blue');\n        })\n    })\n    \n    doneItems.forEach((doneItem, index) => {\n        it(`The ${numbers[index]} \"done\" item should be \"grey\" (or \"gray\")`, () => {\n            const color = window.getComputedStyle(doneItem).getPropertyValue('color');\n\n            expect(rgbaToColor[color] || color).toBe('grey');\n        })\n    })\n    \n     const [clearButton, otherButton] = document.getElementsByTagName('button');\n     \n     it('Button with id \"clear\" should be styled with a \"red\" \"background-color\" and \"white\" text \"color\"', () => {\n         const backgroundColor = window.getComputedStyle(clearButton).getPropertyValue('background-color');\n         expect(rgbaToColor[backgroundColor] || backgroundColor).toBe('red');\n         \n         const color = window.getComputedStyle(clearButton).getPropertyValue('color');\n         expect(rgbaToColor[color] || color).toBe('white');\n     })\n     \n      it('The other button (Add Todo) should not have a \"red\" \"background-color\" or \"white\" text \"color\"', () => {\n         const backgroundColor = window.getComputedStyle(otherButton).getPropertyValue('background-color');\n         expect(rgbaToColor[backgroundColor] || backgroundColor).not.toBe('red');\n         \n         const color = window.getComputedStyle(otherButton).getPropertyValue('color');\n         expect(rgbaToColor[color] || color).not.toBe('white');\n     })\n});\n", "code_solutions": [["index.html", "<h1>Todos</h1>\n<ul>\n  <li class=\"done\">Walk Chickens</li>\n  <li>Clean Out Coop</li>\n  <li class=\"done\">Collect Chicken Eggs</li>\n  <li>Incubate Chicken Eggs</li>\n  <li>Hatch New Chickens!</li>\n</ul>\n<button id=\"clear\">Clear List</button>\n<button>Add Todo</button>"], ["app.css", "/* Make all LI's blue */\nli {\n  color: blue;\n}\n/* Make everything with the class of 'done' grey*/\n.done {\n  color: grey;\n}\n/* Make the element with the id of 'clear' have a red BG and white text */\n#clear {\n  background-color: red;\n  color: white;\n}"]], "relativeLecture": ""};
+            function showSolution() {
+                var button = document.getElementById("solution-show");
+                var container = document.getElementById("solution-container");
+                container.style.display = "block";
+                button.style.display = "none";
+                if (container) {
+                    container.scrollIntoView({
+                        behavior: "smooth",
+                    });
+                }
+            }
+
+            function showOther(id_button, id_container) {
+                var button = document.getElementById(id_button);
+                var container = document.getElementById(id_container);
+                container.style.display = "block";
+                button.style.display = "none";
+            }
+
+            function main() {
+                document.getElementById("code-assignment-title").innerHTML = codingExerciseData.title;
+                if (codingExerciseData.learningObj != "") document.getElementById("code-assignment-description").innerHTML = codingExerciseData.learningObj;
+                document.getElementById("assignment-instructions").innerHTML = codingExerciseData.instructions;
+                string_list_file = ""
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (string_list_file === "") string_list_file += "<h3>List file</h3>";
+                    string_list_file += "<p>" + codingExerciseData.startCode[i][0] + "</p>";
+                }
+                document.getElementById("file-start").innerHTML = string_list_file;
+                string_startCode = ""
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (codingExerciseData.startCode[i][1] != ""){
+                        if (string_startCode === "") string_startCode += "<h3>Code start</h3>";
+                        string_startCode += "<b>"+codingExerciseData.startCode[i][0]+"</b><pre><code id=\"htmlCode-Start-"+(i+1)+"\"></code></pre>"
+                    } 
+                }
+                document.getElementById("start-code").innerHTML = string_startCode;
+                string_setupCode = ""
+                if (codingExerciseData.setupCode != "")
+                    string_setupCode = "<h3>Setup code: </h3><pre><code id=\"htmlCode-Setup\"></code></pre>"
+                document.getElementById("setup-code").innerHTML = string_setupCode;
+                var data_soulution = "";
+                if (codingExerciseData.hint != "")
+                    data_soulution += '<div id="hints"><h3>Hints: </h3><button id="hint-show" onclick="' + "showOther('hint-show', 'hint-container')" + '">Click to see hint</button><div id="hint-container">' + codingExerciseData.hint + "</div></div>";
+                if (codingExerciseData.solution != "") {
+                    data_soulution += '<div id="solution"><h3>Solution from the instructor: </h3>';
+                    data_soulution += "<button id='sub-solution-show' onclick=\"showOther('sub-solution-show', 'solution-sub-container')\">Click to see solution from instructor</button>";
+                    data_soulution += '<div id="solution-sub-container">' + codingExerciseData.solution + "</div></div>";
+                }
+                code_solution_final = ""
+                let haveEnd = false;
+                for (var i = 0; i < codingExerciseData.code_solutions.length; i++) {
+                    if (codingExerciseData.code_solutions[i][1] != ""){
+                        if (code_solution_final === "") {
+                            code_solution_final += "<div id='solution-code'><h3>Solutions code: </h3><button id='solucode-show' onclick=\"showOther('solucode-show', 'solucode-container')\">Click to see solution code</button><div id='solucode-container'>";
+                            haveEnd = true;
+                        }
+                        code_solution_final += "<b>" + codingExerciseData.code_solutions[i][0] + ": </b><pre><code id=\"htmlCode-solutionCode-"+ (i + 1) +"\"></code></pre>";  
+                    }
+                }
+                if (haveEnd == true) 
+                    code_solution_final += "</div></div>";
+                data_soulution += code_solution_final;
+                if (codingExerciseData.code_testing != "")
+                    data_soulution +=
+                        "<div id='test-code'><h3>Test code: </h3><button id='testcode-show' onclick=\"showOther('testcode-show', 'testcode-container')\">Click to see test code</button><pre id=\"testcode-container\"><code id=\"htmlCode-Test-Code\"></code><pre></div>";    
+                if (codingExerciseData.relativeLecture != "") data_soulution += '<div id="related_lectures"><h3>Related Lecture: </h3><span>' + codingExerciseData.relativeLecture + "</span></div>";
+                if (data_soulution != "")
+                    data_soulution = "<h2>Solution zone:</h2>" + data_soulution;
+                document.getElementById("solution-container").innerHTML = data_soulution;
+                if (data_soulution != "")
+                    document.getElementById("solution-button").style.display = 'block';
+                if (codingExerciseData.code_testing != ""){
+                    let htmlCodeElement1 = document.getElementById("htmlCode-Test-Code");
+                    htmlCodeElement1.textContent = codingExerciseData.code_testing;
+                }
+                for (var i = 0; i < codingExerciseData.code_solutions.length; i++) {
+                    if (codingExerciseData.code_solutions[i][1] != "")
+                        document.getElementById("htmlCode-solutionCode-"+ (i + 1)).textContent = codingExerciseData.code_solutions[i][1];
+                }
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (codingExerciseData.startCode[i][1] != "")
+                        document.getElementById("htmlCode-Start-"+(i+1)).textContent = codingExerciseData.startCode[i][1];
+                }
+                if (codingExerciseData.setupCode != "")
+                    document.getElementById("htmlCode-Setup").textContent = codingExerciseData.setupCode;
+            }
+        </script>
+    </body>
+</html>
