@@ -1,0 +1,36 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 10px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #151b29;
+}
+
+button {
+  /* Center div in screen */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25% auto;
+  /*----------------------*/
+  border: 2px #ffa260 solid;
+  background-color: #151b29;
+  color: #ffa260;
+  font-size: 1.8rem;
+  font-weight: 300;
+  padding: 1em 2em;
+  transition: background-color 0.5s, color 0.5s, transform 0.25s;
+}
+
+button:hover {
+  background-color: #ffa260;
+  color: #080807;
+  transform: translateY(-3px);
+  -webkit-box-shadow: 0px 0px 113px 0px #ffa260;
+  -moz-box-shadow: 0px 0px 113px 0px #ffa260;
+  box-shadow: 0px 0px 113px 0px #ffa260;
+}
