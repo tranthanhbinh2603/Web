@@ -1,0 +1,39 @@
+@media(min-width: 1024px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    nav>ul {
+        flex-grow: 1;
+        max-width: 50%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
+
+@media(min-width: 740px) and (max-width: 1023px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    nav>ul {
+        flex-grow: 1;
+        max-width: 50%;
+        display: flex;
+        justify-content: space-evenly;
+    }
+}
+
+@media(max-width: 739px) {
+    h1 {
+        font-size: 3em;
+    }
+
+    nav>a,
+    nav>ul>li {
+        display: block;
+        text-align: center;
+    }
+}
