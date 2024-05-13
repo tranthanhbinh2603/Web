@@ -1,0 +1,310 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/***************************/
+html {
+    background-color: rgb(96, 169, 255);
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.pricing-table {
+    background-color: white;
+    max-width: 960px;
+    padding: 10px 25px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.pricing-plan {
+    border-bottom: 1px #ccc solid;
+}
+
+.pricing-plan:last-child {
+    border-bottom: none;
+}
+
+.pricing-img {
+    max-width: 100%;
+    margin-bottom: 25px;
+}
+
+.pricing-header {
+    color: #888;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0px 0px 25px 0px;
+}
+
+.pricing-features {
+    margin: 0px 0px 15px 0px;
+}
+
+.pricing-features-item {
+    margin-bottom: 10px;
+    color: rgb(96, 169, 255);
+    font-weight: 600;
+    border-bottom: 1px #ccc solid;
+    padding-bottom: 10px;
+}
+
+.pricing-features-item:first-child {
+    padding-top: 10px;
+    border-top: 1px #ccc solid;
+}
+
+.pricing-price {
+    font-size: 2rem;
+    display: block;
+    font-weight: 900;
+    color: rgb(7, 122, 253);
+    letter-spacing: 0.5px;
+}
+
+.pricing-button {
+    text-decoration: none;
+    margin: 25px 0px 25px 0px;
+    display: inline-block;
+    border: 1px rgb(96, 169, 255) solid;
+    border-radius: 10px;
+    padding: 10px 25px;
+    color: rgb(96, 169, 255);
+}
+
+.is-recommend {
+    -webkit-animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+    animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+.is-featured {
+    background-color: rgb(96, 169, 255);
+    color: white;
+}
+
+.pricing-button:hover,
+.pricing-button:focus {
+    background-color: rgb(96, 169, 255);
+    color: white;
+}
+
+@-webkit-keyframes shake-horizontal {
+
+    0%,
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70% {
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px);
+    }
+
+    20%,
+    40%,
+    60% {
+        -webkit-transform: translateX(10px);
+        transform: translateX(10px);
+    }
+
+    80% {
+        -webkit-transform: translateX(8px);
+        transform: translateX(8px);
+    }
+
+    90% {
+        -webkit-transform: translateX(-8px);
+        transform: translateX(-8px);
+    }
+}
+
+@keyframes shake-horizontal {
+
+    0%,
+    100% {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70% {
+        -webkit-transform: translateX(-10px);
+        transform: translateX(-10px);
+    }
+
+    20%,
+    40%,
+    60% {
+        -webkit-transform: translateX(10px);
+        transform: translateX(10px);
+    }
+
+    80% {
+        -webkit-transform: translateX(8px);
+        transform: translateX(8px);
+    }
+
+    90% {
+        -webkit-transform: translateX(-8px);
+        transform: translateX(-8px);
+    }
+}
+
+@media(min-width: 960px) {
+    .pricing-table {
+        flex-direction: row;
+    }
+
+    .pricing-plan {
+        border-bottom: none;
+        padding: 0px 25px;
+        border-right: 1px #ccc solid;
+    }
+
+    .pricing-plan:last-child {
+        border-right: none;
+    }
+}
