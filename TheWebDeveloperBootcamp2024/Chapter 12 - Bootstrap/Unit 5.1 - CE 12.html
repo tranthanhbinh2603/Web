@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Coding Exercise</title>
+        <style>
+            body {
+                font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+                font-weight: 400;
+                line-height: 22.4px;
+                font-size: 16px;
+            }
+            p,
+            ul,
+            ol {
+                font-size: 16px;
+                font-weight: 400;
+            }
+            h1,
+            h2,
+            h3,
+            h4,
+            h5,
+            h6 {
+                font-weight: bold;
+            }
+            button {
+                background-color: black;
+                padding: 8px 12px 8px 12px;
+                border: none;
+                color: white;
+                font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+                font-weight: 700;
+                display: block;
+            }
+            button:hover {
+                background-color: #3e4143;
+            }
+            ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                max-width: none;
+            }
+            code {
+                background-color: #fff;
+                border: 1px solid #d1d7dc;
+                color: #b4690e;
+                font-size: 90%;
+                padding: 0.2rem 0.4rem;
+            }
+            .code-snippet {
+                background-color: #fff;
+                border: 1px solid #d1d7dc;
+                color: #b4690e;
+                font-size: 90%;
+                padding: 0.2rem 0.4rem;
+            }
+            .code-block {
+                background-color: #fff;
+                color: #b4690e;
+                font-size: 90%;
+            }
+            .black-block {
+                color: #000000;
+            }
+            .italic-text {
+                font-style: italic;
+            }
+            #solution-container,
+            #hint-container,
+            #solution-sub-container,
+            #testcode-container,
+            #solucode-container,
+            #solution-button {
+                display: none;
+            }
+            img {
+                max-width: 700px;
+                display: block;
+            }
+        </style>
+    </head>
+
+    <body onload="main()">
+        <h1 id="code-assignment-title"></h1>
+        <div id="code-assignment-description"></div>
+        <div>
+            <h2>Instruction</h2>
+            <div id="assignment-instructions"></div>
+        </div>
+        <div id="file-start"></div>
+        <div id="start-code"></div>
+        <div id="setup-code"></div>
+        <div id="solution-button">
+            <button id="solution-show" onclick="showSolution()">Click to see solution</button>
+        </div>
+        <div id="solution-container"></div>
+        <script>
+            var codingExerciseData = {"title": "Bootstrap Basics Practice", "learningObj": "", "instructions": "<p>I've given you some starter markup in index.html.&nbsp; Bootstrap is already included! Please add in the appropriate bootstrap classes according to these instructions:</p><ul><li><p>Make the section a bootstrap container</p></li><li><p>Give the h1 white text, a dark background, and center-aligned text</p></li><li><p>Make the div an alert ('warning' color).&nbsp; Set the role attribute to alert, for accessibility purposes!</p></li><li><p>Make the first button a green bootstrap button</p></li><li><p>Make the second button a red bootstrap button</p></li></ul><p><img src=\"https://img-b.udemycdn.com/redactor/raw/2020-09-23_21-31-35-f61a0bf70fe97d8d0b59b0ad33ad66cf.png\"></p>", "startCode": [["index.html", "<!DOCTYPE html>\n<html>\n<head>\n    <title>Bootstrap Buttons Exercise</title>\n    <!--INCLUDING BOOTSTRAP-->\n    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">\n\n</head>\n<body>\n    <section>\n      <h1>Bad News</h1>\n      \n      <div>\n        You are going to die one day! It sucks, but it's normal :( \n      </div>\n      \n      <button>Come To Terms With</button>\n      <button>Continue To Deny</button>\n      \n    </section>\n</body>\n</html>\n\n"]], "setupCode": "", "hint": "<p>You will be applying the \"container\" class on the section.</p><p>To accomplish the necessary styles, these are the Bootstrap classes you will be using in this exercise (figure out which exact classes you should apply to which element): text-white, bg-dark, text-center, alert, alert-warning, btn, btn-success, btn-danger.</p><p>And, you would be setting the role=\"alert\" attribute on the appropriate element also.</p>", "solution": "<p>SOLUTION:</p><pre class=\"prettyprint linenums\">&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;title&gt;Flexbox Exercise&lt;/title&gt;\n    &lt;!--INCLUDING BOOTSTRAP--&gt;\n    &lt;link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\"\n          integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\"&gt;\n&lt;/head&gt;\n&lt;body&gt;\n&lt;section class=\"container\"&gt;\n    &lt;h1 class=\"text-white bg-dark text-center\"&gt;Bad News&lt;/h1&gt;\n    &lt;div class=\"alert alert-warning\" role=\"alert\"&gt;\n        You are going to die one day! It sucks, but it's normal :(\n    &lt;/div&gt;\n    &lt;button class=\"btn btn-success\"&gt;Come To Terms With&lt;/button&gt;\n    &lt;button class=\"btn btn-danger\"&gt;Continue To Deny&lt;/button&gt;\n&lt;/section&gt;\n&lt;/body&gt;\n&lt;/html&gt;</pre><p><br></p>", "code_testing": "describe('Bootstrap Buttons -', () => {\n    const [section, ...otherSections] = document.getElementsByTagName('section');\n    \n    it('the <section> element', () => {\n        expect(section).toBeDefined('There should be a single section');\n        expect(otherSections.length).toBe(0, 'There are too many sections');\n        expect(section.classList).toContain('container', 'Make sure you added the container class to the right element')\n    });\n    \n    const bootstrapHelpText = (element, className, attribute = 'class') => [className, `The ${element} is missing the \"${className}\" ${attribute}`];\n    \n    const [h1, ...otherH1s] = document.getElementsByTagName('h1');\n    \n    it('the <h1> element', () => {\n        expect(h1).toBeDefined('There should be a single h1');\n        expect(otherH1s.length).toBe(0, 'There are too many h1s');\n        expect(h1.classList).toContain(...bootstrapHelpText('h1', 'text-white'));\n        expect(h1.classList).toContain(...bootstrapHelpText('h1', 'bg-dark'));\n        expect(h1.classList).toContain(...bootstrapHelpText('h1', 'text-center'));\n    });\n    \n    const [div, ...otherDivs] = document.getElementsByTagName('div');\n    \n    it('the <div> element', () => {\n        expect(div).toBeDefined('There should be a single div');\n        expect(otherDivs.length).toBe(0, 'There are too many divs');\n        expect(div.classList).toContain(...bootstrapHelpText('div', 'alert'));\n        expect(div.classList).toContain(...bootstrapHelpText('div', 'alert-warning'));\n        expect(div.getAttribute('role')).toBe(...bootstrapHelpText('div', 'alert', 'role'));\n    })\n    \n    const [button1, button2, ...otherButtons] = document.getElementsByTagName('button');\n    \n    it('First <button> element', () => {\n        expect(button1).toBeDefined('There should be a first button');\n        expect(otherButtons.length).toBe(0, 'There are too many buttons');\n        expect(button1.classList).toContain(...bootstrapHelpText('button', 'btn'));\n        expect(button1.classList).toContain(...bootstrapHelpText('button', 'btn-success'));\n    })\n    \n    it('Second <button> element', () => {\n        expect(button2).toBeDefined('There should be a first button');\n        expect(button2.classList).toContain(...bootstrapHelpText('button', 'btn'));\n        expect(button2.classList).toContain(...bootstrapHelpText('button', 'btn-danger'));\n    })\n});\n", "code_solutions": [["index.html", "<!DOCTYPE html>\n<html>\n<head>\n    <title>Flexbox Exercise</title>\n    <!--INCLUDING BOOTSTRAP-->\n    <link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css\" integrity=\"sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z\" crossorigin=\"anonymous\">\n\n</head>\n<body>\n    <section class=\"container\">\n      <h1 class=\"text-white bg-dark text-center\">Bad News</h1>\n      <div class=\"alert alert-warning\" role=\"alert\">\n      You are going to die one day! It sucks, but it's normal :( \n      </div>\n      <button class=\"btn btn-success\">Come To Terms With</button>\n      <button class=\"btn btn-danger\">Continue To Deny</button>\n    </section>\n</body>\n</html>\n\n"]], "relativeLecture": ""};
+            function showSolution() {
+                var button = document.getElementById("solution-show");
+                var container = document.getElementById("solution-container");
+                container.style.display = "block";
+                button.style.display = "none";
+                if (container) {
+                    container.scrollIntoView({
+                        behavior: "smooth",
+                    });
+                }
+            }
+
+            function showOther(id_button, id_container) {
+                var button = document.getElementById(id_button);
+                var container = document.getElementById(id_container);
+                container.style.display = "block";
+                button.style.display = "none";
+            }
+
+            function main() {
+                document.getElementById("code-assignment-title").innerHTML = codingExerciseData.title;
+                if (codingExerciseData.learningObj != "") document.getElementById("code-assignment-description").innerHTML = codingExerciseData.learningObj;
+                document.getElementById("assignment-instructions").innerHTML = codingExerciseData.instructions;
+                string_list_file = ""
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (string_list_file === "") string_list_file += "<h3>List file</h3>";
+                    string_list_file += "<p>" + codingExerciseData.startCode[i][0] + "</p>";
+                }
+                document.getElementById("file-start").innerHTML = string_list_file;
+                string_startCode = ""
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (codingExerciseData.startCode[i][1] != ""){
+                        if (string_startCode === "") string_startCode += "<h3>Code start</h3>";
+                        string_startCode += "<b>"+codingExerciseData.startCode[i][0]+"</b><pre><code id=\"htmlCode-Start-"+(i+1)+"\"></code></pre>"
+                    } 
+                }
+                document.getElementById("start-code").innerHTML = string_startCode;
+                string_setupCode = ""
+                if (codingExerciseData.setupCode != "")
+                    string_setupCode = "<h3>Setup code: </h3><pre><code id=\"htmlCode-Setup\"></code></pre>"
+                document.getElementById("setup-code").innerHTML = string_setupCode;
+                var data_soulution = "";
+                if (codingExerciseData.hint != "")
+                    data_soulution += '<div id="hints"><h3>Hints: </h3><button id="hint-show" onclick="' + "showOther('hint-show', 'hint-container')" + '">Click to see hint</button><div id="hint-container">' + codingExerciseData.hint + "</div></div>";
+                if (codingExerciseData.solution != "") {
+                    data_soulution += '<div id="solution"><h3>Solution from the instructor: </h3>';
+                    data_soulution += "<button id='sub-solution-show' onclick=\"showOther('sub-solution-show', 'solution-sub-container')\">Click to see solution from instructor</button>";
+                    data_soulution += '<div id="solution-sub-container">' + codingExerciseData.solution + "</div></div>";
+                }
+                code_solution_final = ""
+                let haveEnd = false;
+                for (var i = 0; i < codingExerciseData.code_solutions.length; i++) {
+                    if (codingExerciseData.code_solutions[i][1] != ""){
+                        if (code_solution_final === "") {
+                            code_solution_final += "<div id='solution-code'><h3>Solutions code: </h3><button id='solucode-show' onclick=\"showOther('solucode-show', 'solucode-container')\">Click to see solution code</button><div id='solucode-container'>";
+                            haveEnd = true;
+                        }
+                        code_solution_final += "<b>" + codingExerciseData.code_solutions[i][0] + ": </b><pre><code id=\"htmlCode-solutionCode-"+ (i + 1) +"\"></code></pre>";  
+                    }
+                }
+                if (haveEnd == true) 
+                    code_solution_final += "</div></div>";
+                data_soulution += code_solution_final;
+                if (codingExerciseData.code_testing != "")
+                    data_soulution +=
+                        "<div id='test-code'><h3>Test code: </h3><button id='testcode-show' onclick=\"showOther('testcode-show', 'testcode-container')\">Click to see test code</button><pre id=\"testcode-container\"><code id=\"htmlCode-Test-Code\"></code><pre></div>";    
+                if (codingExerciseData.relativeLecture != "") data_soulution += '<div id="related_lectures"><h3>Related Lecture: </h3><span>' + codingExerciseData.relativeLecture + "</span></div>";
+                if (data_soulution != "")
+                    data_soulution = "<h2>Solution zone:</h2>" + data_soulution;
+                document.getElementById("solution-container").innerHTML = data_soulution;
+                if (data_soulution != "")
+                    document.getElementById("solution-button").style.display = 'block';
+                if (codingExerciseData.code_testing != ""){
+                    let htmlCodeElement1 = document.getElementById("htmlCode-Test-Code");
+                    htmlCodeElement1.textContent = codingExerciseData.code_testing;
+                }
+                for (var i = 0; i < codingExerciseData.code_solutions.length; i++) {
+                    if (codingExerciseData.code_solutions[i][1] != "")
+                        document.getElementById("htmlCode-solutionCode-"+ (i + 1)).textContent = codingExerciseData.code_solutions[i][1];
+                }
+                for (var i = 0; i < codingExerciseData.startCode.length; i++){
+                    if (codingExerciseData.startCode[i][1] != "")
+                        document.getElementById("htmlCode-Start-"+(i+1)).textContent = codingExerciseData.startCode[i][1];
+                }
+                if (codingExerciseData.setupCode != "")
+                    document.getElementById("htmlCode-Setup").textContent = codingExerciseData.setupCode;
+            }
+        </script>
+    </body>
+</html>
