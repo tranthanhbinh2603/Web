@@ -14,17 +14,21 @@
 <body>
     <div class="container">
         <h1>Look at all my pokemon</h1>
-        <div class="container containerImage">
-
-        </div>
+        <div class="container containerImage"></div>
     </div>
     <script>
         // https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png
         for (let i = 1; i <= 500; i++) {
+            let container = document.createElement('div');
+            container.classList += "d-inline-block";
             let imageElement = document.createElement('img');
             imageElement.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${i}.png`
+            let textDescription = document.createElement('p');
+            textDescription.classList += "text-center";
+            textDescription.textContent += `#${i}`;
+            container.append(imageElement, textDescription);
             let containerImage = document.querySelector('.containerImage');
-            containerImage.append(imageElement);
+            containerImage.append(container);
         }
     </script>
 
