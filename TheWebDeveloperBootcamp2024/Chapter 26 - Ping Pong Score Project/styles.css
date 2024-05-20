@@ -1,0 +1,104 @@
+* {
+    background-color: #dbdbdb;
+    font-size: 10px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+.main {
+    border-radius: 8px;
+    overflow: hidden;
+    width: 40rem;
+}
+
+.main .header img {
+    font-size: 1rem;
+    /* height: 35em; */
+    height: 100%;
+    width: 100%;
+}
+
+.main .header h1 {
+    font-size: 1.6rem;
+    text-align: left;
+    font-weight: 700;
+    padding: 0.8em;
+    margin: 0;
+    background-color: white;
+}
+
+.main>.mainScore {
+    padding: 12px 12px 0px 12px;
+    background-color: white;
+
+}
+
+.main>.mainScore>h1,
+.main>.mainScore span {
+    text-align: left;
+    font-weight: 600;
+    font-size: 4rem;
+    margin-bottom: 0;
+    background-color: white;
+}
+
+.main>.mainScore>p {
+    font-size: 1.6rem;
+    text-align: left;
+    opacity: 0.8;
+    margin-bottom: 1em;
+    background-color: white;
+}
+
+.main>.mainScore>div {
+    display: flex;
+}
+
+.main>.mainScore .chooseScoreLabel {
+    font-size: 2.4rem;
+    text-align: left;
+    font-weight: 600;
+    display: inline;
+    width: 200px;
+    background-color: white;
+    margin-bottom: 0;
+}
+
+.main>.mainScore>select {
+    text-align: left;
+}
+
+.main>.mainScore>.row {
+    margin-top: 1.2rem;
+}
+
+.main>.mainScore>.row .col {
+    padding: 0;
+}
+
+.main>.mainScore>.row button {
+    padding: 12px;
+    margin: 0;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 1.2rem;
+}
+
+.score1,
+.score2 {
+    transition: 0.2s color;
+}
+
+.win {
+    color: green;
+}
+
+.lose {
+    color: red;
+}
