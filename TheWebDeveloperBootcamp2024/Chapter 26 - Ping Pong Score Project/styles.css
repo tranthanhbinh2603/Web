@@ -74,19 +74,15 @@
     text-align: left;
 }
 
-.main>.mainScore>.row {
-    margin-top: 1.2rem;
-}
-
-.main>.mainScore>.row .col {
+.main>.row .col {
     padding: 0;
 }
 
-.main>.mainScore>.row button {
+.main>.row button {
     padding: 12px;
     margin: 0;
     width: 100%;
-    border-radius: 4px;
+    border-radius: 0;
     font-size: 1.2rem;
 }
 
@@ -101,4 +97,9 @@
 
 .lose {
     color: red;
+}
+
+.choosePoint {
+    padding-bottom: 12px;
+    background-color: white;
 }
