@@ -1,0 +1,23 @@
+.product-box {
+    border: 1px #ccc solid;
+    border-radius: 4px;
+}
+
+.row a {
+    text-decoration: none;
+    color: black;
+}
+
+.product-box__title {
+    font-size: 20px;
+    margin-left: 8px;
+    margin-bottom: 4px;
+}
+
+
+.product-box__price {
+    text-align: right;
+    font-weight: 700;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
