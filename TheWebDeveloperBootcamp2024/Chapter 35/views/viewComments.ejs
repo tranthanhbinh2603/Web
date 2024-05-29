@@ -21,6 +21,8 @@
                     <%= commentItem.comment %> - <b>
                             <%= commentItem.username %>
                         </b>
+                        <a href="/comment/<%= commentItem.id %>">View</a>
+                        <a href="/comment/<%= commentItem.id %>/edit">Edit</a>
                 </li>
                 <% } %>
         </ul>

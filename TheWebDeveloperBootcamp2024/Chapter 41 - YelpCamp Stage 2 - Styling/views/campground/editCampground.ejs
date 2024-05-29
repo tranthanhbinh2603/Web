@@ -1,0 +1,43 @@
+<%- include('../../partials/head') %>
+
+    <body class="d-flex flex-column vh-100">
+        <%- include('../../partials/header') %>
+            <div class="container offset-md-3 col-md-6">
+                <h1 class="text-center mt-3">Add a campground</h1>
+                <form action="/campground" method="POST">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" id="title" class="form-control" name="title" autocomplete="false"
+                            value="<%= campground.title %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" id="location" class="form-control" name="location" autocomplete="false"
+                            value="<%= campground.location %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class=" form-label">Description</label>
+                        <input type="text" id="description" class=" form-control" name="description"
+                            autocomplete="false" value="<%= campground.description %>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" id="price" class="form-control" name="price" autocomplete="false"
+                                value="<%= campground.price %>">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class=" form-label">Image</label>
+                        <input type="text" id="image" class=" form-control" name="image" autocomplete="false"
+                            value="<%= campground.image %>">
+                    </div>
+                    <button class=" btn btn-primary mb-3">Save it!</button>
+                    <a href="/campgrounds" class="btn btn-primary mb-3">Back to all campgrounds</a>
+                </form>
+            </div>
+            <%- include('../../partials/footer') %>
+    </body>
+
+    </html>
