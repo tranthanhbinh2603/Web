@@ -4,6 +4,7 @@ const path = require('path');
 const { v4: uuid } = require('uuid');
 const methodOverride = require('method-override')
 const Campground = require('./models/campgrounds')
+const { CampgroundSchema } = require('./models/schema');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname) + '/views');
@@ -26,12 +27,22 @@ function wrapAsync(fn) {
     }
 }
 
+const validateCampground = (req, res, next) => {    
+    const { error } = CampgroundSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(',')
+        throw new AppError(msg, 400)
+    } else {
+        next();
+    }
+}
+
 app.get('/campgrounds', wrapAsync(async (req, res) => {
     const campgrounds = await Campground.find({}); 
     res.render('campground/campgrounds', {campgrounds})
 }))
 
-app.post('/campground', wrapAsync(async (req, res) => {
+app.post('/campground', validateCampground, wrapAsync(async (req, res) => {
     const data = new Campground(req.body);
     await data.save();
     res.redirect(`/campground/${data._id}`);
@@ -77,7 +88,7 @@ app.use((err, req, res, next) => {
     console.log('User-agent:', req.get('User-Agent'));
     console.log('Error: ', err)
     console.log('===========================');
-    res.status(status).send(message);
+    res.status(status).render('./error', {err});
 })
 
 app.listen(5050, ()=> {
