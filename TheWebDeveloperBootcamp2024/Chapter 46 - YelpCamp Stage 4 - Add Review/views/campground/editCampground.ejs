@@ -1,0 +1,69 @@
+<%- include('../../partials/head') %>
+
+    <body class="d-flex flex-column vh-100">
+        <%- include('../../partials/header') %>
+            <div class="container offset-md-3 col-md-6">
+                <h1 class="text-center mt-3">Add a campground</h1>
+                <form action="/campground/<%= campground._id %>?_method=PUT" novalidate method="POST" class="main-form">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" id="title" class="form-control" name="title" autocomplete="off"
+                            value="<%= campground.title %>" required>
+                        <div class="invalid-feedback">* Required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" id="location" class="form-control" name="location" autocomplete="off"
+                            value="<%= campground.location %>" required>
+                        <div class="invalid-feedback">* Required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class=" form-label">Description</label>
+                        <input type="text" id="description" class=" form-control" name="description" autocomplete="off"
+                            value="<%= campground.description %>" required>
+                        <div class="invalid-feedback">* Required</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input type="text" id="price" class="form-control" name="price" autocomplete="off"
+                                value="<%= campground.price %>" required>
+                            <div class="invalid-feedback">* Required</div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class=" form-label">Image</label>
+                        <input type="text" id="image" class=" form-control" name="image" autocomplete="off"
+                            value="<%= campground.image %>" required>
+                        <div class="invalid-feedback">* Required</div>
+                    </div>
+                    <button class=" btn btn-primary mb-3">Save it!</button>
+                    <a href="/campgrounds" class="btn btn-primary mb-3">Back to all campgrounds</a>
+                </form>
+            </div>
+            <%- include('../../partials/footer') %>
+    </body>
+
+    </html>
+
+    <script>
+        (() => {
+            'use strict'
+
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.main-form')
+
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
