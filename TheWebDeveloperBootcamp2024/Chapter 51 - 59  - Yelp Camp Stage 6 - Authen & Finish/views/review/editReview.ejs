@@ -1,0 +1,73 @@
+<%- include('../../partials/head') %>
+
+    <body class="d-flex flex-column vh-100">
+        <%- include('../../partials/header') %>
+            <div class="container">
+                <%- include('../../partials/flash') %>
+                    <div class="row">
+                        <div class="container col-md-4">
+                            <div class="card mt-3 mb-3">
+                                <img src="<%= campground.image %>" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= campground.title %>
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= campground.description %>
+                                    </p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <%= campground.location %>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <%= campground.price %>
+                                    </li>
+                                </ul>
+                                <div class="card-body d-flex">
+                                    <a href="/campgrounds" class="btn btn-success me-1">Back</a>
+                                    <a href="/campground/<%= campground._id %>/edit" class="btn btn-info me-1">Edit</a>
+                                    <form action="/campground/<%= campground._id %>?_method=DELETE" method="post">
+                                        <button class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
+                                <div class="card-footer">
+                                    2 days ago
+                                </div>
+                            </div>
+                        </div>
+                        <div class="container col-md-8">
+                            <h2>Edit your review</h2>
+                            <form action="/campground/<%= campground._id %>/review/<%= review._id %>?_method=PUT"
+                                novalidate method="POST" class="main-form">
+                                <fieldset class="starability-basic">
+                                    <input type="radio" id="first-rate1" name="score" value="1" />
+                                    <label for="first-rate1" title="Terrible">1 star</label>
+                                    <input type="radio" id="first-rate2" name="score" value="2" />
+                                    <label for="first-rate2" title="Not good">2 stars</label>
+                                    <input type="radio" id="first-rate3" name="score" value="3" />
+                                    <label for="first-rate3" title="Average">3 stars</label>
+                                    <input type="radio" id="first-rate4" name="score" value="4" />
+                                    <label for="first-rate4" title="Very good">4 stars</label>
+                                    <input type="radio" id="first-rate5" name="score" value="5" />
+                                    <label for="first-rate5" title="Amazing">5 stars</label>
+                                </fieldset>
+                                <div class="mb-3">
+                                    <div class="input-group">
+                                        <textarea class="form-control" placeholder="Leave a review here" id="review"
+                                            name="review" required><%= review.review %></textarea>
+                                        <div class="invalid-feedback">* Required</div>
+                                    </div>
+                                </div>
+                                <button class=" btn btn-primary mb-3">Edit your review</button>
+                            </form>
+
+                        </div>
+                    </div>
+            </div>
+            <%- include('../../partials/footer') %>
+    </body>
+
+    </html>
+
+    <script src="/javascript/validateform.js"></script>
