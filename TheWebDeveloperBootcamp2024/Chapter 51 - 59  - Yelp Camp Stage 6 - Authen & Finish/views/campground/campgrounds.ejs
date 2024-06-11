@@ -10,8 +10,14 @@
                         <div class="card mb-3">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img src="<%= campground.image %>" class="card-img-top" style="height: 100%;"
-                                        loading="lazy">
+                                    <% if (campground.image.length> 0) { %>
+                                        <img src="<%= campground.image[0].thumbnail %>" class="card-img-top"
+                                            style="height: 100%;" loading="lazy">
+                                        <% } %>
+                                            <% if (campground.image.length<=0){ %>
+                                                <img src="https://res.cloudinary.com/dabj76ny7/image/upload/w_800/v1718032719/hyojwufdybylc0vtocel.avif"
+                                                    class="card-img-top" style="height: 100%;" loading="lazy">
+                                                <% } %>
                                 </div>
                                 <div class="card-body col-md-8">
                                     <h3 class="card-title">
@@ -27,7 +33,10 @@
                                         $<%= campground.price %>
                                     </p>
                                     <a href="/campground/<%= campground._id %>" class="btn btn-primary">View it</a>
-                                    <a href="/campground/<%= campground._id %>/edit" class="btn btn-warning">Edit it</a>
+                                    <% if (currentUser && campground.user._id.equals(currentUser._id)) { %>
+                                        <a href="/campground/<%= campground._id %>/edit" class="btn btn-warning">Edit
+                                            it</a>
+                                        <% } %>
                                 </div>
                             </div>
                         </div>

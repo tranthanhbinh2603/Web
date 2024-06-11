@@ -4,7 +4,7 @@ const Review = require("./models/review");
 // Lưu lại đoạn code này để check permission
 module.exports.storeReturnTo = (req, res, next) => {
 	if (req.session.returnTo) {
-		return (res.locals.returnTo = req.session.returnTo);
+		res.locals.returnTo = req.session.returnTo;
 	}
 	return next();
 };

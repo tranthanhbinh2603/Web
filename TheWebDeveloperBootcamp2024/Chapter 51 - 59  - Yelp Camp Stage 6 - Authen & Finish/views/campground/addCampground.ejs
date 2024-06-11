@@ -35,9 +35,8 @@
                         </div>
                         <label for="image" class=" form-label">Image</label>
                         <div class="mb-3">
-                            <!--Muốn gửi nhiều tệp thêm trường multiple vào-->
-                            <input type="file" name="image" id="image">
-                            <div class="invalid-feedback">* Required</div>
+                            <!--Muốn gửi 1 tệp thì bỏ trường multiple vào-->
+                            <input type="file" class="form-control" name="image" id="image" multiple>
                         </div>
                         <button class=" btn btn-primary mb-3">Save it!</button>
                         <a href="/campgrounds" class="btn btn-primary mb-3">Back to all campgrounds</a>
@@ -47,3 +46,16 @@
     </body>
 
     <script src="/javascript/validateform.js"></script>
+    <script>
+        const inputElement = document.getElementById("image");
+
+        inputElement.addEventListener("change", function () {
+            const files = inputElement.files;
+            const maxFiles = 5;
+            if (files.length > maxFiles) {
+                alert(`Vui lòng chọn tối đa ${maxFiles} ảnh.`);
+                inputElement.value = "";
+            }
+        });
+
+    </script>

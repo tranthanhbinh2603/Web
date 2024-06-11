@@ -1,20 +1,21 @@
 const Review = require("../models/review");
 const mongoose = require("mongoose");
-mongoose
-	.connect("mongodb://127.0.0.1:27017/yelpCampDB")
-	.then(() => {})
-	.catch((e) => {
-		console.log("Error when connect");
-		console.log(`This is error: e`);
-	});
 
 const Schema = mongoose.Schema;
+const imageSchema = new Schema({
+	url: String,
+	filename: String,
+});
+//Chổ này lưu lại vì nó sẽ liên quan đến hàm vitural (sửa lại snippet)
+// Using in html/css: Img.thumbnail
+imageSchema.virtual("thumbnail").get(function () {
+	return this.url.replace("/upload", "/upload/w_500");
+});
 const campgroundSchema = new Schema({
 	title: String,
 	price: Number,
 	description: String,
 	location: String,
-	image: String,
 	user: {
 		type: Schema.Types.ObjectID,
 		ref: "User",
@@ -25,6 +26,7 @@ const campgroundSchema = new Schema({
 			ref: "Review",
 		},
 	],
+	image: [imageSchema],
 });
 campgroundSchema.post("findOneAndDelete", async function (campground) {
 	if (campground.reviews.length) {

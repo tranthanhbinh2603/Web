@@ -2,26 +2,38 @@
 
     <body class="d-flex flex-column vh-100">
         <%- include('../../partials/header') %>
-            <div class="container">
-                <h1 class="mb-3 mt-3">Login</h1>
-                <%- include('../../partials/flash') %>
-                    <form action="/login" novalidate method="POST" class="main-form">
-                        <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" id="username" class="form-control" name="username" autocomplete="off"
-                                required>
-                            <div class="invalid-feedback">* Required</div>
+            <%- include('../../partials/flash') %>
+                <div class="container d-flex mt-5 justify-content-center mb-5">
+                    <div class="col">
+                        <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+                            <div class="card shadow">
+                                <img src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+                                    class="card-img-top" />
+                                <div class="card-body">
+                                    <h4>Login</h4>
+                                    <form action="/login" novalidate method="POST" class="main-form">
+                                        <div class="mb-3">
+                                            <label for="username" class="form-label">Username</label>
+                                            <input type="text" id="username" class="form-control d-block"
+                                                name="username" autocomplete="off" required autofocus>
+                                            <div class="invalid-feedback">* Required</div>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="password" class="form-label">Password</label>
+                                            <input type="password" id="password" class="form-control" name="password"
+                                                autocomplete="off" required>
+                                            <div class="invalid-feedback">* Required</div>
+                                        </div>
+                                        <button class="btn btn-primary mb-3">Login</button>
+                                        <a href="/register" class="btn btn-primary mb-3"">Register</a>
+                                    </form>
+                                </div>
+                            </div>
+
                         </div>
-                        <div class="mb-3">
-                            <label for="password" class="form-label">Password</label>
-                            <input type="password" id="password" class="form-control" name="password" autocomplete="off"
-                                required>
-                            <div class="invalid-feedback">* Required</div>
-                        </div>
-                        <button class="btn btn-primary mb-3">Login</button>
-                        <a href="/register" class="btn btn-primary mb-3"">Register</a>
-                    </form>
+                </div>
             </div>
+            <%- include('../../partials/footer') %>
     </body>
 
     </html>

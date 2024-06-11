@@ -4,7 +4,7 @@ const { CampgroundSchema } = require("../models/schema");
 const { isLoggedIn, isAuthor } = require("../middleware");
 const campgroundController = require("../controllers/campground");
 var multer = require("multer");
-var upload = multer({ dest: "uploads/" });
+const { storage } = require("../cloudinary/index");
 
 class AppError extends Error {
 	constructor(message, status) {
@@ -13,6 +13,17 @@ class AppError extends Error {
 		this.status = status;
 	}
 }
+
+var upload = multer({
+	storage,
+	fileFilter: (req, file, cb) => {
+		const maxFiles = 5;
+		if (req.files.length > maxFiles) {
+			return cb(new AppError(`The limit of photos is ${maxFiles}`, 413));
+		}
+		cb(null, true);
+	},
+});
 
 function wrapAsync(fn) {
 	return function (req, res, next) {
@@ -46,7 +57,12 @@ router.get(
 router
 	.route("/campground/:id")
 	.get(wrapAsync(campgroundController.exportCampground))
-	.put(isLoggedIn, isAuthor, wrapAsync(campgroundController.editCampground))
+	.put(
+		isLoggedIn,
+		isAuthor,
+		upload.array("image"),
+		wrapAsync(campgroundController.editCampground)
+	)
 	.delete(
 		isLoggedIn,
 		isAuthor,
@@ -56,16 +72,13 @@ router
 router.get("/campgrounds", wrapAsync(campgroundController.exportCampgrounds));
 
 // Lưu trữ lại cách giữ file và lưu file lên đám mây
+// Nhớ thêm enctype="multipart/form-data" vào trước form
 router.post(
 	"/campground",
-	//validateCampground,
-	upload.single("image"), //Nếu như là nhiều file (chổ thẻ input file có chữ multiple) thì là upload.array('image')
-	// wrapAsync(campgroundController.addCampground)
-	wrapAsync((req, res) => {
-		console.log(req.body);
-		console.log(req.file);
-		res.send("finish");
-	})
+	isLoggedIn,
+	upload.array("image"), //Nếu như là 1 file (chổ thẻ input file không có chữ multiple) thì là upload.single('image'), và để lấy file là file chứ không phải files
+	validateCampground,
+	wrapAsync(campgroundController.addCampground)
 );
 
 module.exports = router;
