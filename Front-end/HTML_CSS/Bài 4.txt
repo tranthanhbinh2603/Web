@@ -1,3 +1,0 @@
-- Cài Visual Studio Code
-- Cài Live Extension
-- Cài Page Ruler: https://drive.google.com/file/d/1Ba9IOg5N6u0Y9_zXZsi8QGemTT7KgWoB/view?usp=sharing

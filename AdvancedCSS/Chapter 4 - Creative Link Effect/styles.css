@@ -1,0 +1,344 @@
+body {
+	background-color: #223e61;
+	font-family: Nunito, sans-serif;
+	color: #fff;
+}
+
+h2 {
+	display: flex;
+	width: 100%;
+	height: 200px;
+	margin: 24px auto;
+	justify-content: center;
+	align-items: center;
+}
+
+h2.first {
+	background-color: #0d757d;
+}
+
+h2.second {
+	background-color: #ff5e33;
+}
+
+h2.third {
+	background-color: #85144b;
+}
+
+h2.fourth {
+	background-color: #2b5b89;
+}
+
+h2.fifth {
+	background-color: #3481c1;
+}
+
+h2.sixth {
+	background-color: #bba01d;
+}
+
+h2.seven {
+	background-color: #bba01d;
+}
+
+h2.eight {
+	background-color: #ff5e33;
+}
+
+h2.nine {
+	background-color: #bba01d;
+}
+
+h2.ten {
+	background-color: #ff5e33;
+}
+
+h2.eleven {
+	background-color: #ca5abb;
+}
+
+.link {
+	display: inline-block;
+	position: relative;
+	font-size: 48px;
+	color: #fff;
+	text-decoration: none;
+}
+
+.first .link::after {
+	content: "";
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 0;
+	background-color: #efc323;
+	border-radius: 3px;
+	opacity: 0;
+	transition: height 0.15s ease-in-out, opacity 0.15s ease-in-out;
+}
+
+.first .link:hover::after {
+	height: 5px;
+	opacity: 1;
+}
+
+.second .link::after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	width: 100%;
+	height: 5px;
+	background-color: #efc323;
+	border-radius: 3px;
+	transform: scaleY(0);
+	transition: transform 0.15s ease-in;
+}
+
+.second .link:hover::after {
+	transform: scaleY(1);
+}
+
+.third .link::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	bottom: 0;
+	left: 0;
+	background-color: #d0e047;
+	border-radius: 3px;
+	transition: width 0.5s ease-out;
+}
+
+.third .link:hover::after {
+	width: 100%;
+}
+
+.fourth .link::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	bottom: 0;
+	right: 0;
+	background-color: #d0e047;
+	border-radius: 3px;
+	transition: width 0.5s ease-out;
+}
+
+.fourth .link:hover::after {
+	width: 100%;
+}
+
+.fifth .link::after {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 5px;
+	border-radius: 3px;
+	background-color: #cc72dc;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	transform: scaleX(0);
+	transition: transform 0.25s ease-in-out;
+}
+
+.fifth .link:hover::after {
+	transform: scaleX(1);
+}
+
+.sixth .link::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: #7d398e;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	bottom: 0;
+	left: 0;
+	transition: width 0.3s ease-in-out;
+}
+
+.sixth .link:hover::before {
+	width: 50%;
+}
+
+.sixth .link::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: #7d398e;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	bottom: 0;
+	right: 0;
+	transition: width 0.3s ease-in-out;
+}
+
+.sixth .link:hover::after {
+	width: 50%;
+}
+
+.seven .link::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: red;
+	border-radius: 3px;
+	top: 0;
+	left: 0;
+	right: 0;
+	transition: width 0.7s ease;
+}
+
+.seven .link::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: red;
+	border-radius: 3px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	transition: width 0.7s ease;
+}
+
+.seven .link:hover::before,
+.seven .link:hover::after {
+	width: 100%;
+}
+
+.eight .link::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: red;
+	border-radius: 3px;
+	top: 0;
+	right: 0;
+	transition: width 0.7s ease;
+}
+
+.eight .link::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: red;
+	border-radius: 3px;
+	bottom: 0;
+	right: 0;
+	transition: width 0.7s ease;
+}
+
+.eight .link:hover::before,
+.eight .link:hover::after {
+	width: 100%;
+}
+
+.nine .link::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: #223e61;
+	border-radius: 3px;
+	top: 0;
+	left: 0;
+	transition: width 0.5s ease;
+}
+
+.nine .link::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: #223e61;
+	border-radius: 3px;
+	bottom: 0;
+	right: 0;
+	transition: width 0.5s ease;
+}
+
+.nine .link:hover::before {
+	width: 100%;
+}
+
+.nine .link:hover::after {
+	width: 100%;
+}
+
+.ten .link::before {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: #223e61;
+	border-radius: 3px;
+	top: 0;
+	right: 0;
+	transition: width 0.5s ease;
+}
+
+.ten .link:hover::before {
+	width: 100%;
+}
+
+.ten .link::after {
+	content: "";
+	position: absolute;
+	width: 0;
+	height: 5px;
+	background-color: #223e61;
+	border-radius: 3px;
+	bottom: 0;
+	left: 0;
+	transition: width 0.5s ease;
+}
+
+.ten .link:hover::after {
+	width: 100%;
+}
+
+/* How to use: 
+<h2 class="eleven">
+    <a href="#" class="link" data-swipe-text="Changing Text">
+      <span class="initial-text">Swipe Text Effect</span>
+    </a>
+  </h2> */
+
+.link {
+	overflow: hidden;
+}
+
+.initial-text {
+	display: block;
+	transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.eleven .link::after {
+	content: attr(data-swipe-text);
+	position: absolute;
+	bottom: -100%;
+	left: 0;
+	right: 0;
+	display: block;
+	transition: bottom 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.eleven .link:hover .initial-text {
+	transform: translateY(-100%);
+}
+
+.eleven .link:hover::after {
+	bottom: 0;
+}

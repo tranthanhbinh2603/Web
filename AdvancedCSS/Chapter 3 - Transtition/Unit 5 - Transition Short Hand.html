@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition Timing Function</title>
+    <style>
+        .child {
+            width: 100px;
+            height: 30px;
+            background-color: red;
+            color: white;
+            transition-property: all;
+            transition-duration: 10s;
+        }
+
+        .container:hover .child {
+            margin: 0 1000px;
+        }
+
+        .full {
+            transition-property: all;
+            transition-duration: 3s;
+            transition-timing-function: steps(10);
+            transition-delay: 1s;
+        }
+
+        .shorthand {
+            transition: all 3s steps(10) 1s;
+        }
+
+        .super-shorthand {
+            transition: all 3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="child full">Full</div>
+        <div class="child shorthand">Short Hand</div>
+        <div class="child super-shorthand">Super Short Hand</div>
+    </div>
+</body>
+
+</html>

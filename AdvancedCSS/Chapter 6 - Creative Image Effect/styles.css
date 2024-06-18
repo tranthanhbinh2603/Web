@@ -1,0 +1,188 @@
+body {
+	background-color: #ecf0f1;
+	font-family: Raleway;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+}
+
+.page-title {
+	margin-top: 30px;
+}
+
+.image-container {
+	display: flex;
+	flex-direction: row;
+}
+
+figure {
+	width: 300px;
+	height: 200px;
+	margin: 10px;
+	padding: 0;
+	background: #fff;
+	cursor: pointer;
+	overflow: hidden;
+}
+
+figure img {
+	width: 100%;
+}
+
+.fig1 img {
+	transition: 0.3s transform;
+}
+
+.fig1:hover img {
+	transform: scale(1.25);
+}
+
+.fig2 img {
+	transition: 0.3s width;
+}
+
+.fig2:hover img {
+	width: 400px;
+}
+
+.fig3 img {
+	transition: 0.3s width, 0.3s transform;
+}
+
+.fig3:hover img {
+	width: 400px;
+	transform: translate(-100px);
+}
+
+.fig-2-1 img {
+	transition: 0.3s transform;
+	transform: scale(1.25);
+}
+
+.fig-2-1:hover img {
+	transform: scale(1);
+}
+
+.fig-2-2 img {
+	transition: 0.3s width;
+	width: 400px;
+}
+
+.fig-2-2:hover img {
+	width: 300px;
+}
+
+.fig-2-3 img {
+	transition: 0.3s width, 0.3s transform;
+	transform: translate(-100px);
+	width: 400px;
+}
+
+.fig-2-3:hover img {
+	width: 300px;
+	transform: translate(0);
+}
+
+.fig-3-1 img {
+	transition: 0.3s transform;
+}
+
+.fig-3-1:hover img {
+	transform: rotate(15deg) scale(1.4);
+}
+
+.fig-3-2 img {
+	transition: 0.3s transform;
+	transform: rotate(-15deg) scale(1.4);
+}
+
+.fig-3-2:hover img {
+	transform: rotate(0) scale(1);
+}
+
+.fig-4-1 img {
+	filter: sepia(100%);
+	transition: 0.3s filter ease;
+}
+
+.fig-4-1:hover img {
+	filter: sepia(0);
+}
+
+.fig-4-2 img {
+	filter: grayscale(100%);
+	transition: 0.3s filter ease;
+}
+
+.fig-4-2:hover img {
+	filter: grayscale(0);
+}
+
+figure {
+	position: relative;
+}
+
+.fig-5-1 figcaption {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 300px;
+	height: 200px;
+	background-color: rgba(0, 0, 0, 0.25);
+	line-height: 200px;
+	text-align: center;
+	font-size: 36px;
+	color: white;
+	opacity: 0;
+	transition: 0.5s opacity;
+}
+
+.fig-5-1:hover figcaption {
+	opacity: 1;
+}
+
+.fig-5-2 figcaption {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 300px;
+	height: 200px;
+	background-color: rgba(0, 0, 0, 0.25);
+	line-height: 200px;
+	text-align: center;
+	font-size: 36px;
+	color: white;
+	opacity: 0;
+	transition: 0.5s opacity;
+}
+
+.fig-5-2:hover figcaption {
+	opacity: 1;
+}
+
+.fig-5-2 img {
+	transition: 0.5s transform;
+}
+
+.fig-5-2:hover img {
+	transform: scale(1.5);
+}
+
+.fig-5-3 figcaption {
+	position: absolute;
+	left: 0;
+	top: 80%;
+	width: 300px;
+	height: 40px;
+	background-color: rgba(0, 0, 0, 0.25);
+	line-height: 40px;
+	text-align: center;
+	font-size: 24px;
+	color: white;
+	transform: translateY(40px);
+	transition: 0.5s transform;
+}
+
+.fig-5-3:hover figcaption {
+	transform: translateY(0);
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition Timing Function</title>
+    <style>
+        .child {
+            width: 100px;
+            height: 30px;
+            background-color: red;
+            color: white;
+            transition-property: all;
+            transition-duration: 10s;
+        }
+
+        .container:hover .child {
+            margin: 0 1000px;
+        }
+
+        .normal,
+        .delay {
+            transition-property: all;
+            transition-duration: 5s;
+        }
+
+        .delay {
+            transition-delay: 3s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="child normal">Normal</div>
+        <div class="child delay">Delay</div>
+    </div>
+</body>
+
+</html>

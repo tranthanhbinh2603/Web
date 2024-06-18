@@ -1,0 +1,93 @@
+body {
+	font-size: 10px;
+	background: url("./img/bg.jpg") repeat;
+}
+
+.header {
+	font-size: 3rem;
+	text-align: center;
+}
+
+.gallery {
+	margin-top: 2em;
+}
+
+.card-modded {
+	width: 20em;
+	height: 20em;
+	background-color: #eee6d8;
+	padding: 0.5em;
+	border-radius: 0;
+	display: inline-block;
+	margin: 0 3em;
+	box-shadow: 4px 4px 8px -4px rgb(0, 0, 0, 0.7);
+}
+
+.card-modded img {
+	width: 100%;
+	height: 70%;
+}
+
+.card__description {
+	color: black;
+	font-family: "UTH-Marker Felt", sans-serif;
+	font-size: 1rem;
+}
+
+.card-modded:nth-child(even) {
+	transform: rotate(10deg);
+}
+
+.card-modded:nth-child(odd) {
+	transform: rotate(-5deg);
+}
+
+.card-modded:nth-of-type(even)::before {
+	content: "";
+	display: block;
+	background-color: rgba(222, 220, 200, 0.66);
+	width: 100px;
+	height: 25px;
+	transform: rotate(-24deg) translate(-30px, -25px);
+}
+
+.card-modded:nth-of-type(odd)::before {
+	content: "";
+	display: block;
+	background-color: rgba(222, 220, 200, 0.66);
+	width: 100px;
+	height: 25px;
+	transform: translate(140px, -5px) rotate(25deg);
+}
+
+.card-modded:nth-of-type(1) {
+	transition: all 0.25s;
+}
+
+.card-modded:nth-of-type(1):hover {
+	transform: rotate(360deg) scale(1.5);
+}
+
+.card-modded:nth-of-type(2) {
+	transition: all 0.25s;
+}
+
+.card-modded:nth-of-type(2):hover {
+	transform: scale(2);
+}
+
+.card-modded:nth-of-type(3) {
+	transition: all 0.25s;
+}
+
+.card-modded:nth-of-type(3):hover {
+	transform: scale(1.25) skew(10deg, -20deg);
+}
+
+.card-modded:nth-of-type(4) {
+	transition: all 0.25s;
+}
+
+.card-modded:nth-of-type(4):hover {
+	transform: scale(1.1) skew(0, 20deg) rotate(10deg) translate(50px);
+}

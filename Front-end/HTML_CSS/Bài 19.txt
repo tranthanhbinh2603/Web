@@ -1,6 +1,0 @@
-- Chỉ tạo 1 folder lớn, trong folder lớn add thư mục nhỏ là các framework mình lập trình
-- Ghim nó vào Quick Access hoặc Favorite
-- Chỉ dùng Add Workspace trong VS Code
-- Tạo folder nhanh: resouces/css/styles.css, chứ không nên tạo folder riêng lẻ
-- 1 lần làm nên mở 3 - 5 file. Mỗi file không dùng thì đóng đi
-- Đừng tạo nhiều project trong 1 folder lớn. Tách biệt project ra

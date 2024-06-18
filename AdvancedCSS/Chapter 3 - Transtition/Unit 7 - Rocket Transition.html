@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rocket Transition</title>
+    <style>
+        .container {
+            width: 800px;
+            margin: 40px auto;
+        }
+
+        .rocket {
+            width: 50px;
+            font-size: 50px;
+            transition: transform 0.5s, margin-left 1.2s cubic-bezier(0.18, 0.89, 0.32, 1.28) 0.5s;
+        }
+
+        .container:hover .rocket {
+            margin: 0 500px;
+            transform: rotate(45deg)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="rocket">🚀</div>
+    </div>
+</body>
+
+</html>

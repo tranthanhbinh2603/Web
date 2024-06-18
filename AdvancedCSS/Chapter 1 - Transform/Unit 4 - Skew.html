@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Translate</title>
+    <style>
+        /**
+        *
+        * 360 degrees = 1 full rotation -> 360deg
+        * 400 gradians = 1 full rotation -> 400grad
+        * 2 * pi radians = 2 * 3.14 = 6.28 radians = 1 full rotation -> 6.28rad
+        * 1 turn = 1 full rotations -> 1turn
+        *
+        *
+        */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            height: 100vh;
+        }
+
+        .wrapper {
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            border: 1px dotted red;
+        }
+
+        .inner {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            transform: skew(20deg, 30deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="inner"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition Timing Function</title>
+    <style>
+        .child {
+            width: 250px;
+            height: 30px;
+            background-color: red;
+            color: white;
+            transition-property: all;
+            transition-duration: 10s;
+            transition: background-color 3s, height 5s steps(10) 1s, margin 7s cubic-bezier(0.215, 0.610, 0.355, 1);
+        }
+
+        .container:hover .child {
+            background-color: green;
+            height: 300px;
+            margin: 0 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="child">This is apply multiple transition</div>
+    </div>
+</body>
+
+</html>

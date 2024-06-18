@@ -1,9 +1,0 @@
-- Các phần của trang:
-+ Header
-+ Navigation
-+ Breadcrumb: Vị trí hiện tại
-+ Sidebar: Chứa Navigation
-+ Slider
-+ Content
-+ Footer
-+ Banner
