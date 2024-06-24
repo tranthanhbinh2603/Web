@@ -1,0 +1,6 @@
+p, span, a {
+  color: green;
+  font-size: 30px; }
+
+span:hover, a:hover {
+  color: red; }

@@ -1,0 +1,66 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,900&display=swap");
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: "Source Sans Pro", sans-serif;
+}
+section {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	overflow: hidden;
+}
+section div {
+	position: relative;
+	width: 50%;
+	background: #021;
+	overflow: hidden;
+}
+section div:nth-child(1) {
+	width: 50%;
+	background: url(img.jpg);
+	background-size: cover;
+	box-sizing: border-box;
+}
+section div h2 {
+	position: absolute;
+	white-space: nowrap;
+	font-size: 12em;
+}
+/* Using it: 
+<section>
+	<div>
+		<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua.</h2>
+	</div>
+	<div>
+		<h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+			tempor incididunt ut labore et dolore magna aliqua.</h2>
+	</div>
+</section> */
+section div:nth-child(1) h2 {
+	left: 100%;
+	animation: animate 60s linear infinite;
+	-webkit-text-stroke: 2px;
+	-webkit-text-stroke-color: #fff;
+	-webkit-text-fill-color: transparent;
+}
+section div:nth-child(2) h2 {
+	left: 0;
+	color: #fff;
+	animation: animate 60s linear infinite;
+}
+section div h2 {
+	line-height: 100vh;
+}
+@keyframes animate {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}

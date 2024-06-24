@@ -1,0 +1,9 @@
+@function doubleFontSize($size) {
+	@return $size * 2;
+}
+
+a {
+	font-size: doubleFontSize(30px);
+	color: transparent(green);
+	// Một số hàm có thể dùng: https://sass-lang.com/documentation/modules/
+}

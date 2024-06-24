@@ -1,0 +1,15 @@
+p {
+	color: green;
+	font-size: 30px;
+}
+
+span {
+	@extend p;
+	&:hover {
+		color: red;
+	}
+}
+
+a {
+	@extend span;
+}

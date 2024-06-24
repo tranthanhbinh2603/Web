@@ -1,0 +1,18 @@
+ul {
+  text-decoration: none; }
+  ul li a {
+    color: blue;
+    color: red;
+    text-align: center; }
+    ul li a:hover {
+      color: green;
+      transition: color 3s; }
+  ul li p {
+    color: red;
+    font-size: 50px;
+    text-align: center; }
+  ul li span {
+    color: green;
+    color: red;
+    font-size: 30px;
+    text-align: center; }

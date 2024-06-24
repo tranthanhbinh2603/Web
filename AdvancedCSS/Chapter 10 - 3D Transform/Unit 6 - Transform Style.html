@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Transform Style </title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff;
+            color: #000;
+            font-family: Raleway;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .page-title {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .wrapper {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            transform: rotate3d(1, 1, 1, 45deg);
+            transform-style: preserve-3d;
+        }
+
+        .blue-box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            transform: rotate3d(1, 1, 1, 45deg);
+        }
+
+
+        /**
+        *
+        * transform-style: preserve-3d | flat
+        *
+        *
+        */
+    </style>
+</head>
+
+<body>
+
+    <h1 class="page-title"> Transform Style </h1>
+
+    <div class="wrapper">
+        <div class="box">
+            <div class="blue-box"></div>
+        </div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

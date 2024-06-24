@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Split Banner On Scroll</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<section>
+			<div class="side" id="side1"></div>
+			<div class="side" id="side2"></div>
+		</section>
+		<script type="text/javascript">
+			var side1 = document.getElementById('side1')
+			window.addEventListener('scroll', function(){
+				side1.style.left = - +window.pageYOffset+'px';
+			})
+
+			var side2 = document.getElementById('side2')
+			window.addEventListener('scroll', function(){
+				side2.style.left = +window.pageYOffset+'px';
+			})
+		</script>
+	</body>
+</html>

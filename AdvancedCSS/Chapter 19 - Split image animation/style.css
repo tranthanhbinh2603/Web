@@ -1,0 +1,72 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: 0;
+}
+/* Using it: 
+<section>
+  <div class="side" id="side1"></div>
+  <div class="side" id="side2"></div>
+</section> */
+/* javascript: 
+var side1 = document.getElementById('side1')
+  window.addEventListener('scroll', function(){
+  side1.style.left = - +window.pageYOffset+'px';
+})
+
+var side2 = document.getElementById('side2')
+  window.addEventListener('scroll', function(){
+  side2.style.left = +window.pageYOffset+'px';
+}) */
+body {
+	height: 300vh;
+}
+section {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+}
+section .side {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url(bg1.jpg);
+}
+section .side#side1 {
+	clip-path: polygon(
+		0 0,
+		46% 0,
+		67% 9%,
+		25% 27%,
+		69% 33%,
+		39% 45%,
+		57% 56%,
+		27% 68%,
+		55% 81%,
+		28% 87%,
+		54% 92%,
+		43% 100%,
+		0% 100%
+	);
+}
+section .side#side2 {
+	clip-path: polygon(
+		100% 0,
+		46% 0,
+		67% 9%,
+		25% 27%,
+		69% 33%,
+		39% 45%,
+		57% 56%,
+		27% 68%,
+		55% 81%,
+		28% 87%,
+		54% 92%,
+		43% 100%,
+		100% 100%
+	);
+}

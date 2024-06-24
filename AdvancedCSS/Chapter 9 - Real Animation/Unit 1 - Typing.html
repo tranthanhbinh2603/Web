@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Pure CSS Typing Effect </title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Raleway;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .page-title {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        /* How to use: 
+        <div class="writer">
+            <div class="typing-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+        </div> */
+
+        .typing-text {
+            overflow: hidden;
+            white-space: nowrap;
+            margin-top: 30px;
+            font-size: 32px;
+            border-right: 2px solid orange;
+            animation: blink-caret 0.6s step-end infinite, type 5s steps(56, end);
+        }
+
+        @keyframes blink-caret {
+
+            0%,
+            100% {
+                border-color: transparent;
+            }
+
+            50% {
+                border-color: orange;
+            }
+        }
+
+        @keyframes type {
+            0% {
+                width: 0;
+            }
+
+            100% {
+                width: 100%
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="page-title"> Pure CSS Typing Effect </h1>
+
+    <div class="writer">
+        <div class="typing-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+    </div>
+</body>
+
+</html>

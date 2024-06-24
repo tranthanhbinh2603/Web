@@ -1,0 +1,43 @@
+$color-secondary: red;
+$color-1: blue;
+$color-2: green;
+
+@mixin headingStyles {
+	color: $color-secondary;
+	text-align: center;
+}
+
+@mixin headingStylesFontSize($fontSize) {
+	color: $color-secondary;
+	font-size: $fontSize;
+	text-align: center;
+}
+
+@mixin headingStylesFontSizeDefault($fontSize: 50px) {
+	color: $color-secondary;
+	font-size: $fontSize;
+	text-align: center;
+}
+
+@mixin transition($param...) {
+	transition: $param;
+}
+
+ul {
+	text-decoration: none;
+	li a {
+		color: $color-1;
+		@include headingStyles;
+		&:hover {
+			color: $color-2;
+			@include transition(color 3s);
+		}
+	}
+	li p {
+		@include headingStylesFontSizeDefault;
+	}
+	li span {
+		color: $color-2;
+		@include headingStylesFontSize(30px);
+	}
+}

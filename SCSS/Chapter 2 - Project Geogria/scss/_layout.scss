@@ -1,0 +1,102 @@
+header {
+	width: 100%;
+	height: 100vh;
+	background: linear-gradient(rgba($color-black, 0.8), rgba($color-black, 0.6)),
+		url(../images/bg.jpeg) center no-repeat;
+	background-size: cover;
+	position: relative;
+	.brand {
+		@include centering(15%);
+		color: $color-white;
+		display: flex;
+		align-items: center;
+	}
+	.header-banner {
+		text-align: center;
+		color: #fff;
+		@include centering(50%);
+	}
+}
+
+.about-us {
+	min-height: 90vh;
+	.row {
+		width: 100%;
+		height: 100%;
+		.about-us-left img {
+			width: 100%;
+			opacity: 0.7;
+		}
+	}
+	&-left {
+		position: relative;
+		left: -120px;
+	}
+	&-right {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		.stars {
+			margin: 30px 0;
+		}
+		.star {
+			font-size: 15px;
+			color: $color-primary;
+			margin-left: 10px;
+		}
+		.description {
+			font-family: $font-josefinSans;
+			font-size: 20px;
+			font-style: italic;
+			text-align: justify;
+			color: $color-secondary;
+
+			&::first-letter {
+				padding-left: 50px;
+			}
+		}
+		button {
+			margin-bottom: 60px;
+
+			&.right-btn {
+				overflow: hidden;
+
+				&::before {
+					content: "";
+					position: absolute;
+					background-color: $color-primary;
+					width: 100%;
+					height: 100%;
+					top: 0;
+					left: -100%;
+					transition: 0.35s left;
+					z-index: 1;
+				}
+
+				&:hover::before {
+					left: 0;
+				}
+
+				span {
+					position: relative;
+					z-index: 2;
+					transition: 0.35s color;
+				}
+
+				&:hover span {
+					color: white;
+				}
+			}
+		}
+	}
+}
+
+.gallery {
+	.row {
+		width: 100%;
+		margin: 0;
+		.col {
+			padding: 0;
+		}
+	}
+}

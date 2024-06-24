@@ -1,0 +1,43 @@
+* {
+	font-size: 10px;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #021;
+}
+
+.loader {
+	width: 30em;
+	height: 30em;
+	position: relative;
+	transform-style: preserve-3d;
+	transform: perspective(500px) rotateX(60deg);
+}
+
+.loader span {
+	position: absolute;
+	display: block;
+	border: 2px solid #fff;
+	box-sizing: border-box;
+	border-radius: 50%;
+	top: calc((var(--i) - 1) * 10px);
+	left: calc((var(--i) - 1) * 10px);
+	bottom: calc((var(--i) - 1) * 10px);
+	right: calc((var(--i) - 1) * 10px);
+	animation: animate 3s ease-in-out infinite;
+	animation-delay: calc(1.5s - (var(--i) * 0.1s));
+}
+
+@keyframes animate {
+	0%,
+	100% {
+		transform: translateZ(-100px);
+	}
+	50% {
+		transform: translateZ(100px);
+	}
+}

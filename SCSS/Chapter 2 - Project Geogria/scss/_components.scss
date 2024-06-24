@@ -1,0 +1,136 @@
+.logo {
+	font-size: 70px;
+	color: $color-primary;
+	width: 110px;
+	height: 110px;
+	border: 3px solid $color-primary;
+	border-radius: 50%;
+	margin-right: 20px;
+	@include flexLayout;
+}
+
+.main-name {
+	font-family: $font-nunito;
+	font-size: 50px;
+	color: $color-secondary;
+	@include textStyle;
+}
+
+.sub-name {
+	font-family: $font-josefinSans;
+	font-size: 18px;
+	color: $color-secondary;
+	text-align: center;
+	@include textStyle;
+}
+
+.main-heading {
+	font-family: $font-dancingScript;
+	font-size: 100px;
+	font-weight: 300;
+	color: $color-primary;
+	margin-bottom: 40px;
+}
+
+.sub-heading {
+	font-family: $font-josefinSans;
+	font-size: 50px;
+	font-weight: 300;
+	color: $color-primary;
+	margin-bottom: 40px;
+}
+
+.main-btn {
+	width: 170px;
+	height: 45px;
+	font-family: $font-josefinSans;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border: 1px solid $color-primary;
+	outline: none;
+	cursor: pointer;
+	position: relative;
+	background-color: transparent;
+	color: $color-white;
+
+	&.right {
+		overflow: hidden;
+
+		&::before {
+			content: "";
+			position: absolute;
+			background-color: $color-primary;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			left: -100%;
+			transition: 0.35s left;
+			z-index: 1;
+		}
+
+		&:hover::before {
+			left: 0;
+		}
+
+		span {
+			position: relative;
+			z-index: 2;
+			transition: 0.35s color;
+		}
+
+		&:hover span {
+			color: white;
+		}
+	}
+}
+
+.gallery__card {
+	position: relative;
+	height: 30vw;
+	overflow: hidden;
+	&:hover .card-overlay {
+		left: 0%;
+	}
+	.card-overlay {
+		position: absolute;
+		top: 0;
+		left: -100%;
+		background-color: rgba($color-primary, 0.6);
+		color: $color-white;
+		@extend %fullSpace;
+		z-index: 10;
+		@include flexLayout;
+		flex-direction: column;
+		transition: all 0.7s;
+		&-heading {
+			font-family: $font-nunito;
+			@include textStyle(capitalize);
+		}
+		&-paragraph {
+			font-family: $font-josefinSans;
+			@include textStyle(capitalize);
+			margin-bottom: 30px;
+		}
+		&-btn {
+			width: 150px;
+			height: 40px;
+			color: $color-primary;
+			background-color: $color-white;
+			font-family: $font-josefinSans;
+			font-size: 14px;
+			font-weight: bold;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			border: 1px solid $color-primary;
+			border-radius: 30px;
+			outline: none;
+			cursor: pointer;
+		}
+	}
+	.card-img {
+		@extend %fullSpace;
+		object-fit: cover;
+		opacity: 0.5;
+	}
+}

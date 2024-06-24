@@ -1,0 +1,8 @@
+ul li {
+  text-decoration: none; }
+  ul li a {
+    color: red; }
+    ul li a:hover {
+      color: blue; }
+  ul li span {
+    color: green; }

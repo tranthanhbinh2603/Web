@@ -1,0 +1,19 @@
+$color: red;
+
+.line-1 {
+	background-color: $color;
+}
+
+.line-2 {
+	$color: green;
+	background-color: $color;
+}
+
+.line-3 {
+	$color: blue !global;
+	background-color: $color;
+}
+
+.line-4 {
+	background-color: $color;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Keyframe</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation: firstKeyframe 2s infinite;
+            /*Không cần câu lệnh này cũng được*/
+            animation-play-state: running;
+        }
+
+        .box:hover {
+            animation-play-state: paused;
+        }
+
+        /* Còn có thể viết: 
+
+        @keyframes nameKeyframe {
+            from {}
+
+            to {}
+        }
+
+        Tuy nhiên chỉ nên dùng % */
+
+        @keyframes firstKeyframe {
+
+            0%,
+            100% {
+                margin-top: 0;
+                margin-left: 0;
+            }
+
+            25% {
+                margin-top: 0;
+                margin-left: 300px;
+            }
+
+            50% {
+                margin-top: 300px;
+                margin-left: 300px;
+            }
+
+            75% {
+                margin-top: 300px;
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>

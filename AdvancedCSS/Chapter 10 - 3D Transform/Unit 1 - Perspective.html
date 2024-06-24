@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> Getting the Perspective </title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <style>
+        body {
+            background-color: #fff;
+            color: #000;
+            font-family: Raleway;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .page-title {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .wrapper {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            /* Read more: https://developer.mozilla.org/en-US/docs/Web/CSS/transform-function/perspective */
+            transform: perspective(1000px) translateZ(90px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="page-title"> Getting the Perspective - perspective() </h1>
+
+    <div class="wrapper">
+        <div class="box"></div>
+    </div>
+
+
+
+    <!--
+
+  <img src="3d.png" />
+
+-->
+
+    <script src="script.js"></script>
+</body>
+
+</html>
