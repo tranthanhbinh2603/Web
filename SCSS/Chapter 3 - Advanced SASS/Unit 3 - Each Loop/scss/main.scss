@@ -1,0 +1,7 @@
+$colors: green blue red;
+
+@each $color in $colors {
+	.paragraph-#{$color} {
+		color: $color;
+	}
+}

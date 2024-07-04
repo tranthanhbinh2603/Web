@@ -1,0 +1,16 @@
+@mixin headingMixin($typeStyle) {
+	@if ($typeStyle == "bigger") {
+		font-size: 30px;
+	} @else {
+		font-size: 15px;
+	}
+}
+
+p {
+	&:nth-child(1) {
+		@include headingMixin(smaller);
+	}
+	&:nth-child(2) {
+		@include headingMixin(bigger);
+	}
+}

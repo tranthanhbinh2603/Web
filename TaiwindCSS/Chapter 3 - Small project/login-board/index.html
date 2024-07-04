@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;500;600;700&family=Rokkitt:wght@600;700&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    sans: ['Mulish', 'sans-serif'],
+                    mono: ['Rokkitt', 'monospace'],
+                },
+            },
+        }
+    </script>
+</head>
+
+<body>
+    <div class="flex justify-center items-center min-h-screen bg-rose-200">
+        <div class="relative flex space-y-10 m-6 bg-white rounded-xl md:flex-row md:space-y-0 md:m-0 overflow-hidden">
+            <div class="p-6 md:p-20">
+                <h2 class="font-mono mb-5 text-4xl font-bold">Log In</h2>
+                <p class="max-w-sm mb-12 font-light text-gray-600">Log in to your account to upload or download
+                    pictures, videos or
+                    music.</p>
+                <input type="text" placeholder="Enter your email address" class="w-full p-4 border mb-8 ">
+                <div class="flex justify-between items-center mb-12">
+                    <a href="#" class="font-thin text-cyan-700 opacity-80 hover:opacity-100">Forgot
+                        password</a>
+                    <button
+                        class="flex justify-between bg-cyan-700 p-2 px-8 text-white hover:opacity-80 hover:-translate-y-1 duration-200">
+                        <span>Next</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-7" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <line x1="13" y1="18" x2="19" y2="12" />
+                            <line x1="13" y1="6" x2="19" y2="12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="mt-12 mb-4 border-b border-b-gray-300"></div>
+                <p class="text-center font-light text-sm mb-4">or log in with</p>
+                <div class="flex items-center justify-center gap-2">
+                    <button class="flex items-center w-1/2 border justify-center p-2 hover:-translate-y-1 duration-200">
+                        <img src="images/facebook.png" alt="" class="w-9 mr-4" />
+                        <span class="font-thin">Facebook</span>
+                    </button>
+                    <button class="flex items-center w-1/2 border justify-center p-2 hover:-translate-y-1 duration-200">
+                        <img src="images/google.png" alt="" class="w-9 mr-4" />
+                        <span class="font-thin">Google</span>
+                    </button>
+                </div>
+            </div>
+            <img src="./images/image.jpg" alt="" class="w-[350px] hidden md:block rounded-l-none" />
+            <div
+                class="group absolute -top-5 right-4 bg-gray-200 p-1 rounded-lg md:top-3 hover:opacity-80 duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-black group-hover:text-gray-600"
+                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

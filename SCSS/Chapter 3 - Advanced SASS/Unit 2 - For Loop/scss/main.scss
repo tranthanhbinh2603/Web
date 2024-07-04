@@ -1,0 +1,11 @@
+$key-by-number: (
+	1: red,
+	2: blue,
+	3: green,
+);
+
+@for $i from 1 through 3 {
+	.paragraph-#{$i} {
+		color: map-get($map: $key-by-number, $key: $i);
+	}
+}

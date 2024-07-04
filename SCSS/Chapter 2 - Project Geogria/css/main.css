@@ -213,7 +213,7 @@ header {
 .gallery .row {
   width: 100%;
   margin: 0; }
-  .gallery .row .col {
+  .gallery .row .col-md-4 {
     padding: 0; }
 
 .footer {

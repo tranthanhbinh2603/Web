@@ -1,0 +1,30 @@
+$key-by-name: (
+	primary: red,
+	secondary: blue,
+	third: green,
+);
+
+$key-by-number: (
+	1: red,
+	2: blue,
+);
+
+$key-by-string: (
+	"primary": red,
+	"secondary": blue,
+	"third": green,
+);
+
+li {
+	&:nth-child(1) {
+		color: map-get($map: $key-by-name, $key: primary);
+	}
+
+	&:nth-child(2) {
+		color: map-get($map: $key-by-number, $key: 2);
+	}
+
+	&:nth-child(3) {
+		color: map-get($map: $key-by-string, $key: "third");
+	}
+}
