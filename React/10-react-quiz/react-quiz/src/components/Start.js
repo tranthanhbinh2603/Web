@@ -1,4 +1,8 @@
-export default function Start({ numberQuestions, dispatch }) {
+import { useContext } from "react";
+import { QuizContext } from "../contexts/QuizContext";
+
+export default function Start() {
+	const { numberQuestions, dispatch } = useContext(QuizContext);
 	return (
 		<div className="start">
 			<h2>Welcome to The React Quiz!</h2>

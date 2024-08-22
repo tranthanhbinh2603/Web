@@ -1,0 +1,64 @@
+{
+  "cities": [
+    {
+      "id": "de7c",
+      "cityName": "France",
+      "country": "Solesmes",
+      "emoji": "🇫🇷",
+      "date": "2024-07-21T13:32:34.526Z",
+      "notes": "",
+      "position": {
+        "lat": 50.19604900635262,
+        "lng": 3.5156250000000004
+      }
+    },
+    {
+      "id": "f8ce",
+      "cityName": "France",
+      "country": "Chaumuzy",
+      "emoji": "🇫🇷",
+      "date": "2024-07-21T13:32:37.463Z",
+      "notes": "",
+      "position": {
+        "lat": 49.17966375981417,
+        "lng": 3.8671875000000004
+      }
+    },
+    {
+      "id": "10e2",
+      "cityName": "France",
+      "country": "Serifontaine",
+      "emoji": "🇫🇷",
+      "date": "2024-07-21T13:32:39.995Z",
+      "notes": "",
+      "position": {
+        "lat": 49.33093758756359,
+        "lng": 1.8017578125000002
+      }
+    },
+    {
+      "id": "fb5c",
+      "cityName": "Viet Nam",
+      "country": "Dinh Quan",
+      "emoji": "🇻🇳",
+      "date": "2024-07-22T08:02:23.059Z",
+      "notes": "",
+      "position": {
+        "lat": 11.227135,
+        "lng": 107.2985646
+      }
+    },
+    {
+      "id": "4a88",
+      "cityName": "Viet Nam",
+      "country": "Tan Tru",
+      "emoji": "🇻🇳",
+      "date": "2024-07-23T14:02:17.138Z",
+      "notes": "",
+      "position": {
+        "lat": 10.569519761407498,
+        "lng": 106.50146484375
+      }
+    }
+  ]
+}

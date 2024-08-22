@@ -1,4 +1,8 @@
-function Options({ options, dispatch, currentAnswer, correctOption }) {
+import { useContext } from "react";
+import { QuizContext } from "../../contexts/QuizContext";
+
+function Options({ options, correctOption }) {
+	const { dispatch, currentAnswer } = useContext(QuizContext);
 	const isHaveAnswer = currentAnswer !== null;
 	return (
 		<div className="options">

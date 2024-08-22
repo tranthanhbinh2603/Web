@@ -1,4 +1,9 @@
-function Finish({ possibleScore, currentScore, highScore, dispatch }) {
+import { useContext } from "react";
+import { QuizContext } from "../contexts/QuizContext";
+
+function Finish() {
+	const { possibleScore, currentScore, highScore, dispatch } =
+		useContext(QuizContext);
 	const percentage = parseFloat(
 		((currentScore / possibleScore) * 100).toFixed(2)
 	);
