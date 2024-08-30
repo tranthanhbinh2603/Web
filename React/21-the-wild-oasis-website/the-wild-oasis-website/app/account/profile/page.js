@@ -5,7 +5,7 @@ import ChangeProfile from "@/app/_components/ChangeProfile";
 export default function Page() {
 	// CHANGE
 	// const countryFlag = "pt.jpg";
-	const nationality = "portugal";
+	// const nationality = "portugal";
 
 	return (
 		<div>
@@ -18,7 +18,7 @@ export default function Page() {
 				faster and smoother. See you soon!
 			</p>
 
-			<ChangeProfile nationality={nationality} />
+			<ChangeProfile />
 		</div>
 	);
 }

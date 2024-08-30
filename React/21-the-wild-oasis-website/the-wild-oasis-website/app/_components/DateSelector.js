@@ -16,20 +16,52 @@ function isAlreadyBooked(range, datesArr) {
 	);
 }
 
-function DateSelector({ settings, cabin }) {
-	// CHANGE
+function DateSelector({ settings, cabin, bookedDates }) {
 	const regularPrice = cabin.regularPrice;
 	const discount = cabin.discount;
-
-	//2 số này sẽ là số đêm và tổng giá
-	const numNights = 5;
-	const cabinPrice = 500;
-
-	// SETTINGS
+	let numNights = 0;
+	let cabinPrice = 0;
 	const minBookingLength = settings.minBookingLength;
 	const maxBookingLength = settings.maxBookingLength;
 
 	const { range, handleRange, clearRange } = useContext(ReservationContext);
+
+	if (range?.from && range?.to) {
+		numNights = (range?.to - range?.from) / (1000 * 60 * 60 * 24);
+		cabinPrice = (cabin.regularPrice - cabin.discount) * numNights;
+	}
+
+	const bookedDatesFinal = bookedDates.map((dateString) =>
+		new Date(dateString).toDateString()
+	);
+
+	const isDateDisabled = (date) => {
+		const today = new Date();
+		const dateStr = date.toISOString().split("T")[0];
+		const todayStr = today.toISOString().split("T")[0];
+		return dateStr < todayStr || bookedDatesFinal.includes(date.toDateString());
+	};
+
+	const isRangeDisabled = (range) => {
+		const { from, to } = range;
+		let currentDate = new Date(from);
+		while (currentDate <= to) {
+			if (isDateDisabled(currentDate)) {
+				return true;
+			}
+			currentDate.setDate(currentDate.getDate() + 1);
+		}
+		return false;
+	};
+
+	function handleRangeInForm(rangeFromLibrary) {
+		if (isRangeDisabled(rangeFromLibrary)) {
+			if (range.to != rangeFromLibrary.to)
+				return handleRange({ from: range.to, to: null });
+			else return handleRange({ from: range.from, to: null });
+		}
+		handleRange(rangeFromLibrary);
+	}
 
 	return (
 		<div className="flex flex-col justify-between">
@@ -37,18 +69,19 @@ function DateSelector({ settings, cabin }) {
 				className="pt-12 place-self-center"
 				mode="range"
 				min={minBookingLength + 1}
-				max={maxBookingLength}
+				max={maxBookingLength + 1}
 				fromMonth={new Date()}
 				fromDate={new Date()}
 				toYear={new Date().getFullYear() + 5}
 				captionLayout="dropdown"
 				numberOfMonths={2}
 				selected={range}
-				onSelect={handleRange}
+				onSelect={handleRangeInForm}
+				disabled={isDateDisabled}
 			/>
 
 			<div className="flex items-center justify-between px-8 bg-accent-500 text-primary-800 h-[72px]">
-				<div className="flex items-baseline gap-6">
+				<div className="flex items-baseline gap-4">
 					<p className="flex gap-2 items-baseline">
 						{discount > 0 ? (
 							<>
@@ -75,7 +108,7 @@ function DateSelector({ settings, cabin }) {
 					) : null}
 				</div>
 
-				{range.from || range.to ? (
+				{range?.from || range?.to ? (
 					<button
 						className="border border-primary-800 py-2 px-4 text-sm font-semibold"
 						onClick={() => clearRange()}

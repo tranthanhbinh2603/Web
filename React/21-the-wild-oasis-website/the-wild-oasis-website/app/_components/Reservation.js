@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { auth } from "../_lib/auth";
 import { getBookedDatesByCabinId, getSettings } from "../_lib/data-service";
 import DateSelector from "./DateSelector";

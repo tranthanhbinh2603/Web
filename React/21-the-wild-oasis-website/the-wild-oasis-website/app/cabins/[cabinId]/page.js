@@ -29,7 +29,7 @@ export default async function Page({ params }) {
 	const { name, maxCapacity, image, description } = cabin;
 
 	return (
-		<div className="max-w-6xl mx-auto mt-8">
+		<div className="max-w-7xl mx-auto mt-8">
 			<div className="grid grid-cols-[3fr_4fr] gap-20 border border-primary-800 py-3 px-10 mb-24">
 				<div className="relative scale-[1.15] -translate-x-3 ">
 					<Image

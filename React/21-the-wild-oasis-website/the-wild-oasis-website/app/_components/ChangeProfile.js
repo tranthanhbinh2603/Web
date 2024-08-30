@@ -1,13 +1,29 @@
+import Image from "next/image";
+import { auth } from "../_lib/auth";
+import { getGuest } from "../_lib/data-service";
 import SelectCountry from "./SelectCountry";
+import { ChangeUserInfo } from "../_lib/action";
+import { ChangeProfileButton as Button } from "./ChangeProfileButton";
 
-function ChangeProfile({ nationality }) {
+async function ChangeProfile() {
+	const session = await auth();
+	const dataGuest = await getGuest(session.user.email);
+
+	const { countryFlag, nationality, nationalID, fullName, email } = dataGuest;
+
 	return (
-		<form className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col">
+		<form
+			className="bg-primary-900 py-8 px-12 text-lg flex gap-6 flex-col"
+			action={ChangeUserInfo}
+			method="POST"
+		>
+			<input type="hidden" name="guestId" value={session.user.guestId} />
 			<div className="space-y-2">
 				<label>Full name</label>
 				<input
 					disabled
 					className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+					defaultValue={fullName}
 				/>
 			</div>
 
@@ -16,17 +32,24 @@ function ChangeProfile({ nationality }) {
 				<input
 					disabled
 					className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm disabled:cursor-not-allowed disabled:bg-gray-600 disabled:text-gray-400"
+					defaultValue={email}
 				/>
 			</div>
 
 			<div className="space-y-2">
 				<div className="flex items-center justify-between">
 					<label htmlFor="nationality">Where are you from?</label>
-					{/* <Image
-                        src={countryFlag}
-                        alt="Country flag"
-                        className="h-5 rounded-sm"
-                    /> */}
+					<div className="flex items-center justify-center gap-2">
+						<div className="relative h-4 w-5">
+							<Image
+								src={countryFlag}
+								fill
+								alt="Country flag"
+								className="h-5 rounded-sm"
+							/>
+						</div>
+						<p>{nationality}</p>
+					</div>
 				</div>
 
 				<SelectCountry
@@ -42,14 +65,11 @@ function ChangeProfile({ nationality }) {
 				<input
 					name="nationalID"
 					className="px-5 py-3 bg-primary-200 text-primary-800 w-full shadow-sm rounded-sm"
+					defaultValue={nationalID}
 				/>
 			</div>
 
-			<div className="flex justify-end items-center gap-6">
-				<button className="bg-accent-500 px-8 py-4 text-primary-800 font-semibold hover:bg-accent-600 transition-all disabled:cursor-not-allowed disabled:bg-gray-500 disabled:text-gray-300">
-					Update profile
-				</button>
-			</div>
+			<Button />
 		</form>
 	);
 }
