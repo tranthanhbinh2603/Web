@@ -1,0 +1,54 @@
+.block-1 {
+	position: relative;
+	height: 20px;
+}
+
+.block-1 img,
+.block-1 svg {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, 0%);
+}
+
+.block-1 svg {
+	width: 271px;
+	height: 119px;
+}
+
+svg {
+	fill: none;
+	stroke: #231f20;
+}
+
+.block-1 img {
+	opacity: 0;
+}
+
+.block-2 {
+	height: 10%;
+	margin-top: 130px;
+	display: flex;
+}
+
+.block-2-1,
+.block-2-2 {
+	position: relative;
+	padding-left: 10px;
+	padding-right: 10px;
+	width: fit-content;
+	height: fit-content;
+	margin-top: 10px;
+}
+
+.block-2 {
+	position: relative;
+}
+
+.block-2-1 svg,
+.block-2-2 svg,
+.block-2 svg {
+	position: absolute;
+	top: 0;
+	left: 0;
+}

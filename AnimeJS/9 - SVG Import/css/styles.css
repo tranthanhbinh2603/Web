@@ -1,0 +1,16 @@
+svg circle {
+	stroke: purple;
+	fill: none;
+	stroke-dasharray: 311;
+	animation: draw 1s infinite;
+}
+
+@keyframes draw {
+	0% {
+		stroke-dashoffset: 311;
+	}
+
+	100% {
+		stroke-dashoffset: 0;
+	}
+}

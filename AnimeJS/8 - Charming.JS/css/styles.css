@@ -1,0 +1,39 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+}
+
+b {
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+b span,
+small span {
+	white-space: pre;
+}
+
+h3 span,
+h3 small {
+	display: inline-block;
+}
+
+h3 {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	gap: 16px;
+}
+
+small {
+	font-weight: 300;
+	font-style: italic;
+}

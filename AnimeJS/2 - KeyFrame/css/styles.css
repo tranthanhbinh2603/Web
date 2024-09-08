@@ -1,0 +1,28 @@
+/* .container {
+	position: relative;
+	width: 300px;
+	height: 200px;
+	border: 1px solid #ccc;
+	overflow: hidden;
+}
+
+.box {
+	width: 50px;
+	height: 50px;
+	background-color: #3498db;
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	transition: left 0.5s ease-in-out;
+}
+
+.move-right {
+	left: 100%;
+	transform: translateX(-100%);
+} */
+
+.btn {
+	width: 30px;
+	height: 30px;
+}

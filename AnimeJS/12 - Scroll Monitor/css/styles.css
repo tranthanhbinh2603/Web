@@ -1,0 +1,15 @@
+.part-1,
+.part-2,
+.part-3,
+.part-4 {
+	max-width: 90vw;
+	max-height: 90vh;
+}
+
+svg {
+	height: 90vh;
+}
+
+path {
+	fill-opacity: 0;
+}

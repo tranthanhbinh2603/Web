@@ -1,0 +1,5 @@
+.custom-btn {
+	padding-left: 0.5rem;
+	padding-right: 0.5rem;
+	width: 100px; /* Đảm bảo chiều rộng chỉ vừa với nội dung */
+}
