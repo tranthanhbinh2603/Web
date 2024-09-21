@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"outDir": "./", //Đường dẫn chứa kết quả (mã nguồn javascript)
+		"rootDir": "./", //Đường dẫn chứa file Typescript
+		"target": "es6", //Có thể xuống es5 nếu muốn chạy trên các trình duyệt cũ hơn, song cần thư viện nếu muốn sử dụng 1 số tính năng hiện đại
+		"module": "commonjs",
+		"sourceMap": true,
+		"removeComments": true,
+		"noEmitOnError": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		"noImplicitAny": true,
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true
+	},
+	"exclude": ["node_modules"]
+}
