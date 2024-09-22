@@ -5,6 +5,41 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+function validate(objList) {
+    let isValid = true;
+    for (const obj of objList) {
+        if (obj.require) {
+            isValid =
+                isValid &&
+                    obj.value !== "" &&
+                    obj.value !== null &&
+                    obj.value !== undefined;
+        }
+        if (!isValid) {
+            break;
+        }
+        if (typeof obj.value === "string") {
+            if (obj.minLength != null) {
+                isValid = isValid && obj.value.length >= obj.minLength;
+            }
+            if (obj.maxLength != null) {
+                isValid = isValid && obj.value.length <= obj.maxLength;
+            }
+        }
+        if (typeof obj.value === "number") {
+            if (obj.min != null) {
+                isValid = isValid && obj.value >= obj.min;
+            }
+            if (obj.max != null) {
+                isValid = isValid && obj.value <= obj.max;
+            }
+        }
+        if (!isValid) {
+            break;
+        }
+    }
+    return isValid;
+}
 function autobind(_, _2, descriptor) {
     const originalMethod = descriptor.value;
     const adjDescriptor = {
@@ -33,7 +68,27 @@ class ProjectInput {
         const titleTask = this.titleInputElement.value;
         const descriptionTask = this.descriptionInputElement.value;
         const peopleInTask = parseInt(this.peopleInputElement.value);
-        if (titleTask === "" || descriptionTask === "" || peopleInTask === 0) {
+        const listValidateCondition = [
+            {
+                value: titleTask,
+                require: true,
+                minLength: 5,
+                maxLength: 50,
+            },
+            {
+                value: descriptionTask,
+                require: true,
+                minLength: 10,
+                maxLength: 500,
+            },
+            {
+                value: peopleInTask,
+                require: true,
+                min: 0,
+                max: 10,
+            },
+        ];
+        if (!validate(listValidateCondition)) {
             console.error("There is some error in input.");
             return;
         }

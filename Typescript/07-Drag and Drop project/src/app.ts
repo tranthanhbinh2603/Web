@@ -1,3 +1,54 @@
+interface ValidateInterface {
+	value: string | number;
+	require: boolean;
+	minLength?: number;
+	maxLength?: number;
+	min?: number;
+	max?: number;
+}
+
+function validate(objList: ValidateInterface[]) {
+	let isValid = true;
+
+	for (const obj of objList) {
+		if (obj.require) {
+			isValid =
+				isValid &&
+				obj.value !== "" &&
+				obj.value !== null &&
+				obj.value !== undefined;
+		}
+
+		if (!isValid) {
+			break;
+		}
+
+		if (typeof obj.value === "string") {
+			if (obj.minLength != null) {
+				isValid = isValid && obj.value.length >= obj.minLength;
+			}
+			if (obj.maxLength != null) {
+				isValid = isValid && obj.value.length <= obj.maxLength;
+			}
+		}
+
+		if (typeof obj.value === "number") {
+			if (obj.min != null) {
+				isValid = isValid && obj.value >= obj.min;
+			}
+			if (obj.max != null) {
+				isValid = isValid && obj.value <= obj.max;
+			}
+		}
+
+		if (!isValid) {
+			break;
+		}
+	}
+
+	return isValid;
+}
+
 function autobind(_: any, _2: string | symbol, descriptor: PropertyDescriptor) {
 	const originalMethod = descriptor.value;
 
@@ -44,7 +95,27 @@ class ProjectInput {
 		const titleTask = this.titleInputElement.value;
 		const descriptionTask = this.descriptionInputElement.value;
 		const peopleInTask = parseInt(this.peopleInputElement.value);
-		if (titleTask === "" || descriptionTask === "" || peopleInTask === 0) {
+		const listValidateCondition: ValidateInterface[] = [
+			{
+				value: titleTask,
+				require: true,
+				minLength: 5,
+				maxLength: 50,
+			},
+			{
+				value: descriptionTask,
+				require: true,
+				minLength: 10,
+				maxLength: 500,
+			},
+			{
+				value: peopleInTask,
+				require: true,
+				min: 0,
+				max: 10,
+			},
+		];
+		if (!validate(listValidateCondition)) {
 			console.error("There is some error in input.");
 			return;
 		}
