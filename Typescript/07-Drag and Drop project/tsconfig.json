@@ -14,8 +14,8 @@
 		"strict": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"experimentalDecorators": true,
-		"emitDecoratorMetadata": true
+		"experimentalDecorators": true
+		//"emitDecoratorMetadata": true
 	},
 	"exclude": ["node_modules"]
 }
