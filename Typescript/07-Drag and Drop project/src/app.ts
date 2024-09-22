@@ -25,9 +25,6 @@ class ProjectInput {
 			"#project-input"
 		)! as HTMLTemplateElement;
 		this.hostElement = document.querySelector("#app")! as HTMLDivElement;
-
-		this.hostElement = document.querySelector("#app")! as HTMLDivElement;
-		this.hostElement = document.querySelector("#app")! as HTMLDivElement;
 		const importNode = document.importNode(this.templateElement.content, true);
 		this.formElement = importNode.firstElementChild as HTMLFormElement;
 		this.formElement.id = "user-input";
@@ -43,10 +40,23 @@ class ProjectInput {
 		this.configure();
 		this.attach();
 	}
+	fetchingUserInput(): [string, string, number] | undefined {
+		const titleTask = this.titleInputElement.value;
+		const descriptionTask = this.descriptionInputElement.value;
+		const peopleInTask = parseInt(this.peopleInputElement.value);
+		if (titleTask === "" || descriptionTask === "" || peopleInTask === 0) {
+			console.error("There is some error in input.");
+			return;
+		}
+		return [titleTask, descriptionTask, peopleInTask];
+	}
 	@autobind
 	formHandler(e: Event) {
 		e.preventDefault();
-		console.log(this.titleInputElement.value);
+		const dataForm = this.fetchingUserInput();
+		if (Array.isArray(dataForm)) {
+			console.log(dataForm);
+		}
 	}
 	configure() {
 		this.formElement.addEventListener("submit", this.formHandler);

@@ -20,8 +20,6 @@ class ProjectInput {
     constructor() {
         this.templateElement = document.querySelector("#project-input");
         this.hostElement = document.querySelector("#app");
-        this.hostElement = document.querySelector("#app");
-        this.hostElement = document.querySelector("#app");
         const importNode = document.importNode(this.templateElement.content, true);
         this.formElement = importNode.firstElementChild;
         this.formElement.id = "user-input";
@@ -31,9 +29,22 @@ class ProjectInput {
         this.configure();
         this.attach();
     }
+    fetchingUserInput() {
+        const titleTask = this.titleInputElement.value;
+        const descriptionTask = this.descriptionInputElement.value;
+        const peopleInTask = parseInt(this.peopleInputElement.value);
+        if (titleTask === "" || descriptionTask === "" || peopleInTask === 0) {
+            console.error("There is some error in input.");
+            return;
+        }
+        return [titleTask, descriptionTask, peopleInTask];
+    }
     formHandler(e) {
         e.preventDefault();
-        console.log(this.titleInputElement.value);
+        const dataForm = this.fetchingUserInput();
+        if (Array.isArray(dataForm)) {
+            console.log(dataForm);
+        }
     }
     configure() {
         this.formElement.addEventListener("submit", this.formHandler);
