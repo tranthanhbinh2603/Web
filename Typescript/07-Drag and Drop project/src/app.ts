@@ -1,7 +1,26 @@
+/* */
+
+enum ProjectType {
+	active = "active",
+	finished = "finished",
+}
+
+class Project {
+	constructor(
+		public id: number,
+		public name: string,
+		public description: string,
+		public peopleJoin: number,
+		public state: ProjectType
+	) {}
+}
+
+type ListenerType = (items: Project[]) => void;
+
 class ProjectState {
-	private listTask: any[] = [];
+	private listTask: Project[] = [];
 	public static instance: ProjectState;
-	private listenerList: any[] = [];
+	private listenerList: ListenerType[] = [];
 
 	static getInstance() {
 		if (!ProjectState.instance) {
@@ -11,18 +30,18 @@ class ProjectState {
 	}
 	private constructor() {}
 
-	addListener(listenerFn: Function) {
+	addListener(listenerFn: ListenerType) {
 		this.listenerList.push(listenerFn);
 	}
 
 	addTask(objTask: [string, string, number]) {
-		const newTask = {
-			id: Date.now(),
-			name: objTask[0],
-			description: objTask[1],
-			peopleJoin: objTask[2],
-		};
-		this.listTask.push(newTask);
+		const id = Date.now();
+		const name = objTask[0];
+		const description = objTask[1];
+		const peopleJoin = objTask[2];
+		this.listTask.push(
+			new Project(id, name, description, peopleJoin, ProjectType.active)
+		);
 		for (const listenerFn of this.listenerList) {
 			listenerFn(this.listTask.slice());
 		}
@@ -177,7 +196,7 @@ class ProjectList {
 	templateElement: HTMLTemplateElement;
 	hostElement: HTMLDivElement;
 	element: HTMLElement;
-	assignedTask: any[] = [];
+	assignedTask: Project[] = [];
 
 	constructor(private type: "active" | "finished") {
 		this.templateElement = document.getElementById(
@@ -189,7 +208,7 @@ class ProjectList {
 			this.templateElement.content,
 			true
 		);
-		projectStateObject.addListener((project: any[]) => {
+		projectStateObject.addListener((project: Project[]) => {
 			this.assignedTask = project;
 			this.renderTask();
 		});

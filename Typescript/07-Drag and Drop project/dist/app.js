@@ -5,6 +5,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var ProjectType;
+(function (ProjectType) {
+    ProjectType["active"] = "active";
+    ProjectType["finished"] = "finished";
+})(ProjectType || (ProjectType = {}));
+class Project {
+    constructor(id, name, description, peopleJoin, state) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.peopleJoin = peopleJoin;
+        this.state = state;
+    }
+}
 class ProjectState {
     static getInstance() {
         if (!ProjectState.instance) {
@@ -20,13 +34,11 @@ class ProjectState {
         this.listenerList.push(listenerFn);
     }
     addTask(objTask) {
-        const newTask = {
-            id: Date.now(),
-            name: objTask[0],
-            description: objTask[1],
-            peopleJoin: objTask[2],
-        };
-        this.listTask.push(newTask);
+        const id = Date.now();
+        const name = objTask[0];
+        const description = objTask[1];
+        const peopleJoin = objTask[2];
+        this.listTask.push(new Project(id, name, description, peopleJoin, ProjectType.active));
         for (const listenerFn of this.listenerList) {
             listenerFn(this.listTask.slice());
         }
