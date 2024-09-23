@@ -1,4 +1,6 @@
-/* */
+/*
+	
+*/
 
 enum ProjectType {
 	active = "active",
@@ -209,7 +211,12 @@ class ProjectList {
 			true
 		);
 		projectStateObject.addListener((project: Project[]) => {
-			this.assignedTask = project;
+			const listTask = project.filter((item) => {
+				if (type === ProjectType.active)
+					return item.state === ProjectType.active;
+				else return item.state === ProjectType.finished;
+			});
+			this.assignedTask = listTask;
 			this.renderTask();
 		});
 		this.element = importedNode.firstElementChild as HTMLElement;
@@ -222,6 +229,7 @@ class ProjectList {
 		const listEl = document.getElementById(
 			`${this.type}-projects-list`
 		)! as HTMLUListElement;
+		listEl.innerHTML = "";
 		for (const task of this.assignedTask) {
 			const listItem = document.createElement("li");
 			listItem.textContent = task.name;

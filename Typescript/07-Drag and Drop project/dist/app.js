@@ -161,7 +161,13 @@ class ProjectList {
         this.hostElement = document.getElementById("app");
         const importedNode = document.importNode(this.templateElement.content, true);
         projectStateObject.addListener((project) => {
-            this.assignedTask = project;
+            const listTask = project.filter((item) => {
+                if (type === ProjectType.active)
+                    return item.state === ProjectType.active;
+                else
+                    return item.state === ProjectType.finished;
+            });
+            this.assignedTask = listTask;
             this.renderTask();
         });
         this.element = importedNode.firstElementChild;
@@ -171,6 +177,7 @@ class ProjectList {
     }
     renderTask() {
         const listEl = document.getElementById(`${this.type}-projects-list`);
+        listEl.innerHTML = "";
         for (const task of this.assignedTask) {
             const listItem = document.createElement("li");
             listItem.textContent = task.name;
