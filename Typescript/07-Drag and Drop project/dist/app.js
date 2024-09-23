@@ -5,6 +5,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+class ProjectState {
+    static getInstance() {
+        if (!ProjectState.instance) {
+            this.instance = new ProjectState();
+        }
+        return this.instance;
+    }
+    constructor() {
+        this.listTask = [];
+        this.listenerList = [];
+    }
+    addListener(listenerFn) {
+        this.listenerList.push(listenerFn);
+    }
+    addTask(objTask) {
+        const newTask = {
+            id: Date.now(),
+            name: objTask[0],
+            description: objTask[1],
+            peopleJoin: objTask[2],
+        };
+        this.listTask.push(newTask);
+        for (const listenerFn of this.listenerList) {
+            listenerFn(this.listTask.slice());
+        }
+        console.log(this.listTask);
+    }
+}
+const projectStateObject = ProjectState.getInstance();
 function validate(objList) {
     let isValid = true;
     for (const obj of objList) {
@@ -92,7 +121,7 @@ class ProjectInput {
             console.error("There is some error in input.");
             return;
         }
-        return [titleTask, descriptionTask, peopleInTask];
+        projectStateObject.addTask([titleTask, descriptionTask, peopleInTask]);
     }
     formHandler(e) {
         e.preventDefault();
@@ -112,4 +141,40 @@ __decorate([
     autobind
 ], ProjectInput.prototype, "formHandler", null);
 new ProjectInput();
+class ProjectList {
+    constructor(type) {
+        this.type = type;
+        this.assignedTask = [];
+        this.templateElement = document.getElementById("project-list");
+        this.hostElement = document.getElementById("app");
+        const importedNode = document.importNode(this.templateElement.content, true);
+        projectStateObject.addListener((project) => {
+            this.assignedTask = project;
+            this.renderTask();
+        });
+        this.element = importedNode.firstElementChild;
+        this.element.id = `${this.type}-projects`;
+        this.attach();
+        this.renderContent();
+    }
+    renderTask() {
+        const listEl = document.getElementById(`${this.type}-projects-list`);
+        for (const task of this.assignedTask) {
+            const listItem = document.createElement("li");
+            listItem.textContent = task.name;
+            listEl.appendChild(listItem);
+        }
+    }
+    renderContent() {
+        const listId = `${this.type}-projects-list`;
+        this.element.querySelector("ul").id = listId;
+        this.element.querySelector("h2").textContent =
+            this.type.toUpperCase() + " PROJECTS";
+    }
+    attach() {
+        this.hostElement.insertAdjacentElement("beforeend", this.element);
+    }
+}
+const activePrjList = new ProjectList("active");
+const finishedPrjList = new ProjectList("finished");
 //# sourceMappingURL=app.js.map
