@@ -2,6 +2,17 @@
 	
 */
 
+interface Draggable {
+	dragStartHandler(event: DragEvent): void; // Được gọi khi bắt đầu kéo một đối tượng (khi người dùng bắt đầu kéo).
+	dragEndHandler(event: DragEvent): void; // Được gọi khi kết thúc việc kéo (khi người dùng thả chuột và ngừng kéo đối tượng).
+}
+
+interface DragTarget {
+	dragOverHandler(event: DragEvent): void; // Được gọi khi một đối tượng đang được kéo qua vùng thả (drop target) để xác định đây là vùng hợp lệ cho phép thả.
+	dragHandler(event: DragEvent): void; // Được gọi khi đối tượng được thả vào vùng thả (drop target), dùng để xử lý việc thả và cập nhật dữ liệu/giao diện.
+	dragLeaveHandler(event: DragEvent): void; // Được gọi khi một đối tượng kéo ra khỏi vùng thả mà không thả vào (khi rời khỏi vùng thả), thường để hủy bỏ các thay đổi giao diện.
+}
+
 enum ProjectType {
 	active = "active",
 	finished = "finished",
@@ -239,6 +250,7 @@ class ProjectTaskRender {
 		listEl.innerHTML = "";
 		for (const task of listTask) {
 			const listItem = document.createElement("li");
+			listItem.draggable = true;
 
 			const h2 = document.createElement("h2");
 			h2.textContent = task.name;
@@ -257,7 +269,10 @@ class ProjectTaskRender {
 	}
 }
 
-class ProjectList extends BaseComponent<HTMLElement, HTMLDivElement> {
+class ProjectList
+	extends BaseComponent<HTMLElement, HTMLDivElement>
+	implements Draggable
+{
 	assignedTask: Project[] = [];
 
 	constructor(private type: "active" | "finished") {
@@ -274,6 +289,7 @@ class ProjectList extends BaseComponent<HTMLElement, HTMLDivElement> {
 		});
 
 		this.renderContent();
+		this.configure();
 	}
 
 	private renderTask() {
@@ -287,7 +303,17 @@ class ProjectList extends BaseComponent<HTMLElement, HTMLDivElement> {
 			this.type.toUpperCase() + " PROJECTS";
 	}
 
-	configure() {}
+	dragStartHandler(event: DragEvent) {
+		console.log(event);
+	}
+	dragEndHandler(_: DragEvent) {
+		console.log("Drag end");
+	}
+
+	configure() {
+		this.element.addEventListener("dragenter", this.dragStartHandler);
+		this.element.addEventListener("dragend", this.dragEndHandler);
+	}
 }
 
 const activePrjList = new ProjectList("active");

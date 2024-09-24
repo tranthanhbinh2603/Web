@@ -176,6 +176,7 @@ class ProjectTaskRender {
         listEl.innerHTML = "";
         for (const task of listTask) {
             const listItem = document.createElement("li");
+            listItem.draggable = true;
             const h2 = document.createElement("h2");
             h2.textContent = task.name;
             listItem.appendChild(h2);
@@ -205,6 +206,7 @@ class ProjectList extends BaseComponent {
             this.renderTask();
         });
         this.renderContent();
+        this.configure();
     }
     renderTask() {
         ProjectTaskRender.Render(`${this.type}-projects-list`, this.assignedTask);
@@ -215,7 +217,16 @@ class ProjectList extends BaseComponent {
         this.element.querySelector("h2").textContent =
             this.type.toUpperCase() + " PROJECTS";
     }
-    configure() { }
+    dragStartHandler(event) {
+        console.log(event);
+    }
+    dragEndHandler(_) {
+        console.log("Drag end");
+    }
+    configure() {
+        this.element.addEventListener("dragenter", this.dragStartHandler);
+        this.element.addEventListener("dragend", this.dragEndHandler);
+    }
 }
 const activePrjList = new ProjectList("active");
 const finishedPrjList = new ProjectList("finished");
