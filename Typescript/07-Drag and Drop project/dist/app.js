@@ -162,6 +162,30 @@ __decorate([
     autobind
 ], ProjectInput.prototype, "formHandler", null);
 new ProjectInput();
+class ProjectTaskRender {
+    static Render(idRender, listTask) {
+        const listEl = document.getElementById(idRender);
+        listEl.innerHTML = "";
+        for (const task of listTask) {
+            const listItem = document.createElement("li");
+            const h2 = document.createElement("h2");
+            h2.textContent = task.name;
+            listItem.appendChild(h2);
+            const h3 = document.createElement("h3");
+            if (task.peopleJoin === 1) {
+                h3.textContent = task.peopleJoin.toString() + "people";
+            }
+            else {
+                h3.textContent = task.peopleJoin.toString() + "people(s)";
+            }
+            listItem.appendChild(h3);
+            const p = document.createElement("p");
+            p.textContent = task.description;
+            listItem.appendChild(p);
+            listEl.appendChild(listItem);
+        }
+    }
+}
 class ProjectList extends BaseComponent {
     constructor(type) {
         super("project-list", "app", false, `${type}-projects`);
@@ -180,13 +204,7 @@ class ProjectList extends BaseComponent {
         this.renderContent();
     }
     renderTask() {
-        const listEl = document.getElementById(`${this.type}-projects-list`);
-        listEl.innerHTML = "";
-        for (const task of this.assignedTask) {
-            const listItem = document.createElement("li");
-            listItem.textContent = task.name;
-            listEl.appendChild(listItem);
-        }
+        ProjectTaskRender.Render(`${this.type}-projects-list`, this.assignedTask);
     }
     renderContent() {
         const listId = `${this.type}-projects-list`;
