@@ -261,7 +261,8 @@ class ProjectTaskRender
 
 	@autobind
 	dragStartHandler(event: DragEvent) {
-		console.log(event);
+		event.dataTransfer!.setData("text/plain", this.project.id.toString());
+		event.dataTransfer!.effectAllowed = "move";
 	}
 
 	@autobind
@@ -288,12 +289,17 @@ class ProjectList
 	assignedTask: Project[] = [];
 
 	@autobind
-	dragOverHandler(_: DragEvent) {
-		const ulElement = this.element.querySelector("ul")!;
-		ulElement?.classList.add("droppable");
+	dragOverHandler(event: DragEvent) {
+		if (event.dataTransfer && event.dataTransfer.types[0] === "text/plain") {
+			event.preventDefault();
+			const ulElement = this.element.querySelector("ul")!;
+			ulElement?.classList.add("droppable");
+		}
 	}
 	@autobind
-	dropHandler(_: DragEvent) {}
+	dropHandler(event: DragEvent) {
+		console.log(event.dataTransfer!.getData("text/plain"));
+	}
 
 	@autobind
 	dragLeaveHandler(_: DragEvent) {
@@ -336,9 +342,6 @@ class ProjectList
 	}
 
 	configure() {
-		// this.element.addEventListener("dragover", this.dragOverHandler);
-		// this.element.addEventListener("dragleave", this.dragLeaveHandler);
-
 		this.element.addEventListener("dragover", this.dragOverHandler);
 		this.element.addEventListener("dragleave", this.dragLeaveHandler);
 		this.element.addEventListener("drop", this.dropHandler);
