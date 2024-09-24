@@ -62,6 +62,20 @@ class ProjectState extends State<Project> {
 			listenerFn(this.listTask.slice());
 		}
 	}
+
+	changeStatus(id: String, status: ProjectType) {
+		const taskFind = this.listTask.find((task) => task.id.toString() === id);
+		if (taskFind) {
+			taskFind.state = status;
+			this.updateListeners();
+		}
+	}
+
+	updateListeners() {
+		for (const listenerFn of this.listenerList) {
+			listenerFn(this.listTask.slice());
+		}
+	}
 }
 
 const projectStateObject = ProjectState.getInstance();
@@ -266,9 +280,7 @@ class ProjectTaskRender
 	}
 
 	@autobind
-	dragEndHandler(_: DragEvent) {
-		console.log("DragEnd");
-	}
+	dragEndHandler(_: DragEvent) {}
 
 	configure() {
 		this.element.addEventListener("dragstart", this.dragStartHandler);
@@ -298,7 +310,11 @@ class ProjectList
 	}
 	@autobind
 	dropHandler(event: DragEvent) {
-		console.log(event.dataTransfer!.getData("text/plain"));
+		const id = event.dataTransfer!.getData("text/plain");
+		projectStateObject.changeStatus(
+			id,
+			this.type === "active" ? ProjectType.active : ProjectType.finished
+		);
 	}
 
 	@autobind

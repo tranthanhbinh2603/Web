@@ -48,6 +48,18 @@ class ProjectState extends State {
             listenerFn(this.listTask.slice());
         }
     }
+    changeStatus(id, status) {
+        const taskFind = this.listTask.find((task) => task.id.toString() === id);
+        if (taskFind) {
+            taskFind.state = status;
+            this.updateListeners();
+        }
+    }
+    updateListeners() {
+        for (const listenerFn of this.listenerList) {
+            listenerFn(this.listTask.slice());
+        }
+    }
 }
 const projectStateObject = ProjectState.getInstance();
 function validate(objList) {
@@ -181,9 +193,7 @@ class ProjectTaskRender extends BaseComponent {
         event.dataTransfer.setData("text/plain", this.project.id.toString());
         event.dataTransfer.effectAllowed = "move";
     }
-    dragEndHandler(_) {
-        console.log("DragEnd");
-    }
+    dragEndHandler(_) { }
     configure() {
         this.element.addEventListener("dragstart", this.dragStartHandler);
         this.element.addEventListener("dragend", this.dragEndHandler);
@@ -209,7 +219,8 @@ class ProjectList extends BaseComponent {
         }
     }
     dropHandler(event) {
-        console.log(event.dataTransfer.getData("text/plain"));
+        const id = event.dataTransfer.getData("text/plain");
+        projectStateObject.changeStatus(id, this.type === "active" ? ProjectType.active : ProjectType.finished);
     }
     dragLeaveHandler(_) {
         const ulElement = this.element.querySelector("ul");
