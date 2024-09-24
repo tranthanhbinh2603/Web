@@ -163,6 +163,14 @@ __decorate([
 ], ProjectInput.prototype, "formHandler", null);
 new ProjectInput();
 class ProjectTaskRender {
+    static persons(numberPeople) {
+        if (numberPeople === 1) {
+            return "1 people";
+        }
+        else {
+            return numberPeople + " peoples";
+        }
+    }
     static Render(idRender, listTask) {
         const listEl = document.getElementById(idRender);
         listEl.innerHTML = "";
@@ -172,12 +180,7 @@ class ProjectTaskRender {
             h2.textContent = task.name;
             listItem.appendChild(h2);
             const h3 = document.createElement("h3");
-            if (task.peopleJoin === 1) {
-                h3.textContent = task.peopleJoin.toString() + "people";
-            }
-            else {
-                h3.textContent = task.peopleJoin.toString() + "people(s)";
-            }
+            h3.textContent = this.persons(task.peopleJoin) + " assigned";
             listItem.appendChild(h3);
             const p = document.createElement("p");
             p.textContent = task.description;

@@ -227,6 +227,13 @@ class ProjectInput extends BaseComponent<HTMLFormElement, HTMLDivElement> {
 new ProjectInput();
 
 class ProjectTaskRender {
+	private static persons(numberPeople: number): string {
+		if (numberPeople === 1) {
+			return "1 people";
+		} else {
+			return numberPeople + " peoples";
+		}
+	}
 	static Render(idRender: string, listTask: Project[]) {
 		const listEl = document.getElementById(idRender)! as HTMLUListElement;
 		listEl.innerHTML = "";
@@ -238,11 +245,7 @@ class ProjectTaskRender {
 			listItem.appendChild(h2);
 
 			const h3 = document.createElement("h3");
-			if (task.peopleJoin === 1) {
-				h3.textContent = task.peopleJoin.toString() + "people";
-			} else {
-				h3.textContent = task.peopleJoin.toString() + "people(s)";
-			}
+			h3.textContent = this.persons(task.peopleJoin) + " assigned";
 			listItem.appendChild(h3);
 
 			const p = document.createElement("p");
