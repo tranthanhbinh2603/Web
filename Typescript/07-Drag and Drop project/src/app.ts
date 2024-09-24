@@ -9,7 +9,7 @@ interface Draggable {
 
 interface DragTarget {
 	dragOverHandler(event: DragEvent): void; // Được gọi khi một đối tượng đang được kéo qua vùng thả (drop target) để xác định đây là vùng hợp lệ cho phép thả.
-	dragHandler(event: DragEvent): void; // Được gọi khi đối tượng được thả vào vùng thả (drop target), dùng để xử lý việc thả và cập nhật dữ liệu/giao diện.
+	dropHandler(event: DragEvent): void; // Được gọi khi đối tượng được thả vào vùng thả (drop target), dùng để xử lý việc thả và cập nhật dữ liệu/giao diện.
 	dragLeaveHandler(event: DragEvent): void; // Được gọi khi một đối tượng kéo ra khỏi vùng thả mà không thả vào (khi rời khỏi vùng thả), thường để hủy bỏ các thay đổi giao diện.
 }
 
@@ -237,43 +237,69 @@ class ProjectInput extends BaseComponent<HTMLFormElement, HTMLDivElement> {
 
 new ProjectInput();
 
-class ProjectTaskRender {
-	private static persons(numberPeople: number): string {
-		if (numberPeople === 1) {
-			return "1 people";
+class ProjectTaskRender
+	extends BaseComponent<HTMLUListElement, HTMLLIElement>
+	implements Draggable
+{
+	private project: Project;
+
+	get persons() {
+		if (this.project.peopleJoin === 1) {
+			return "1 person";
 		} else {
-			return numberPeople + " peoples";
+			return `${this.project.peopleJoin} persons`;
 		}
 	}
-	static Render(idRender: string, listTask: Project[]) {
-		const listEl = document.getElementById(idRender)! as HTMLUListElement;
-		listEl.innerHTML = "";
-		for (const task of listTask) {
-			const listItem = document.createElement("li");
-			listItem.draggable = true;
 
-			const h2 = document.createElement("h2");
-			h2.textContent = task.name;
-			listItem.appendChild(h2);
+	constructor(hostId: string, project: Project) {
+		super("single-project", hostId, false, project.id.toString());
+		this.project = project;
 
-			const h3 = document.createElement("h3");
-			h3.textContent = this.persons(task.peopleJoin) + " assigned";
-			listItem.appendChild(h3);
+		this.configure();
+		this.renderContent();
+	}
 
-			const p = document.createElement("p");
-			p.textContent = task.description;
-			listItem.appendChild(p);
+	@autobind
+	dragStartHandler(event: DragEvent) {
+		console.log(event);
+	}
 
-			listEl.appendChild(listItem);
-		}
+	@autobind
+	dragEndHandler(_: DragEvent) {
+		console.log("DragEnd");
+	}
+
+	configure() {
+		this.element.addEventListener("dragstart", this.dragStartHandler);
+		this.element.addEventListener("dragend", this.dragEndHandler);
+	}
+
+	renderContent() {
+		this.element.querySelector("h2")!.textContent = this.project.name;
+		this.element.querySelector("h3")!.textContent = this.persons + " assigned";
+		this.element.querySelector("p")!.textContent = this.project.description;
 	}
 }
 
 class ProjectList
 	extends BaseComponent<HTMLElement, HTMLDivElement>
-	implements Draggable
+	implements DragTarget
 {
 	assignedTask: Project[] = [];
+
+	@autobind
+	dragOverHandler(_: DragEvent) {
+		const ulElement = this.element.querySelector("ul")!;
+		ulElement?.classList.add("droppable");
+	}
+	@autobind
+	dropHandler(_: DragEvent) {}
+
+	@autobind
+	dragLeaveHandler(_: DragEvent) {
+		const ulElement = this.element.querySelector("ul")!;
+		ulElement?.classList.remove("droppable");
+	}
 
 	constructor(private type: "active" | "finished") {
 		super("project-list", "app", false, `${type}-projects`);
@@ -293,7 +319,13 @@ class ProjectList
 	}
 
 	private renderTask() {
-		ProjectTaskRender.Render(`${this.type}-projects-list`, this.assignedTask);
+		const listEl = document.getElementById(
+			`${this.type}-projects-list`
+		)! as HTMLUListElement;
+		listEl.innerHTML = "";
+		for (const prjItem of this.assignedTask) {
+			new ProjectTaskRender(this.element.querySelector("ul")!.id, prjItem);
+		}
 	}
 
 	renderContent() {
@@ -303,16 +335,13 @@ class ProjectList
 			this.type.toUpperCase() + " PROJECTS";
 	}
 
-	dragStartHandler(event: DragEvent) {
-		console.log(event);
-	}
-	dragEndHandler(_: DragEvent) {
-		console.log("Drag end");
-	}
-
 	configure() {
-		this.element.addEventListener("dragenter", this.dragStartHandler);
-		this.element.addEventListener("dragend", this.dragEndHandler);
+		// this.element.addEventListener("dragover", this.dragOverHandler);
+		// this.element.addEventListener("dragleave", this.dragLeaveHandler);
+
+		this.element.addEventListener("dragover", this.dragOverHandler);
+		this.element.addEventListener("dragleave", this.dragLeaveHandler);
+		this.element.addEventListener("drop", this.dropHandler);
 	}
 }
 

@@ -162,35 +162,53 @@ __decorate([
     autobind
 ], ProjectInput.prototype, "formHandler", null);
 new ProjectInput();
-class ProjectTaskRender {
-    static persons(numberPeople) {
-        if (numberPeople === 1) {
-            return "1 people";
+class ProjectTaskRender extends BaseComponent {
+    get persons() {
+        if (this.project.peopleJoin === 1) {
+            return "1 person";
         }
         else {
-            return numberPeople + " peoples";
+            return `${this.project.peopleJoin} persons`;
         }
     }
-    static Render(idRender, listTask) {
-        const listEl = document.getElementById(idRender);
-        listEl.innerHTML = "";
-        for (const task of listTask) {
-            const listItem = document.createElement("li");
-            listItem.draggable = true;
-            const h2 = document.createElement("h2");
-            h2.textContent = task.name;
-            listItem.appendChild(h2);
-            const h3 = document.createElement("h3");
-            h3.textContent = this.persons(task.peopleJoin) + " assigned";
-            listItem.appendChild(h3);
-            const p = document.createElement("p");
-            p.textContent = task.description;
-            listItem.appendChild(p);
-            listEl.appendChild(listItem);
-        }
+    constructor(hostId, project) {
+        super("single-project", hostId, false, project.id.toString());
+        this.project = project;
+        this.configure();
+        this.renderContent();
+    }
+    dragStartHandler(event) {
+        console.log(event);
+    }
+    dragEndHandler(_) {
+        console.log("DragEnd");
+    }
+    configure() {
+        this.element.addEventListener("dragstart", this.dragStartHandler);
+        this.element.addEventListener("dragend", this.dragEndHandler);
+    }
+    renderContent() {
+        this.element.querySelector("h2").textContent = this.project.name;
+        this.element.querySelector("h3").textContent = this.persons + " assigned";
+        this.element.querySelector("p").textContent = this.project.description;
     }
 }
+__decorate([
+    autobind
+], ProjectTaskRender.prototype, "dragStartHandler", null);
+__decorate([
+    autobind
+], ProjectTaskRender.prototype, "dragEndHandler", null);
 class ProjectList extends BaseComponent {
+    dragOverHandler(_) {
+        const ulElement = this.element.querySelector("ul");
+        ulElement === null || ulElement === void 0 ? void 0 : ulElement.classList.add("droppable");
+    }
+    dropHandler(_) { }
+    dragLeaveHandler(_) {
+        const ulElement = this.element.querySelector("ul");
+        ulElement === null || ulElement === void 0 ? void 0 : ulElement.classList.remove("droppable");
+    }
     constructor(type) {
         super("project-list", "app", false, `${type}-projects`);
         this.type = type;
@@ -209,7 +227,11 @@ class ProjectList extends BaseComponent {
         this.configure();
     }
     renderTask() {
-        ProjectTaskRender.Render(`${this.type}-projects-list`, this.assignedTask);
+        const listEl = document.getElementById(`${this.type}-projects-list`);
+        listEl.innerHTML = "";
+        for (const prjItem of this.assignedTask) {
+            new ProjectTaskRender(this.element.querySelector("ul").id, prjItem);
+        }
     }
     renderContent() {
         const listId = `${this.type}-projects-list`;
@@ -217,17 +239,21 @@ class ProjectList extends BaseComponent {
         this.element.querySelector("h2").textContent =
             this.type.toUpperCase() + " PROJECTS";
     }
-    dragStartHandler(event) {
-        console.log(event);
-    }
-    dragEndHandler(_) {
-        console.log("Drag end");
-    }
     configure() {
-        this.element.addEventListener("dragenter", this.dragStartHandler);
-        this.element.addEventListener("dragend", this.dragEndHandler);
+        this.element.addEventListener("dragover", this.dragOverHandler);
+        this.element.addEventListener("dragleave", this.dragLeaveHandler);
+        this.element.addEventListener("drop", this.dropHandler);
     }
 }
+__decorate([
+    autobind
+], ProjectList.prototype, "dragOverHandler", null);
+__decorate([
+    autobind
+], ProjectList.prototype, "dropHandler", null);
+__decorate([
+    autobind
+], ProjectList.prototype, "dragLeaveHandler", null);
 const activePrjList = new ProjectList("active");
 const finishedPrjList = new ProjectList("finished");
 //# sourceMappingURL=app.js.map
