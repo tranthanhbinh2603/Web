@@ -47,17 +47,43 @@ class ProjectState extends State {
         for (const listenerFn of this.listenerList) {
             listenerFn(this.listTask.slice());
         }
+        this.saveListToStorage();
     }
     changeStatus(id, status) {
         const taskFind = this.listTask.find((task) => task.id.toString() === id);
-        if (taskFind) {
+        if (taskFind && taskFind.state != status) {
             taskFind.state = status;
+            this.saveListToStorage();
             this.updateListeners();
         }
     }
     updateListeners() {
         for (const listenerFn of this.listenerList) {
             listenerFn(this.listTask.slice());
+        }
+    }
+    saveListToStorage() {
+        if (Array.isArray(this.listTask)) {
+            localStorage.setItem("taskSave", JSON.stringify(this.listTask));
+        }
+        else {
+            console.error("The provided data is not an array.");
+        }
+    }
+    getListFromStorage() {
+        const data = localStorage.getItem("taskSave");
+        if (data) {
+            try {
+                return JSON.parse(data) || [];
+            }
+            catch (error) {
+                console.error("Error parsing JSON:", error);
+                return [];
+            }
+        }
+        else {
+            console.warn("No data found for the given key.");
+            return [];
         }
     }
 }
@@ -273,4 +299,22 @@ __decorate([
 ], ProjectList.prototype, "dragLeaveHandler", null);
 const activePrjList = new ProjectList("active");
 const finishedPrjList = new ProjectList("finished");
+class LoadTasksFromStorage {
+    constructor() {
+        this.loadTasks();
+    }
+    loadTasks() {
+        const tasks = projectStateObject.getListFromStorage();
+        if (tasks && Array.isArray(tasks)) {
+            for (const task of tasks) {
+                projectStateObject.addTask([
+                    task.name,
+                    task.description,
+                    task.peopleJoin,
+                ]);
+            }
+        }
+    }
+}
+new LoadTasksFromStorage();
 //# sourceMappingURL=app.js.map

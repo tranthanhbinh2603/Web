@@ -61,12 +61,14 @@ class ProjectState extends State<Project> {
 		for (const listenerFn of this.listenerList) {
 			listenerFn(this.listTask.slice());
 		}
+		this.saveListToStorage();
 	}
 
 	changeStatus(id: String, status: ProjectType) {
 		const taskFind = this.listTask.find((task) => task.id.toString() === id);
-		if (taskFind) {
+		if (taskFind && taskFind.state != status) {
 			taskFind.state = status;
+			this.saveListToStorage();
 			this.updateListeners();
 		}
 	}
@@ -74,6 +76,29 @@ class ProjectState extends State<Project> {
 	updateListeners() {
 		for (const listenerFn of this.listenerList) {
 			listenerFn(this.listTask.slice());
+		}
+	}
+
+	private saveListToStorage() {
+		if (Array.isArray(this.listTask)) {
+			localStorage.setItem("taskSave", JSON.stringify(this.listTask));
+		} else {
+			console.error("The provided data is not an array.");
+		}
+	}
+
+	getListFromStorage() {
+		const data = localStorage.getItem("taskSave");
+		if (data) {
+			try {
+				return (JSON.parse(data) as Project[]) || [];
+			} catch (error) {
+				console.error("Error parsing JSON:", error);
+				return [];
+			}
+		} else {
+			console.warn("No data found for the given key.");
+			return [];
 		}
 	}
 }
@@ -325,7 +350,6 @@ class ProjectList
 
 	constructor(private type: "active" | "finished") {
 		super("project-list", "app", false, `${type}-projects`);
-
 		projectStateObject.addListener((project: Project[]) => {
 			const listTask = project.filter((item) => {
 				if (type === ProjectType.active)
@@ -366,3 +390,24 @@ class ProjectList
 
 const activePrjList = new ProjectList("active");
 const finishedPrjList = new ProjectList("finished");
+
+class LoadTasksFromStorage {
+	constructor() {
+		this.loadTasks();
+	}
+
+	private loadTasks() {
+		const tasks = projectStateObject.getListFromStorage();
+		if (tasks && Array.isArray(tasks)) {
+			for (const task of tasks) {
+				projectStateObject.addTask([
+					task.name,
+					task.description,
+					task.peopleJoin,
+				]);
+			}
+		}
+	}
+}
+
+new LoadTasksFromStorage();
