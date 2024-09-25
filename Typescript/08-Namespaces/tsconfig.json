@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		// "outFile": "./dist/scripts.js", //Đường dẫn chứa file cuối cùng (1 file duy nhất)
+		"outDir": "./dist", //Đường dẫn chứa kết quả (mã nguồn javascript)
+		"rootDir": "./src", //Đường dẫn chứa file Typescript
+		"target": "es6", //Có thể xuống es5 nếu muốn chạy trên các trình duyệt cũ hơn, song cần thư viện nếu muốn sử dụng 1 số tính năng hiện đại
+		"module": "amd",
+		"sourceMap": true,
+		"removeComments": true,
+		"noEmitOnError": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		"noImplicitAny": true,
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"experimentalDecorators": true
+		//"emitDecoratorMetadata": true
+	},
+	"exclude": ["node_modules"]
+}
