@@ -1,6 +1,7 @@
 import Product from "./product.model";
 import "reflect-metadata";
 import { plainToClass } from "class-transformer";
+import { validate } from "class-validator";
 
 //Yêu cầu: Tạo ra n đổi tượng product được nhập từ API (chẳng hạn). Ở đây chỉ làm ví dụ đơn giản với n = 2 và các giá trị cố định.
 
@@ -29,10 +30,21 @@ import { plainToClass } from "class-transformer";
 const products = [
 	{ name: "Apple", price: 50 },
 	{ name: "Milk", price: 200 },
+	{ name: "aaaa", price: -1 },
 ];
 
 const productObjects = plainToClass(Product, products);
 
-for (const productObject of productObjects) {
-	console.log(productObject.getDetails()); // Thêm dấu ngoặc () để gọi phương thức
-}
+validate(productObjects).then((errors) => {
+	console.log(errors);
+});
+
+productObjects.forEach((productObject) => {
+	validate(productObject).then((errors) => {
+		if (errors.length > 0) {
+			console.log("Validation failed: ", errors);
+		} else {
+			console.log("Validation succeeded: ", productObject.getDetails());
+		}
+	});
+});
