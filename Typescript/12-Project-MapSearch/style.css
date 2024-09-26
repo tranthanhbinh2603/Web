@@ -1,0 +1,29 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 10px;
+	font-family: sans-serif;
+}
+
+.map {
+	width: calc(100vw - 4rem);
+	height: 40vh;
+	margin: 2rem;
+	font-size: 1.6em;
+	border: 1px solid #ccc;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+form {
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+}
