@@ -13,10 +13,16 @@
 	"description": "",
 	"devDependencies": {
 		"clean-webpack-plugin": "^4.0.0",
+		"dotenv-webpack": "^8.1.0",
 		"ts-loader": "^9.5.1",
 		"typescript": "^5.6.2",
 		"webpack": "^5.95.0",
 		"webpack-cli": "^5.1.4",
 		"webpack-dev-server": "^5.1.0"
+	},
+	"dependencies": {
+		"@types/mapbox-gl": "^3.4.0",
+		"axios": "^1.7.7",
+		"mapbox-gl": "^3.6.0"
 	}
 }

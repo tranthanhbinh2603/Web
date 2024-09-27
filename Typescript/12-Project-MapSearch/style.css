@@ -9,7 +9,7 @@ html {
 	font-family: sans-serif;
 }
 
-.map {
+#map {
 	width: calc(100vw - 4rem);
 	height: 40vh;
 	margin: 2rem;
