@@ -1,6 +1,15 @@
 import { useRef } from "react";
 
-const FormAddTask: React.FC = () => {
+interface TaskInterface {
+	name: string | undefined;
+	duration: string | undefined;
+}
+
+interface HandleAddTaskInterface {
+	handleAddTask: (objectAdd: TaskInterface) => void;
+}
+
+const FormAddTask: React.FC<HandleAddTaskInterface> = (prop) => {
 	// Cách làm thông thường:
 	// const [nameTask, setNameTask] = useState("");
 	// const [duration, setDuration] = useState("");
@@ -25,7 +34,10 @@ const FormAddTask: React.FC = () => {
 
 	const sendData = (event: React.FormEvent) => {
 		event.preventDefault();
-		console.log(nameTaskRef.current?.value, " ", durationRef.current?.value);
+		prop.handleAddTask({
+			name: nameTaskRef.current?.value,
+			duration: durationRef.current?.value,
+		});
 	};
 
 	return (

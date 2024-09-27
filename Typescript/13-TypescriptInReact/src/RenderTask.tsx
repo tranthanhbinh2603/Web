@@ -1,7 +1,7 @@
 interface TaskProp {
 	task: {
-		name: String;
-		duration: String;
+		name: String | undefined;
+		duration: String | undefined;
 	};
 }
 

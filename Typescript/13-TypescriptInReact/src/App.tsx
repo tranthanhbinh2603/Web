@@ -1,15 +1,28 @@
+import { useState } from "react";
 import FormAddTask from "./FormAddTask";
 import RenderTask from "./RenderTask";
 
+interface TaskInterface {
+	name: string | undefined;
+	duration: string | undefined;
+	id?: number;
+}
+
 const App: React.FC = () => {
-	const ListTask = [
+	const [ListTask, setListTask] = useState<TaskInterface[]>([
 		{ id: 1, name: "To do homework", duration: "2 days" },
 		{ id: 2, name: "Coding", duration: "1 months" },
 		{ id: 3, name: "Playing game", duration: "Never" },
-	];
+	]);
+
+	const handleAddTask = (objectAdd: TaskInterface) => {
+		objectAdd = { ...objectAdd, id: Date.now() };
+		setListTask([...ListTask, objectAdd]);
+	};
+
 	return (
 		<>
-			<FormAddTask />
+			<FormAddTask handleAddTask={handleAddTask} />
 			<ul>
 				{ListTask.map((task) => (
 					<RenderTask task={task} key={task.id} />
