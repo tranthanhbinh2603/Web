@@ -1,17 +1,21 @@
+import FormAddTask from "./FormAddTask";
 import RenderTask from "./RenderTask";
 
 const App: React.FC = () => {
 	const ListTask = [
-		{ name: "To do homework", duration: "2 days" },
-		{ name: "Coding", duration: "1 months" },
-		{ name: "Playing game", duration: "Never" },
+		{ id: 1, name: "To do homework", duration: "2 days" },
+		{ id: 2, name: "Coding", duration: "1 months" },
+		{ id: 3, name: "Playing game", duration: "Never" },
 	];
 	return (
-		<ul>
-			{ListTask.map((task) => (
-				<RenderTask task={task} />
-			))}
-		</ul>
+		<>
+			<FormAddTask />
+			<ul>
+				{ListTask.map((task) => (
+					<RenderTask task={task} key={task.id} />
+				))}
+			</ul>
+		</>
 	);
 };
 
