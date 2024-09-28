@@ -2,6 +2,7 @@ import express, { Application } from "express";
 import { Request, Response } from "express";
 import methodOverride from "method-override";
 import helmet from "helmet";
+import TaskRoute from "./routes/task";
 const app: Application = express();
 app.use(methodOverride());
 app.use(helmet());
@@ -13,11 +14,15 @@ app.use(helmet({ contentSecurityPolicy: false }));
 
 // =====================================
 
+// YOUR MIDDLEWARE HERE
+app.use(express.json());
+
 // YOUR MAIN REDIRECT HERE
+app.use("/task", TaskRoute);
 
 // =====================================
 
-app.use((res: Response) => {
+app.use((_: Request, res: Response) => {
 	res.status(404).send("Page Not Found");
 });
 

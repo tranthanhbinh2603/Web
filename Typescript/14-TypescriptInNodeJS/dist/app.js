@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const method_override_1 = __importDefault(require("method-override"));
 const helmet_1 = __importDefault(require("helmet"));
+const task_1 = __importDefault(require("./routes/task"));
 const app = (0, express_1.default)();
 app.use((0, method_override_1.default)());
 app.use((0, helmet_1.default)());
@@ -13,7 +14,9 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, method_override_1.default)("_method"));
 app.use((0, helmet_1.default)({ contentSecurityPolicy: false }));
-app.use((res) => {
+app.use(express_1.default.json());
+app.use("/task", task_1.default);
+app.use((_, res) => {
     res.status(404).send("Page Not Found");
 });
 app.use((err, req, res) => {
