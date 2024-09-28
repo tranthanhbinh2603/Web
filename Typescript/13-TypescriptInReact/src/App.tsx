@@ -5,7 +5,7 @@ import RenderTask from "./RenderTask";
 interface TaskInterface {
 	name: string | undefined;
 	duration: string | undefined;
-	id?: number;
+	id?: number | undefined;
 }
 
 const App: React.FC = () => {
@@ -20,12 +20,16 @@ const App: React.FC = () => {
 		setListTask([...ListTask, objectAdd]);
 	};
 
+	const deleteTask = (id: number | undefined) => {
+		setListTask(ListTask.filter((task) => task.id !== id));
+	};
+
 	return (
 		<>
 			<FormAddTask handleAddTask={handleAddTask} />
 			<ul>
 				{ListTask.map((task) => (
-					<RenderTask task={task} key={task.id} />
+					<RenderTask task={task} key={task.id} deleteTask={deleteTask} />
 				))}
 			</ul>
 		</>
