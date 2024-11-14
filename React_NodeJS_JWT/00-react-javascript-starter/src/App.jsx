@@ -4,7 +4,7 @@ import { useEffect } from "react";
 function App() {
 	useEffect(() => {
 		async function getAPI() {
-			const result = await axios.get("/v1/api/");
+			const result = await axios.get("/v1/api/register");
 			console.log(result);
 		}
 		getAPI();

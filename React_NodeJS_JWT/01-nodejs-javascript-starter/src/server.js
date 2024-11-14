@@ -5,6 +5,7 @@ const apiRoutes = require("./routes/api");
 var cors = require("cors");
 const connection = require("./config/database");
 const { getHomepage } = require("./controllers/homeController");
+const { bold, red } = require("kleur");
 
 const app = express();
 const port = process.env.PORT || 8888;
@@ -17,12 +18,16 @@ app.use(express.urlencoded({ extended: true })); // for form data
 configViewEngine(app);
 
 //Fix lôi CORS khi load từ front-end lên back-end
-var whitelist = ["http://localhost:5173"];
+var whitelist = [
+	"http://localhost:5173",
+	"chrome-extension://amknoiejhlmhancpahfcfcfhllgkpbld",
+];
 var corsOptions = {
 	origin: function (origin, callback) {
 		if (whitelist.indexOf(origin) !== -1) {
 			callback(null, true);
 		} else {
+			console.log(bold().red(`[Block user CORS] ${origin}`));
 			callback(new Error("Not allowed by CORS"));
 		}
 	},
@@ -36,7 +41,7 @@ app.use("/", getHomepage);
 (async () => {
 	try {
 		//using mongoose
-		// await connection();
+		await connection();
 
 		app.listen(port, () => {
 			console.log(`Backend Nodejs App listening on port ${port}`);

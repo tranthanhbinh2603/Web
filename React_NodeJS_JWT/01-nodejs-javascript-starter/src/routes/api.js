@@ -1,10 +1,9 @@
 const express = require("express");
+const { createUser } = require("../services/userService");
 
 const routerAPI = express.Router();
 
-routerAPI.get("/", (req, res) => {
-	return res.status(200).json("Hello world api");
-});
+routerAPI.post("/register", createUser);
 
 // const { getUsersAPI, postCreateUserAPI,
 //     putUpdateUserAPI, deleteUserAPI
