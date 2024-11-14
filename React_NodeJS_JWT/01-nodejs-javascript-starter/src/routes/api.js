@@ -3,7 +3,7 @@ const express = require("express");
 const routerAPI = express.Router();
 
 routerAPI.get("/", (req, res) => {
-	res.json({ message: "Hello world!" });
+	return res.status(200).json("Hello world api");
 });
 
 // const { getUsersAPI, postCreateUserAPI,
