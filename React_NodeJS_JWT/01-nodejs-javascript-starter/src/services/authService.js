@@ -4,12 +4,11 @@ const { bold } = require("kleur");
 var jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
-	const { name, email, password, role } = req.body;
-
-	if (role === "") {
+	const { name, email, password } = req.body;
+	let { role } = req.body;
+	if (role === undefined) {
 		role = "User";
 	}
-
 	try {
 		const existingUser = await User.findOne({ email });
 		if (existingUser) {

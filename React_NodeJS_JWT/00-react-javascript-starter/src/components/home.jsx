@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Typography } from "antd";
 const { Title, Paragraph } = Typography;
 import { Flex } from "antd";
 
-function Home() {
+function Home({ setCurrent }) {
+	setCurrent("home");
 	return (
 		<Typography>
 			<Flex justify="center" align="center" vertical="true">

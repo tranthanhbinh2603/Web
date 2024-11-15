@@ -5,6 +5,9 @@ import Home from "./components/home";
 import Register from "./components/register";
 import Login from "./components/login";
 import { useState } from "react";
+import Users from "./components/users";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 // //You can custom here
 // export async function searchOrderLoader({ params }) {
@@ -31,6 +34,14 @@ import { useState } from "react";
 // 	return redirect(`/order/${newOrder.id}`);
 // }
 
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			staleTime: 0,
+		},
+	},
+});
+
 function App() {
 	const [current, setCurrent] = useState("home");
 	const router = createBrowserRouter([
@@ -38,9 +49,10 @@ function App() {
 			element: <AppLayout current={current} setCurrent={setCurrent} />,
 			errorElement: <Error />,
 			children: [
-				{ path: "/", element: <Home /> },
+				{ path: "/", element: <Home setCurrent={setCurrent} /> },
 				{ path: "/register", element: <Register setCurrent={setCurrent} /> },
 				{ path: "/login", element: <Login setCurrent={setCurrent} /> },
+				{ path: "/users", element: <Users setCurrent={setCurrent} /> },
 				// {
 				// 	path: "/order/:orderId", //Have placement for id
 				// 	element: <Order />, //Element to repace in <Outlet />
@@ -51,7 +63,14 @@ function App() {
 			],
 		},
 	]);
-	return <RouterProvider router={router} />;
+	return (
+		<>
+			<QueryClientProvider client={queryClient}>
+				<ReactQueryDevtools initialIsOpen={false} />
+				<RouterProvider router={router} />
+			</QueryClientProvider>
+		</>
+	);
 }
 
 export default App;
