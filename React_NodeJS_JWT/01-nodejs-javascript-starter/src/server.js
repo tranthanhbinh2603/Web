@@ -21,11 +21,10 @@ configViewEngine(app);
 var whitelist = [
 	"http://localhost:5173",
 	"chrome-extension://amknoiejhlmhancpahfcfcfhllgkpbld",
-	"undefined",
 ];
 var corsOptions = {
 	origin: function (origin, callback) {
-		if (whitelist.indexOf(origin) !== -1) {
+		if (whitelist.indexOf(origin) !== -1 || !origin) {
 			callback(null, true);
 		} else {
 			console.log(bold().red(`[Block user CORS] ${origin}`));
