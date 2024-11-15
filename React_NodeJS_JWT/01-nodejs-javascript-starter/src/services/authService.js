@@ -1,6 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
 const { bold } = require("kleur");
+var jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
 	const { name, email, password, role } = req.body;
@@ -35,7 +36,7 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-	const { email, password } = req.body;
+	const { email, password, keepSignedIn } = req.body;
 	const user = await User.findOne({ email });
 	if (!user) {
 		return res.status(401).json({
@@ -51,9 +52,20 @@ const loginUser = async (req, res) => {
 			message: "Wrong username/password",
 		});
 	}
+	const payload = {
+		email: email,
+	};
+	let expiresIn = "900s";
+	if (keepSignedIn === true) {
+		expiresIn = "30D";
+	}
+	const jwtToken = jwt.sign(payload, process.env.JWT_KEY, {
+		algorithm: "HS256",
+		expiresIn,
+	});
 	return res.status(200).json({
 		errorCode: 200,
-		token: "I am generator token....",
+		token: jwtToken,
 	});
 };
 
