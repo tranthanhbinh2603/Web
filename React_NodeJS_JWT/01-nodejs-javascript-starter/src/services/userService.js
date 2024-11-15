@@ -1,7 +1,8 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/user");
+const { bold } = require("kleur");
 
-const createUser = async (req, res) => {
+const registerUser = async (req, res) => {
 	const { name, email, password, role } = req.body;
 
 	if (role === "") {
@@ -28,11 +29,35 @@ const createUser = async (req, res) => {
 			.status(201)
 			.json({ errorCode: 200, message: "User created successfully" });
 	} catch (error) {
-		console.log(kleur.bold().red(`[User Creation Error] ${error.message}`));
+		console.log(bold().red(`[User Creation Error] ${error.message}`));
 		res.status(500).json({ errorCode: 500, message: "Internal server error" });
 	}
 };
 
+const loginUser = async (req, res) => {
+	const { email, password } = req.body;
+	const user = await User.findOne({ email });
+	if (!user) {
+		return res.status(401).json({
+			errorCode: 401,
+			message: "Wrong username/password",
+		});
+	}
+	const userPasswordInDB = user.password;
+	const isTruePassword = await bcrypt.compare(password, userPasswordInDB);
+	if (!isTruePassword) {
+		return res.status(401).json({
+			errorCode: 401,
+			message: "Wrong username/password",
+		});
+	}
+	return res.status(200).json({
+		errorCode: 200,
+		token: "I am generator token....",
+	});
+};
+
 module.exports = {
-	createUser,
+	registerUser,
+	loginUser,
 };

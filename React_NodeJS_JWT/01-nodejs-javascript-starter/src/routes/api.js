@@ -1,9 +1,10 @@
 const express = require("express");
-const { createUser } = require("../services/userService");
+const { registerUser, loginUser } = require("../services/userService");
 
 const routerAPI = express.Router();
 
-routerAPI.post("/register", createUser);
+routerAPI.post("/register", registerUser);
+routerAPI.post("/login", loginUser);
 
 // const { getUsersAPI, postCreateUserAPI,
 //     putUpdateUserAPI, deleteUserAPI
