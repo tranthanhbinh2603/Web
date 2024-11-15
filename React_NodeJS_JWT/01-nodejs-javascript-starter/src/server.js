@@ -5,7 +5,7 @@ const apiRoutes = require("./routes/api");
 var cors = require("cors");
 const connection = require("./config/database");
 const { getHomepage } = require("./controllers/homeController");
-const { bold, red } = require("kleur");
+const { bold } = require("kleur");
 
 const app = express();
 const port = process.env.PORT || 8888;
