@@ -1,13 +1,18 @@
 /* eslint-disable react/prop-types */
 import { useQuery } from "@tanstack/react-query";
-import { Space, Table } from "antd";
+import { Flex, Space, Spin, Table } from "antd";
 import axiosInstance, { setNavigate } from "../utils/axios.interceptor";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../contextAPI/AppAPI";
+import { Typography } from "antd";
+const { Paragraph } = Typography;
 
-function Users({ setCurrent }) {
+function Users() {
+	const { setCurrent } = useContext(AppContext);
 	const navigate = useNavigate();
 	const [isAuthenticated, setIsAuthenticated] = useState(true);
+	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		setCurrent("users");
 		setNavigate(navigate);
@@ -59,9 +64,26 @@ function Users({ setCurrent }) {
 		queryKey: ["users"],
 		queryFn: getData,
 		enabled: isAuthenticated,
+		onSuccess: () => {
+			setIsLoading(false);
+		},
 	});
 
-	return (
+	return isLoading ? (
+		<div
+			style={{
+				height: "100vh",
+				display: "flex",
+				justifyContent: "center",
+				alignItems: "center",
+			}}
+		>
+			<Flex align="center" justify="center" gap="middle">
+				<Spin />
+				<Paragraph style={{ margin: 0 }}>Waiting...</Paragraph>
+			</Flex>
+		</div>
+	) : (
 		<Table
 			columns={columns}
 			dataSource={data}

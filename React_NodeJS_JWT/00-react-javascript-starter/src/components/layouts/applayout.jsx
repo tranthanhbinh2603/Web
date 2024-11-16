@@ -2,8 +2,11 @@
 import { Outlet } from "react-router-dom";
 import Footer from "./footer";
 import Header from "./header";
+import { AppContext } from "../../contextAPI/AppAPI";
+import { useContext } from "react";
 
-function AppLayout({ current, setCurrent }) {
+function AppLayout() {
+	const { current, setCurrent } = useContext(AppContext);
 	return (
 		<div>
 			<Header current={current} setCurrent={setCurrent} />

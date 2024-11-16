@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const { bold } = require("kleur");
+var jwt = require("jsonwebtoken");
 
 const getUsers = async (req, res) => {
 	try {
@@ -14,6 +15,29 @@ const getUsers = async (req, res) => {
 	}
 };
 
+const getInfoUser = async (req, res) => {
+	try {
+		const authToken = req.headers["authorization"].split(" ")[1];
+		if (!authToken) {
+			return res.status(401).json({
+				errorCode: 401,
+				message: "Unauthorized",
+			});
+		}
+		return res.status(200).json(
+			jwt.verify(authToken, process.env.JWT_KEY, {
+				algorithms: ["HS256"],
+			})
+		);
+	} catch (error) {
+		return res.status(401).json({
+			errorCode: 401,
+			message: "Unauthorized",
+		});
+	}
+};
+
 module.exports = {
 	getUsers,
+	getInfoUser,
 };

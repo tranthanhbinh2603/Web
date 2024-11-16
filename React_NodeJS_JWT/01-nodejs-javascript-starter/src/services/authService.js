@@ -53,6 +53,7 @@ const loginUser = async (req, res) => {
 	}
 	const payload = {
 		email: email,
+		name: user.name,
 	};
 	let expiresIn = "900s";
 	if (keepSignedIn === true) {

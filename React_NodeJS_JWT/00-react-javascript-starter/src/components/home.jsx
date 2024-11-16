@@ -2,8 +2,11 @@
 import { Typography } from "antd";
 const { Title, Paragraph } = Typography;
 import { Flex } from "antd";
+import { useContext } from "react";
+import { AppContext } from "../contextAPI/AppAPI";
 
-function Home({ setCurrent }) {
+function Home() {
+	const { setCurrent } = useContext(AppContext);
 	setCurrent("home");
 	return (
 		<Typography>

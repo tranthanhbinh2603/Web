@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import { Button, Checkbox, Form, Input, notification, Space } from "antd";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNetwork } from "../customhooks/useNetwork";
 import axios, { setNavigate } from "../utils/axios.interceptor";
 import { useNavigate } from "react-router-dom";
+import { AppContext } from "../contextAPI/AppAPI";
 
-const Login = ({ setCurrent }) => {
+const Login = () => {
+	const { setCurrent, refreshUserInfo } = useContext(AppContext);
 	const [isOnline] = useNetwork();
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -29,6 +31,7 @@ const Login = ({ setCurrent }) => {
 				message: "Login successful.",
 			});
 			localStorage.setItem("access_token", data.token);
+			refreshUserInfo(data.token);
 			if (window.history.length > 1) {
 				navigate(-1);
 			} else {

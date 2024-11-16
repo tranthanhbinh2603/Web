@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
 import { Button, Form, Input, Space } from "antd";
 import axios from "../utils/axios.interceptor";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { notification } from "antd";
 import { useNetwork } from "../customhooks/useNetwork";
+import { AppContext } from "../contextAPI/AppAPI";
 
-const Register = ({ setCurrent }) => {
+const Register = () => {
+	const { setCurrent } = useContext(AppContext);
 	const [isOnline] = useNetwork();
 	const navigate = useNavigate();
 	const onFinish = async (values) => {

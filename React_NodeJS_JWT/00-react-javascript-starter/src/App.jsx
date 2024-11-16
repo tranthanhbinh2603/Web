@@ -4,10 +4,10 @@ import Error from "./components/layouts/error";
 import Home from "./components/home";
 import Register from "./components/register";
 import Login from "./components/login";
-import { useState } from "react";
 import Users from "./components/users";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { AppProvider } from "./contextAPI/AppAPI";
 
 // //You can custom here
 // export async function searchOrderLoader({ params }) {
@@ -43,16 +43,15 @@ const queryClient = new QueryClient({
 });
 
 function App() {
-	const [current, setCurrent] = useState("home");
 	const router = createBrowserRouter([
 		{
-			element: <AppLayout current={current} setCurrent={setCurrent} />,
+			element: <AppLayout />,
 			errorElement: <Error />,
 			children: [
-				{ path: "/", element: <Home setCurrent={setCurrent} /> },
-				{ path: "/register", element: <Register setCurrent={setCurrent} /> },
-				{ path: "/login", element: <Login setCurrent={setCurrent} /> },
-				{ path: "/users", element: <Users setCurrent={setCurrent} /> },
+				{ path: "/", element: <Home /> },
+				{ path: "/register", element: <Register /> },
+				{ path: "/login", element: <Login /> },
+				{ path: "/users", element: <Users /> },
 				// {
 				// 	path: "/order/:orderId", //Have placement for id
 				// 	element: <Order />, //Element to repace in <Outlet />
@@ -65,25 +64,14 @@ function App() {
 	]);
 	return (
 		<>
-			<QueryClientProvider client={queryClient}>
-				<ReactQueryDevtools initialIsOpen={false} />
-				<RouterProvider router={router} />
-			</QueryClientProvider>
+			<AppProvider>
+				<QueryClientProvider client={queryClient}>
+					<ReactQueryDevtools initialIsOpen={false} />
+					<RouterProvider router={router} />
+				</QueryClientProvider>
+			</AppProvider>
 		</>
 	);
 }
 
 export default App;
-
-// function App() {
-// 	// useEffect(() => {
-// 	// 	async function getAPI() {
-// 	// 		const result = await axios.get("/v1/api/register");
-// 	// 		console.log(result);
-// 	// 	}
-// 	// 	getAPI();
-// 	// }, []);
-// 	// return <></>;
-// }
-
-// export default App;
