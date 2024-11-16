@@ -21,6 +21,7 @@ configViewEngine(app);
 var whitelist = [
 	"http://localhost:5173",
 	"chrome-extension://amknoiejhlmhancpahfcfcfhllgkpbld",
+	"http://localhost:4173",
 ];
 var corsOptions = {
 	origin: function (origin, callback) {

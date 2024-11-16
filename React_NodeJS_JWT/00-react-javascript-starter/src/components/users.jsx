@@ -1,10 +1,22 @@
 /* eslint-disable react/prop-types */
 import { useQuery } from "@tanstack/react-query";
 import { Space, Table } from "antd";
-import axiosInstance from "../utils/axios.interceptor";
+import axiosInstance, { setNavigate } from "../utils/axios.interceptor";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Users({ setCurrent }) {
-	setCurrent("users");
+	const navigate = useNavigate();
+	const [isAuthenticated, setIsAuthenticated] = useState(true);
+	useEffect(() => {
+		setCurrent("users");
+		setNavigate(navigate);
+		const jwtToken = localStorage.getItem("access_token");
+		if (!jwtToken) {
+			setIsAuthenticated(false);
+			navigate("/login");
+		}
+	}, [navigate, setCurrent]);
 	const columns = [
 		{
 			title: "Name",
@@ -46,6 +58,7 @@ function Users({ setCurrent }) {
 	const { data } = useQuery({
 		queryKey: ["users"],
 		queryFn: getData,
+		enabled: isAuthenticated,
 	});
 
 	return (

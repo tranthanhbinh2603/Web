@@ -1,13 +1,16 @@
 /* eslint-disable react/prop-types */
-import { Button, Checkbox, Form, Input, notification } from "antd";
+import { Button, Checkbox, Form, Input, notification, Space } from "antd";
 import { useEffect } from "react";
 import { useNetwork } from "../customhooks/useNetwork";
-import axios from "../utils/axios.interceptor";
+import axios, { setNavigate } from "../utils/axios.interceptor";
 import { useNavigate } from "react-router-dom";
 
 const Login = ({ setCurrent }) => {
 	const [isOnline] = useNetwork();
 	const navigate = useNavigate();
+	useEffect(() => {
+		setNavigate(navigate);
+	}, [navigate]);
 	const onFinish = async (values) => {
 		if (!isOnline) {
 			return notification.error({
@@ -26,7 +29,11 @@ const Login = ({ setCurrent }) => {
 				message: "Login successful.",
 			});
 			localStorage.setItem("access_token", data.token);
-			navigate("/");
+			if (window.history.length > 1) {
+				navigate(-1);
+			} else {
+				navigate("/");
+			}
 		} catch (error) {
 			if (error.code === "ERR_NETWORK") {
 				notification.error({
@@ -102,9 +109,12 @@ const Login = ({ setCurrent }) => {
 			</Form.Item>
 
 			<Form.Item label={null}>
-				<Button type="primary" htmlType="submit">
-					Login
-				</Button>
+				<Space>
+					<Button type="primary" htmlType="submit">
+						Login
+					</Button>
+					<Button onClick={() => navigate("/register")}>Register</Button>
+				</Space>
 			</Form.Item>
 		</Form>
 	);

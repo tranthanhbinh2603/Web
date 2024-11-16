@@ -1,4 +1,11 @@
 import axios from "axios";
+import { notification } from "antd";
+
+let navigate;
+
+export const setNavigate = (nav) => {
+	navigate = nav;
+};
 
 const axiosInstance = axios.create({
 	baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -22,6 +29,13 @@ axiosInstance.interceptors.response.use(
 		return response?.data ?? response;
 	},
 	function (error) {
+		if (error.response?.status === 401 && navigate) {
+			navigate("/login");
+			notification.error({
+				message: "You need to login to access this page.",
+				description: "Please login again.",
+			});
+		}
 		return Promise.reject(error);
 	}
 );

@@ -7,6 +7,8 @@ import {
 } from "@ant-design/icons";
 import { Menu } from "antd";
 import { useNavigate } from "react-router-dom";
+import { notification } from "antd";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const items = [
 	{
@@ -32,11 +34,38 @@ const items = [
 				label: "Login",
 				key: "login",
 			},
+			{
+				label: "Logout",
+				key: "logout",
+			},
 		],
 	},
 ];
+
+const logoutUser = (navigate) => {
+	localStorage.removeItem("access_token");
+	notification.success({
+		message: "Logout successful.",
+		description: "See you again!",
+	});
+	navigate("/login");
+};
+
 const Header = ({ current, setCurrent }) => {
+	const queryClient = useQueryClient();
 	const navigate = useNavigate();
+	const { mutate: logoutUserFn } = useMutation({
+		mutationFn: () => logoutUser(navigate),
+		onSuccess: () => {
+			queryClient.invalidateQueries({
+				queryKey: ["users"],
+			});
+			queryClient.removeQueries();
+		},
+		onError: (err) => {
+			console.log(err);
+		},
+	});
 	const onClick = (e) => {
 		setCurrent(e.key);
 		if (e.key === "register") {
@@ -50,6 +79,9 @@ const Header = ({ current, setCurrent }) => {
 		}
 		if (e.key === "users") {
 			navigate("/users");
+		}
+		if (e.key === "logout") {
+			logoutUserFn(navigate);
 		}
 	};
 	return (

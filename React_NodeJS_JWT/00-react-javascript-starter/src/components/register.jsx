@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Space } from "antd";
 import axios from "../utils/axios.interceptor";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -113,9 +113,12 @@ const Register = ({ setCurrent }) => {
 			</Form.Item>
 
 			<Form.Item label={null}>
-				<Button type="primary" htmlType="submit">
-					Register now!
-				</Button>
+				<Space>
+					<Button type="primary" htmlType="submit">
+						Register now!
+					</Button>
+					<Button onClick={() => navigate("/login")}>Login</Button>
+				</Space>
 			</Form.Item>
 		</Form>
 	);
