@@ -25,7 +25,7 @@ const exportPersons = async (req, res) => {
 
 const exportOnePeople = async (req, res) => {
 	try {
-		const idRequest = req.query.id;
+		const idRequest = req.params.id;
 		//Cách 1
 		// const user = await User.findByPk(idRequest);
 		// return res.status(200).json(user.toJSON());
@@ -44,8 +44,29 @@ const exportOnePeople = async (req, res) => {
 	}
 };
 
+const editPeople = async (req, res) => {
+	const idRequest = req.params.id;
+	const { firstName, lastName, age } = req.query;
+	await User.findByPk(idRequest)
+		.then((product) => {
+			firstName ? (product.firstName = firstName) : product.firstName;
+			lastName ? (product.lastName = lastName) : product.lastName;
+			age ? (product.age = age) : product.age;
+			product.save();
+		})
+		.then(() => {
+			return res.status(200).json({
+				message: "successfully",
+			});
+		})
+		.catch((error) => {
+			console.error(error);
+		});
+};
+
 module.exports = {
 	addPerson,
 	exportPersons,
 	exportOnePeople,
+	editPeople,
 };
