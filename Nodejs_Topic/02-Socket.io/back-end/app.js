@@ -2,12 +2,12 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const methodOverride = require("method-override");
+const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const flash = require("connect-flash");
-const sequelize = require("./database/database");
-const route = require("./route/user");
-const User = require("./model/User");
-const ClassList = require("./model/ClassList");
+const commentRoute = require("./route/comment");
+require("dotenv").config();
+var cors = require("cors");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname) + "/views");
@@ -15,7 +15,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(mongoSanitize());
 app.use(helmet({ contentSecurityPolicy: false }));
+app.use(express.json());
 
 class AppError extends Error {
 	constructor(message, status) {
@@ -31,50 +33,40 @@ function wrapAsync(fn) {
 	};
 }
 
-// app.use(flash());
+app.use(flash());
+
+app.use(cors());
 
 app.use((req, res, next) => {
-	// res.locals.currentUser = req.user; //If you want to use user currenting data in EJS, you uncomment it
-	// res.locals.success = req.flash("success");
-	// res.locals.error = req.flash("error");
-	//How to use:
-	//req.flash("success", "Success Message"); or req.flash("error", "Success Message");
-	//Put in after you redirect or send.
 	next();
 });
 
 // =====================================
 
 // CONNECT DATABASE HERE
-
-const connectDatabase = async () => {
-	try {
-		await sequelize.authenticate();
-		console.log("Connection has been established successfully.");
-		ClassList.hasMany(User);
-		User.belongsTo(ClassList);
-		//await sequelize.sync({ force: true }); //If you want reset all data, table, uncomment it.
-		await sequelize.sync();
-		console.log("Models synchronized with database.");
-	} catch (error) {
-		console.error("Unable to connect to the database:", error);
-	}
-};
-
-connectDatabase();
+const mongoose = require("mongoose");
+const { Socket } = require("socket.io");
+mongoose
+	.connect(process.env.MONGO_DB_URL)
+	.then(() => {
+		console.log("Connect Successful!");
+	})
+	.catch((e) => {
+		console.log("Error when connect");
+		console.log(`This is error: e`);
+	});
 
 // YOUR REDIRECT MIDDLEWARE HERE (Example if the path is not define method....)
 
 // YOUR MAIN REDIRECT HERE
-app.use("/user", route);
-app.use("/class", route);
+app.use("/comment", commentRoute);
 
 // YOUR CATCH IN DATABASE MONGO HERE
 
 // =====================================
 
 app.use((req, res) => {
-	return res.status(404).json({});
+	res.status(404).example("");
 });
 
 app.use((err, req, res, next) => {
@@ -89,10 +81,14 @@ app.use((err, req, res, next) => {
 	console.log("User-agent:", req.get("User-Agent"));
 	console.log("Error: ", err);
 	console.log("===========================");
-	res.status(status).send(message);
+	return res.status(status).send(message);
 });
 
-app.listen(5050, () => {
+const server = app.listen(5050, () => {
 	console.log("Finish start server");
 	console.log("===========================");
+});
+const io = require("./socket.js").init(server);
+io.on("connection", (socket) => {
+	console.log("Client connected");
 });
