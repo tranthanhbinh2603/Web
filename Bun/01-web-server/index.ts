@@ -1,8 +1,13 @@
-const server = Bun.serve({
+Bun.serve({
+	port: 3000,
 	fetch(req) {
-		return new Response("Bun, haha!");
+		const url = new URL(req.url);
+		if (url.pathname == "/") {
+			return new Response("Hello, homepage here!");
+		}
+		if (url.pathname == "/about") {
+			return new Response("Hello, about here!");
+		}
+		return new Response("404!");
 	},
 });
-
-console.log(server.port); // 3000
-console.log(server.url); // http://localhost:3000
