@@ -8,6 +8,13 @@ Bun.serve({
 		if (url.pathname == "/about") {
 			return new Response("Hello, about here!");
 		}
-		return new Response("404!");
+		return new Response("404: Not Found", { status: 404 });
+	},
+	error(error) {
+		return new Response(`<pre>${error}\n${error.stack}</pre>`, {
+			headers: {
+				"Content-Type": "text/html",
+			},
+		});
 	},
 });
