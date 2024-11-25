@@ -12,8 +12,17 @@ class UpdateManager {
 	}
 }
 
+//Create plugin
+const plugin = new Elysia()
+	.state("author", "Trần Thanh Bình")
+	.get("/test_route", () => {
+		return "Hello, this is test route";
+	});
+
 const app = new Elysia()
 	.get("/", () => "Welcome to BLOG POST, using RESTFUL API.")
+	//Using plugin, you can separate another file
+	.use(plugin)
 	//Create state
 	.state("version", 1)
 	//Create Decoration
