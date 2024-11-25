@@ -21,6 +21,13 @@ const plugin = new Elysia()
 
 const app = new Elysia()
 	.get("/", () => "Welcome to BLOG POST, using RESTFUL API.")
+	//Add group
+	.group("/user", (app) =>
+		app
+			.post("/sign-in", "Sign in")
+			.post("/sign-up", "Sign up")
+			.post("/profile", "Profile")
+	)
 	//Using plugin, you can separate another file
 	.use(plugin)
 	//Create state
