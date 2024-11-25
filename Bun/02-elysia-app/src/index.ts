@@ -1,4 +1,4 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 
 class UpdateManager {
 	private updateAt: String = "";
@@ -24,7 +24,13 @@ const app = new Elysia()
 	//Add group
 	.group("/user", (app) =>
 		app
-			.post("/sign-in", "Sign in")
+			.post("/sign-in", () => "Sign in", {
+				//Schema
+				body: t.Object({
+					username: t.String(),
+					password: t.String(),
+				}),
+			})
 			.post("/sign-up", "Sign up")
 			.post("/profile", "Profile")
 	)
