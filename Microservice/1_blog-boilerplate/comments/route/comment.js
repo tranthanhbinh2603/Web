@@ -4,8 +4,8 @@ const router = express.Router();
 
 // Write normal, but replace "router" word to "app"
 
-router.get("/:id/comment", getComments);
+router.get("/:id/comments", getComments);
 
-router.post("/:id/comment", addComment);
+router.post("/:id/comments", addComment);
 
 module.exports = router;

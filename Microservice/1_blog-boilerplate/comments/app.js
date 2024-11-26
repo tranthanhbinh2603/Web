@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 // app.use(mongoSanitize()); // If you want protect MongoDB SQL Eject, uncomment it.
 app.use(helmet({ contentSecurityPolicy: false }));
+var cors = require("cors");
 
 class AppError extends Error {
 	constructor(message, status) {
@@ -30,6 +31,7 @@ function wrapAsync(fn) {
 	};
 }
 
+app.use(cors());
 app.use(flash());
 
 app.use((req, res, next) => {
@@ -44,7 +46,7 @@ app.use((req, res, next) => {
 
 // YOUR MAIN REDIRECT HERE
 
-app.use("/post", commentRoute);
+app.use("/posts", commentRoute);
 
 // YOUR CATCH IN DATABASE MONGO HERE
 

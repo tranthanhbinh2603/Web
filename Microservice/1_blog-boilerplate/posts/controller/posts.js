@@ -1,15 +1,17 @@
 const { genID } = require("../utils/utils");
 
+const posts = [];
+
 const getPosts = (req, res) => {
-	return res.status(200).json({
-		message: "successful",
-	});
+	return res.status(200).json(posts);
 };
 const addPosts = (req, res) => {
 	const { title } = req.body;
-	return res.status(201).json({
+	posts.push({
 		id: genID(),
 		title,
+	});
+	return res.status(201).json({
 		message: "successful",
 	});
 };
