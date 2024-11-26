@@ -3,7 +3,9 @@ const { genID } = require("../utils/utils");
 const listComment = {};
 
 const getComments = (req, res) => {
-	return res.status(200).json(listComment);
+	const { id } = req.params;
+	const listCommentResult = listComment[id] || [];
+	return res.status(200).json(listCommentResult);
 };
 const addComment = (req, res) => {
 	const { id: idPost } = req.params;
