@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const helmet = require("helmet");
 const flash = require("connect-flash");
 const commentRoute = require("./route/comment");
+const eventRoute = require("./route/event");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname) + "/views");
@@ -47,6 +48,7 @@ app.use((req, res, next) => {
 // YOUR MAIN REDIRECT HERE
 
 app.use("/posts", commentRoute);
+app.use("/event", eventRoute);
 
 // YOUR CATCH IN DATABASE MONGO HERE
 
@@ -72,6 +74,6 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(5051, () => {
-	console.log("Finish start server");
+	console.log("Finish start server in port 5051");
 	console.log("===========================");
 });

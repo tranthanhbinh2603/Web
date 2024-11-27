@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const { genID } = require("../utils/utils");
 
 const posts = [];
@@ -7,9 +8,17 @@ const getPosts = (req, res) => {
 };
 const addPosts = (req, res) => {
 	const { title } = req.body;
+	const id = genID();
 	posts.push({
-		id: genID(),
+		id,
 		title,
+	});
+	axios.post("http://localhost:5052/event", {
+		name: "add_post",
+		data: {
+			id,
+			title,
+		},
 	});
 	return res.status(201).json({
 		message: "successful",

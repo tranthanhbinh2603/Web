@@ -5,7 +5,6 @@ const methodOverride = require("method-override");
 //const mongoSanitize = require("express-mongo-sanitize"); // If you want protect MongoDB SQL Eject, uncomment it. Install: express-mongo-sanitize
 const helmet = require("helmet");
 const flash = require("connect-flash");
-const postRoute = require("./route/post");
 const eventRoute = require("./route/event");
 
 app.set("view engine", "ejs");
@@ -16,7 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 // app.use(mongoSanitize()); // If you want protect MongoDB SQL Eject, uncomment it.
 app.use(helmet({ contentSecurityPolicy: false }));
-var cors = require("cors");
 
 class AppError extends Error {
 	constructor(message, status) {
@@ -32,7 +30,6 @@ function wrapAsync(fn) {
 	};
 }
 
-app.use(cors());
 app.use(flash());
 
 app.use((req, res, next) => {
@@ -47,15 +44,17 @@ app.use((req, res, next) => {
 
 // YOUR MAIN REDIRECT HERE
 
-app.use("/posts", postRoute);
-app.use("/event", eventRoute);
+// How to use:
+app.use("/", eventRoute);
 
 // YOUR CATCH IN DATABASE MONGO HERE
 
 // =====================================
 
 app.use((req, res) => {
-	res.status(404).example("");
+	res.status(404).json({
+		message: "not found",
+	});
 });
 
 app.use((err, req, res, next) => {
@@ -73,7 +72,7 @@ app.use((err, req, res, next) => {
 	res.status(status).send(message);
 });
 
-app.listen(5050, () => {
-	console.log("Finish start server in server 5050");
+app.listen(5052, () => {
+	console.log("Finish start server in port 5052");
 	console.log("===========================");
 });

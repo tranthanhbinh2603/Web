@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const { genID } = require("../utils/utils");
 
 const listComment = {};
@@ -13,6 +14,13 @@ const addComment = (req, res) => {
 	const listCommentCurrent = listComment[idPost] || [];
 	listCommentCurrent.push({ id: genID(), content });
 	listComment[idPost] = listCommentCurrent;
+	axios.post("http://localhost:5052/event", {
+		name: "add_comment",
+		data: {
+			id: genID(),
+			content,
+		},
+	});
 	return res.status(201).json({
 		message: "successful",
 	});
