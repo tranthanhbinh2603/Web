@@ -7,6 +7,7 @@ const helmet = require("helmet");
 const flash = require("connect-flash");
 const eventRoute = require("./route/event");
 const postRoute = require("./route/post");
+var cors = require("cors");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname) + "/views");
@@ -31,6 +32,7 @@ function wrapAsync(fn) {
 	};
 }
 
+app.use(cors());
 app.use(flash());
 
 app.use((req, res, next) => {
