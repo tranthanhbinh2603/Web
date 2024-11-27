@@ -11,13 +11,15 @@ const getComments = (req, res) => {
 const addComment = (req, res) => {
 	const { id: idPost } = req.params;
 	const { content } = req.body;
+	const commentId = genID();
 	const listCommentCurrent = listComment[idPost] || [];
-	listCommentCurrent.push({ id: genID(), content });
+	listCommentCurrent.push({ id: commentId, content });
 	listComment[idPost] = listCommentCurrent;
-	axios.post("http://localhost:5052/event", {
+	axios.post("http://localhost:5099/event", {
 		name: "add_comment",
 		data: {
-			id: genID(),
+			postId: idPost,
+			commentId,
 			content,
 		},
 	});
