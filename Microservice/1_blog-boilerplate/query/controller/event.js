@@ -3,7 +3,6 @@ const { myList, addToMyList } = require("../model/schema");
 
 const receiveEvent = (req, res) => {
 	const { name, data } = req.body;
-	console.log(`Receive Event ${name}, data is ${JSON.stringify(data)}`);
 	if (name === "add_post") {
 		addToMyList({ ...data, comments: [] });
 		axios.post("http://localhost:5099/event/delete");
@@ -19,7 +18,6 @@ const receiveEvent = (req, res) => {
 		const { idPost: postId, commentId, status } = data;
 		let postData = myList.find((item) => item.id === postId);
 		if (!postData) {
-			console.log("not found post");
 			return res.status(404).json({
 				message: "not found post",
 			});
@@ -28,7 +26,6 @@ const receiveEvent = (req, res) => {
 			(item) => item.commentId === commentId
 		);
 		if (!commentData) {
-			console.log("not found comment");
 			return res.status(404).json({
 				message: "not found comment",
 			});
@@ -38,7 +35,7 @@ const receiveEvent = (req, res) => {
 	}
 
 	//! For debug, delete it when product
-	console.log(JSON.stringify(myList));
+	JSON.stringify(myList);
 };
 
 module.exports = {

@@ -6,7 +6,6 @@ const methodOverride = require("method-override");
 const helmet = require("helmet");
 const flash = require("connect-flash");
 const postRoute = require("./route/post");
-const eventRoute = require("./route/event");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname) + "/views");
@@ -48,7 +47,6 @@ app.use((req, res, next) => {
 // YOUR MAIN REDIRECT HERE
 
 app.use("/posts", postRoute);
-app.use("/event", eventRoute);
 
 // YOUR CATCH IN DATABASE MONGO HERE
 
