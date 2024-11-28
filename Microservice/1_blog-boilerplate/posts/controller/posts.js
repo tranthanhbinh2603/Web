@@ -6,6 +6,7 @@ const posts = [];
 const getPosts = (req, res) => {
 	return res.status(200).json(posts);
 };
+
 const addPosts = (req, res) => {
 	const { title } = req.body;
 	const id = genID();

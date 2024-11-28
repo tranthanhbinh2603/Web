@@ -68,7 +68,7 @@ app.use((err, req, res, next) => {
 	res.status(status).send(message);
 });
 
-app.listen(5050, () => {
-	console.log("Finish start server");
+app.listen(5054, () => {
+	console.log("Finish start server in port 5054");
 	console.log("===========================");
 });

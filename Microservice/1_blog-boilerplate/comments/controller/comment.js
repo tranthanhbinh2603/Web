@@ -13,7 +13,7 @@ const addComment = (req, res) => {
 	const { content } = req.body;
 	const commentId = genID();
 	const listCommentCurrent = listComment[idPost] || [];
-	listCommentCurrent.push({ id: commentId, content });
+	listCommentCurrent.push({ id: commentId, content, status: "pending" });
 	listComment[idPost] = listCommentCurrent;
 	axios.post("http://localhost:5099/event", {
 		name: "add_comment",
@@ -21,6 +21,7 @@ const addComment = (req, res) => {
 			postId: idPost,
 			commentId,
 			content,
+			status: "pending",
 		},
 	});
 	return res.status(201).json({
