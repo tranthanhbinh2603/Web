@@ -12,6 +12,9 @@ const setEvent = (req, res) => {
 	axios.post("http://localhost:5053/event", event).catch((err) => {
 		console.log(err.message);
 	});
+	axios.post("http://localhost:5054/event", event).catch((err) => {
+		console.log(err.message);
+	});
 
 	res.status(200).json({
 		message: "successful",

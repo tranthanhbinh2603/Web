@@ -5,6 +5,7 @@ const methodOverride = require("method-override");
 //const mongoSanitize = require("express-mongo-sanitize"); // If you want protect MongoDB SQL Eject, uncomment it. Install: express-mongo-sanitize
 const helmet = require("helmet");
 const flash = require("connect-flash");
+const eventRoute = require("./route/event");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname) + "/views");
@@ -42,6 +43,7 @@ app.use((req, res, next) => {
 // YOUR REDIRECT MIDDLEWARE HERE (Example if the path is not define method....)
 
 // YOUR MAIN REDIRECT HERE
+app.use("/event", eventRoute);
 
 // YOUR CATCH IN DATABASE MONGO HERE
 

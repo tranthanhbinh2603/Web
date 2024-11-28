@@ -12,8 +12,27 @@ const receiveEvent = (req, res) => {
 		} else {
 			console.log(`Post with ID ${postId} not found.`);
 		}
+	} else if (name === "comment_change_status") {
+		const { idPost: postId, commentId, status } = data;
+		let postData = myList.find((item) => item.id === postId);
+		if (!postData) {
+			console.log("not found post");
+			return res.status(404).json({
+				message: "not found post",
+			});
+		}
+		let commentData = postData.comments.find(
+			(item) => item.commentId === commentId
+		);
+		if (!commentData) {
+			console.log("not found comment");
+			return res.status(404).json({
+				message: "not found comment",
+			});
+		}
+		commentData.status = status;
 	}
-	//! For debug, delete it when production
+	//! For debug, delete it when product
 	console.log(JSON.stringify(myList));
 };
 
