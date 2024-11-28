@@ -1,10 +1,13 @@
+const { default: axios } = require("axios");
 const { myList, addToMyList } = require("../model/schema");
 
 const receiveEvent = (req, res) => {
 	const { name, data } = req.body;
 	console.log(`Receive Event ${name}, data is ${JSON.stringify(data)}`);
-	if (name === "add_post") addToMyList({ ...data, comments: [] });
-	else if (name === "add_comment") {
+	if (name === "add_post") {
+		addToMyList({ ...data, comments: [] });
+		axios.post("http://localhost:5099/event/delete");
+	} else if (name === "add_comment") {
 		const { postId, commentId, content, status } = data;
 		let postData = myList.find((item) => item.id === postId);
 		if (postData) {
@@ -31,7 +34,9 @@ const receiveEvent = (req, res) => {
 			});
 		}
 		commentData.status = status;
+		axios.post("http://localhost:5099/event/delete");
 	}
+
 	//! For debug, delete it when product
 	console.log(JSON.stringify(myList));
 };

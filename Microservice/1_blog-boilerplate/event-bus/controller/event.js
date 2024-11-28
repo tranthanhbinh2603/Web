@@ -1,7 +1,12 @@
 const { default: axios } = require("axios");
 
+const eventList = [];
+
 const setEvent = (req, res) => {
 	const event = req.body;
+
+	eventList.push(event);
+	console.log(eventList);
 
 	axios.post("http://localhost:5050/event", event).catch((err) => {
 		console.log(err.message);
@@ -16,11 +21,25 @@ const setEvent = (req, res) => {
 		console.log(err.message);
 	});
 
-	res.status(200).json({
+	return res.status(200).json({
+		message: "successful",
+	});
+};
+
+const getEvents = (req, res) => {
+	res.status(200).json(eventList);
+};
+
+const deleteEvents = (req, res) => {
+	eventList.pop();
+	console.log(eventList);
+	return res.status(200).json({
 		message: "successful",
 	});
 };
 
 module.exports = {
 	setEvent,
+	getEvents,
+	deleteEvents,
 };

@@ -6,6 +6,7 @@ const methodOverride = require("method-override");
 const helmet = require("helmet");
 const flash = require("connect-flash");
 const eventRoute = require("./route/event");
+var cors = require("cors");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname) + "/views");
@@ -30,6 +31,7 @@ function wrapAsync(fn) {
 	};
 }
 
+app.use(cors());
 app.use(flash());
 
 app.use((req, res, next) => {
@@ -44,8 +46,7 @@ app.use((req, res, next) => {
 
 // YOUR MAIN REDIRECT HERE
 
-// How to use:
-app.use("/", eventRoute);
+app.use("/event", eventRoute);
 
 // YOUR CATCH IN DATABASE MONGO HERE
 

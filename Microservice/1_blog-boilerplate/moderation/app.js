@@ -6,6 +6,9 @@ const methodOverride = require("method-override");
 const helmet = require("helmet");
 const flash = require("connect-flash");
 const eventRoute = require("./route/event");
+const { default: axios } = require("axios");
+const { moderationComment } = require("./utils/moderationComment");
+var cors = require("cors");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname) + "/views");
@@ -30,6 +33,7 @@ function wrapAsync(fn) {
 	};
 }
 
+app.use(cors());
 app.use(flash());
 
 app.use((req, res, next) => {
@@ -70,7 +74,13 @@ app.use((err, req, res, next) => {
 	res.status(status).send(message);
 });
 
-app.listen(5054, () => {
+app.listen(5054, async () => {
 	console.log("Finish start server in port 5054");
 	console.log("===========================");
+
+	const response = await axios.get("http://localhost:5099/event/get");
+	const offlineEventQueue = response.data;
+	for (let event of offlineEventQueue) {
+		await moderationComment(event);
+	}
 });
