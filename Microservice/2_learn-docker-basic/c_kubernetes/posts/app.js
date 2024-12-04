@@ -72,6 +72,7 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(5050, () => {
-	console.log("Finish start server in server 5050");
+	console.log("Finish start server in server 5050 - I test it");
+	//I add this, and just for fun
 	console.log("===========================");
 });
