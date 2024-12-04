@@ -14,7 +14,7 @@ const addPosts = (req, res) => {
 		id,
 		title,
 	});
-	axios.post("http://localhost:5099/event", {
+	axios.post("http://event-bus-srv:5099/event", {
 		name: "add_post",
 		data: {
 			id,

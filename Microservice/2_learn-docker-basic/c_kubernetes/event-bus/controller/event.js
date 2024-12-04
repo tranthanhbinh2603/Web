@@ -7,7 +7,7 @@ const setEvent = (req, res) => {
 
 	eventList.push(event);
 
-	axios.post("http://localhost:5050/event", event).catch((err) => {
+	axios.post("http://post-srv:5050/event", event).catch((err) => {
 		console.log(err.message);
 	});
 	axios.post("http://localhost:5051/event", event).catch((err) => {

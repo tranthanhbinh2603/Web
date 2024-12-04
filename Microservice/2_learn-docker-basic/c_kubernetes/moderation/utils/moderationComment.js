@@ -10,9 +10,9 @@ const moderationComment = async (dataEvent) => {
 		const isApprove = content.toString().includes("orange")
 			? "reject"
 			: "approve";
-		await axios.post("http://localhost:5099/event/delete");
+		await axios.post("http://event-bus-srv:5099/event/delete");
 		await axios
-			.post("http://localhost:5099/event", {
+			.post("http://event-bus-srv:5099/event", {
 				name: "comment_change_status",
 				data: {
 					idPost,

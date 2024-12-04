@@ -5,7 +5,7 @@ const receiveEvent = (req, res) => {
 	const { name, data } = req.body;
 	if (name === "add_post") {
 		addToMyList({ ...data, comments: [] });
-		axios.post("http://localhost:5099/event/delete");
+		axios.post("http://event-bus-srv:5099/event/delete");
 	} else if (name === "add_comment") {
 		const { postId, commentId, content, status } = data;
 		let postData = myList.find((item) => item.id === postId);
@@ -31,7 +31,7 @@ const receiveEvent = (req, res) => {
 			});
 		}
 		commentData.status = status;
-		axios.post("http://localhost:5099/event/delete");
+		axios.post("http://event-bus-srv:5099/event/delete");
 	}
 
 	//! For debug, delete it when product

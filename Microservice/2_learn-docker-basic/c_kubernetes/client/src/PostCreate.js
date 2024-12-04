@@ -7,7 +7,7 @@ const PostCreate = () => {
 	const onSubmit = async (event) => {
 		event.preventDefault();
 
-		await axios.post("http://localhost:5050/posts", {
+		await axios.post("http://post-srv:5050/posts", {
 			title,
 		});
 

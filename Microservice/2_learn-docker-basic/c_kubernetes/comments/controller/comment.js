@@ -15,7 +15,7 @@ const addComment = (req, res) => {
 	const listCommentCurrent = listComment[idPost] || [];
 	listCommentCurrent.push({ id: commentId, content, status: "pending" });
 	listComment[idPost] = listCommentCurrent;
-	axios.post("http://localhost:5099/event", {
+	axios.post("http://event-bus-srv:5099/event", {
 		name: "add_comment",
 		data: {
 			postId: idPost,

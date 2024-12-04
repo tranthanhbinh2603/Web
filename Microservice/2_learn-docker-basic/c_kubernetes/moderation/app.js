@@ -78,7 +78,7 @@ app.listen(5054, async () => {
 	console.log("Finish start server in port 5054");
 	console.log("===========================");
 
-	const response = await axios.get("http://localhost:5099/event/get");
+	const response = await axios.get("http://event-bus-srv:5099/event/get");
 	const offlineEventQueue = response.data;
 	for (let event of offlineEventQueue) {
 		await moderationComment(event);
