@@ -10,13 +10,13 @@ const setEvent = (req, res) => {
 	axios.post("http://post-srv:5050/event", event).catch((err) => {
 		console.log(err.message);
 	});
-	axios.post("http://localhost:5051/event", event).catch((err) => {
+	axios.post("http://comment-srv:5099/event", event).catch((err) => {
 		console.log(err.message);
 	});
-	axios.post("http://localhost:5053/event", event).catch((err) => {
+	axios.post("http://query-srv:5099/event", event).catch((err) => {
 		console.log(err.message);
 	});
-	axios.post("http://localhost:5054/event", event).catch((err) => {
+	axios.post("http://moderation-srv:5099/event", event).catch((err) => {
 		console.log(err.message);
 	});
 

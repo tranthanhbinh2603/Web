@@ -7,7 +7,7 @@ const PostList = () => {
 	const [posts, setPosts] = useState({});
 
 	const fetchPosts = async () => {
-		const res = await axios.get("http://localhost:5053/posts");
+		const res = await axios.get("http://query-srv:5099/posts");
 
 		setPosts(res.data);
 	};

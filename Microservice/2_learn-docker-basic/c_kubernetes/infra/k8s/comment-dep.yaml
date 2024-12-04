@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: comment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: comment
+  template:
+    metadata:
+      labels:
+        app: comment
+    spec:
+      containers:
+        - name: comment
+          image: comment/blog
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: comment-srv
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: comment
+  ports:
+    - name: comment
+      protocol: TCP
+      port: 5051
+      targetPort: 5051
