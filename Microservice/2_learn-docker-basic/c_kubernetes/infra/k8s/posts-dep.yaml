@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: posts
+  name: posts-deploy
 spec:
   replicas: 1
   selector:
@@ -16,3 +16,18 @@ spec:
         - name: posts
           image: posts/blog
           imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: post-srv
+  namespace: default
+spec:
+  type: ClusterIP
+  selector:
+    app: posts
+  ports:
+    - name: posts
+      protocol: TCP
+      port: 5050
+      targetPort: 5050
