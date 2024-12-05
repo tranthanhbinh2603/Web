@@ -1,6 +1,10 @@
 # Gọi thư viện tạo khối container
 FROM node:20-alpine
 
+#Sửa lỗi kết nối Kubernetes
+ENV CI=true
+ENV WDS_SOCKET_PORT=0
+
 #Chỉ định folder sẽ dùng cho những câu lệnh tiếp theo (mục đích là để tránh trùng folder)
 WORKDIR /usr/app
 
