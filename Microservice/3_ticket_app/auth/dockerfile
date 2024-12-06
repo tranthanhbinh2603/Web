@@ -1,0 +1,17 @@
+# Gọi thư viện tạo khối container
+FROM node:20-alpine
+
+#Chỉ định folder sẽ dùng cho những câu lệnh tiếp theo (mục đích là để tránh trùng folder)
+WORKDIR /usr/app
+
+# Thực hiện câu lệnh này để nếu như có đổi file bên ngoài mà không liên quan tới thư viện thì không cần cập nhật thư viện
+COPY ./package.json ./
+
+# Câu lệnh cập nhật thư viện
+RUN npm install --verbose
+
+# Copy toàn bộ các file
+COPY ./ ./
+
+# Default command - Câu lệnh chạy chương trình. Khong dung nodemon vi day khong phai moi truong dev.
+CMD ["npm", "start"]
