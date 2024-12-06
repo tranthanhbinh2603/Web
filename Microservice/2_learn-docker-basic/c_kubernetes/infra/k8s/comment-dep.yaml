@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: comment
-          image: comment/blog
+          image: comments/blog
           imagePullPolicy: Never
 ---
 apiVersion: v1

@@ -16,3 +16,16 @@ spec:
         - name: client
           image: client/blog
           imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-srv
+spec:
+  selector:
+    app: client
+  ports:
+    - name: client
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

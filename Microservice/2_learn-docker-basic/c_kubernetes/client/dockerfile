@@ -1,5 +1,5 @@
 # Gọi thư viện tạo khối container
-FROM node:alpine
+FROM node:20-alpine
 
 #Sửa lỗi kết nối Kubernetes
 ENV CI=true

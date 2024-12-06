@@ -2,7 +2,7 @@ const { default: axios } = require("axios");
 const { moderationComment } = require("../utils/moderationComment");
 
 const receiveEvent = (req, res) => {
-	moderationComment(res.body);
+	moderationComment(req.body);
 };
 
 module.exports = {

@@ -8,6 +8,7 @@ const getComments = (req, res) => {
 	const listCommentResult = listComment[id] || [];
 	return res.status(200).json(listCommentResult);
 };
+
 const addComment = (req, res) => {
 	const { id: idPost } = req.params;
 	const { content } = req.body;
@@ -28,6 +29,7 @@ const addComment = (req, res) => {
 		message: "successful",
 	});
 };
+
 module.exports = {
 	getComments,
 	addComment,

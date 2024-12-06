@@ -53,7 +53,9 @@ app.use("/posts", commentRoute);
 // =====================================
 
 app.use((req, res) => {
-	res.status(404).example("");
+	res.status(404).json({
+		message: "not found",
+	});
 });
 
 app.use((err, req, res, next) => {

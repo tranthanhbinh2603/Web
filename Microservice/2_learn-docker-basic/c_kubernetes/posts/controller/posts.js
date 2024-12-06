@@ -23,6 +23,7 @@ const addPosts = (req, res) => {
 	});
 	return res.status(201).json({
 		message: "successful",
+		data: posts,
 	});
 };
 

@@ -7,17 +7,14 @@ const setEvent = (req, res) => {
 
 	eventList.push(event);
 
-	axios.post("http://post-srv:5050/event", event).catch((err) => {
-		console.log(err.message);
+	axios.post("http://comment-srv:5051/event", event).catch((err) => {
+		console.log("Comment event: ", err.message);
 	});
-	axios.post("http://comment-srv:5099/event", event).catch((err) => {
-		console.log(err.message);
+	axios.post("http://query-srv:5053/event", event).catch((err) => {
+		console.log("Query event: ", err.message);
 	});
-	axios.post("http://query-srv:5099/event", event).catch((err) => {
-		console.log(err.message);
-	});
-	axios.post("http://moderation-srv:5099/event", event).catch((err) => {
-		console.log(err.message);
+	axios.post("http://moderation-srv:5054/event", event).catch((err) => {
+		console.log("Moderation event: ", err.message);
 	});
 
 	return res.status(200).json({
