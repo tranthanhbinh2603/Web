@@ -2,6 +2,7 @@ import express, { Request, Response, NextFunction } from "express";
 import path from "path";
 import mongoSanitize from "express-mongo-sanitize";
 import helmet from "helmet";
+import authRoute from "./route/auth";
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use((_req: Request, _res: Response, next: NextFunction) => {
 // YOUR REDIRECT MIDDLEWARE HERE (Example if the path is not defined method....)
 
 // YOUR MAIN REDIRECT HERE
+app.use("/api/users", authRoute);
 
 // YOUR CATCH IN DATABASE MONGO HERE
 
