@@ -8,39 +8,30 @@ const createUser = (req: Request, res: Response): any => {
 			message: item.msg,
 			path: item.path,
 		}));
-		return res.status(400).json({
-			message: data,
-		});
+		return res.status(400).json(data);
 	}
+	throw new Error("Error connect database");
 	return res.status(200).json({
-		message: "successful",
+		msg: "successful",
 	});
 };
 
-const signInUser = (_req: Request, res: Response) => {
-	res.status(200).json({
-		message: "successful",
+const signInUser = (_req: Request, res: Response): any => {
+	return res.status(200).json({
+		msg: "successful",
 	});
 };
 
-const signOutUser = (_req: Request, res: Response) => {
-	res.status(200).json({
-		message: "successful",
+const signOutUser = (_req: Request, res: Response): any => {
+	return res.status(200).json({
+		msg: "successful",
 	});
 };
 
-const getUserInfo = (_req: Request, res: Response) => {
-	res.status(200).json({
-		message: "successful",
+const getUserInfo = (_req: Request, res: Response): any => {
+	return res.status(200).json({
+		msg: "successful",
 	});
 };
 
 export { getUserInfo, createUser, signInUser, signOutUser };
-
-//   app.post('/signup', validate([
-//     body('email').isEmail(),
-//     body('password').isLength({ min: 6 })
-//   ]), async (req, res, next) => {
-//     // request is guaranteed to not have any validation errors.
-//     const user = await User.create({ ... });
-//   });
