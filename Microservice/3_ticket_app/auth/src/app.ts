@@ -1,5 +1,6 @@
-import express, { Request, Response, NextFunction } from "express";
+import express from "express";
 import path from "path";
+import "express-async-errors";
 import mongoSanitize from "express-mongo-sanitize";
 import helmet from "helmet";
 import authRoute from "./route/auth";
@@ -15,10 +16,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(mongoSanitize());
 app.use(helmet({ contentSecurityPolicy: false }));
 
-app.use((_req: Request, _res: Response, next: NextFunction) => {
-	next();
-});
-
 // =====================================
 
 // CONNECT DATABASE HERE
@@ -31,12 +28,6 @@ app.use("/api/users", authRoute);
 // YOUR CATCH IN DATABASE MONGO HERE
 
 // =====================================
-
-app.use((_req: Request, res: Response) => {
-	res.status(404).json({
-		message: "Not Found",
-	});
-});
 
 app.use(errorHandler);
 

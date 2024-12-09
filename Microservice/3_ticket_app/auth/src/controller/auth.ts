@@ -1,19 +1,17 @@
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
+import { DatabaseConnectionError } from "../error/database-connection-error";
+import { RequestValidationError } from "../error/request-validation-error";
 
-const createUser = (req: Request, res: Response): any => {
+const createUser = (req: Request, _res: Response): any => {
 	const result = validationResult(req);
 	if (!result.isEmpty()) {
-		const data = result.array().map((item: any) => ({
-			message: item.msg,
-			path: item.path,
-		}));
-		return res.status(400).json(data);
+		throw new RequestValidationError(result.array());
 	}
-	throw new Error("Error connect database");
-	return res.status(200).json({
-		msg: "successful",
-	});
+	throw new DatabaseConnectionError();
+	// return res.status(200).json({
+	// 	msg: "successful",
+	// });
 };
 
 const signInUser = (_req: Request, res: Response): any => {
