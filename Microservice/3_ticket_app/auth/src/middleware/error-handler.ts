@@ -23,7 +23,6 @@ const errorHandler = (
 			console.log("Res:", res.getHeader("Content-Length"));
 			console.log("Response time:", res.getHeader("X-Response-Time"));
 			console.log("User-agent:", req.get("User-Agent"));
-			console.log(err);
 			console.log("===========================");
 		}
 		return res.status(err.statusCode).send({ errors: err.serializeErrors() });
