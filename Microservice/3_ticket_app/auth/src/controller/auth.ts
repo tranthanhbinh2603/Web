@@ -7,14 +7,14 @@ import { UserExistError } from "../error/user-exist-error";
 
 const createUser = async (req: Request, res: Response): Promise<any> => {
 	try {
-		const result = validationResult(req);
-		if (!result.isEmpty()) {
-			throw new RequestValidationError(result.array());
-		}
 		const { email, password } = req.body;
 		const existingUser = await User.findOne({ email });
 		if (existingUser) {
 			throw new UserExistError();
+		}
+		const result = validationResult(req);
+		if (!result.isEmpty()) {
+			throw new RequestValidationError(result.array());
 		}
 		const newUser = new User({ email, password });
 		await newUser.save();
@@ -22,13 +22,14 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 			msg: "successful",
 		});
 	} catch (error) {
-		if (
-			error instanceof RequestValidationError ||
-			error instanceof UserExistError
-		) {
-			return res.status(400).json({ error: error.message });
+		const result = validationResult(req);
+		if (error instanceof UserExistError) {
+			throw new UserExistError("Email is use");
+		} else if (!result.isEmpty()) {
+			throw new RequestValidationError(result.array());
+		} else {
+			throw new DatabaseConnectionError();
 		}
-		throw new DatabaseConnectionError();
 	}
 };
 

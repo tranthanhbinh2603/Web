@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import authRoute from "./route/auth";
 import mongoSanitize from "express-mongo-sanitize";
 import { errorHandler } from "./middleware/error-handler";
-import { User } from "./model/user";
+import { NotFoundError } from "./error/not-found-error";
 
 const app = express();
 
@@ -27,6 +27,10 @@ app.use(helmet({ contentSecurityPolicy: false }));
 // YOUR MAIN REDIRECT HERE
 app.use("/api/users", authRoute);
 
+app.all("*", async (_req, _res) => {
+	throw new NotFoundError();
+});
+
 // YOUR CATCH IN DATABASE MONGO HERE
 
 // =====================================
@@ -41,7 +45,6 @@ app.listen(5050, () => {
 		.then(async () => {
 			console.log("Connect Successful!");
 			console.log("===========================");
-			await User.build({ email: "haha@gmail.com", password: "123" });
 		})
 		.catch((e) => {
 			console.log("Error when connect");

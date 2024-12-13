@@ -5,11 +5,13 @@ export class UserExistError extends CustomError {
 
 	statusCode = 409;
 
-	reason = "User exist";
+	reason: string = "User exist";
 
-	constructor() {
-		super("User exist");
-
+	constructor(msg?: string) {
+		super(msg || "User already exists");
+		if (msg) {
+			this.reason = msg;
+		}
 		Object.setPrototypeOf(this, UserExistError.prototype);
 	}
 
