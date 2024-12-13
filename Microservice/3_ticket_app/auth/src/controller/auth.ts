@@ -24,7 +24,7 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 	} catch (error) {
 		const result = validationResult(req);
 		if (error instanceof UserExistError) {
-			throw new UserExistError("Email is use");
+			throw new UserExistError("Email is used");
 		} else if (!result.isEmpty()) {
 			throw new RequestValidationError(result.array());
 		} else {
