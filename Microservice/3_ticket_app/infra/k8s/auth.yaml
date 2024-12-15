@@ -16,6 +16,12 @@ spec:
         - name: auth
           image: ticket_project/auth
           imagePullPolicy: Never
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secret
+                  key: jwt_key
 ---
 apiVersion: v1
 kind: Service

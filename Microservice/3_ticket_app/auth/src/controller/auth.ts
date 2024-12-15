@@ -1,9 +1,13 @@
+import dotenv from "dotenv";
+import jwt from "jsonwebtoken";
+import { User } from "../model/user";
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
+import { UserExistError } from "../error/user-exist-error";
 import { DatabaseConnectionError } from "../error/database-connection-error";
 import { RequestValidationError } from "../error/request-validation-error";
-import { User } from "../model/user";
-import { UserExistError } from "../error/user-exist-error";
+
+dotenv.config();
 
 const createUser = async (req: Request, res: Response): Promise<any> => {
 	try {
@@ -18,6 +22,17 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 		}
 		const newUser = new User({ email, password });
 		await newUser.save();
+		const payload = {
+			email: email,
+		};
+		const expiresIn = "15s";
+		const jwtToken = jwt.sign(payload, process.env.JWT_KEY as string, {
+			algorithm: "HS256",
+			expiresIn,
+		});
+		req.session = {
+			jwt: jwtToken,
+		};
 		return res.status(200).json({
 			msg: "successful",
 		});

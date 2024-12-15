@@ -4,12 +4,19 @@ import express from "express";
 import "express-async-errors";
 import mongoose from "mongoose";
 import authRoute from "./route/auth";
+import cookieSession from "cookie-session";
 import mongoSanitize from "express-mongo-sanitize";
-import { errorHandler } from "./middleware/error-handler";
 import { NotFoundError } from "./error/not-found-error";
+import { errorHandler } from "./middleware/error-handler";
 
 const app = express();
-
+app.set("trust proxy", true);
+app.use(
+	cookieSession({
+		signed: false, //Luu y la chi dung cho viec khong development
+		secure: true,
+	})
+);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname) + "/views");
 app.use(express.static(path.join(__dirname, "public")));
