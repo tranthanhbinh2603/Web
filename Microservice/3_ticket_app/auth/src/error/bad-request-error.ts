@@ -1,9 +1,9 @@
 import { CustomError } from "./custom-error";
 
-export class OtherError extends CustomError {
+export class BadRequestError extends CustomError {
 	printLog = false;
 
-	statusCode = 409;
+	statusCode = 500;
 
 	reason: string = "Hum.....";
 
@@ -12,7 +12,7 @@ export class OtherError extends CustomError {
 		if (msg) {
 			this.reason = msg;
 		}
-		Object.setPrototypeOf(this, OtherError.prototype);
+		Object.setPrototypeOf(this, BadRequestError.prototype);
 	}
 
 	serializeErrors() {

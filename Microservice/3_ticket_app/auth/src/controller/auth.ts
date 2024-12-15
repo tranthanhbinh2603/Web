@@ -6,14 +6,15 @@ import { validationResult } from "express-validator";
 import { UserExistError } from "../error/user-exist-error";
 import { DatabaseConnectionError } from "../error/database-connection-error";
 import { RequestValidationError } from "../error/request-validation-error";
-import { OtherError } from "../error/other-error";
+import { BadRequestError } from "../error/bad-request-error";
+import { Password } from "../utils/password";
 
 dotenv.config();
 
 const createUser = async (req: Request, res: Response): Promise<any> => {
 	try {
 		if (!process.env.JWT_KEY) {
-			throw new OtherError();
+			throw new BadRequestError();
 		}
 		const { email, password } = req.body;
 		const existingUser = await User.findOne({ email });
@@ -24,8 +25,8 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 		if (!result.isEmpty()) {
 			throw new RequestValidationError(result.array());
 		}
-		const newUser = new User({ email, password });
-		await newUser.save();
+		const newUserData = new User({ email, password });
+		await newUserData.save();
 		const payload = {
 			email: email,
 		};
@@ -39,13 +40,14 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 		};
 		return res.status(200).json({
 			msg: "successful",
+			data: newUserData,
 		});
 	} catch (error) {
 		const result = validationResult(req);
 		if (error instanceof UserExistError) {
 			throw new UserExistError("Email is used");
-		} else if (error instanceof OtherError) {
-			throw new OtherError();
+		} else if (error instanceof BadRequestError) {
+			throw new BadRequestError();
 		} else if (!result.isEmpty()) {
 			throw new RequestValidationError(result.array());
 		} else {
@@ -54,10 +56,53 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 	}
 };
 
-const signInUser = (_req: Request, res: Response): any => {
-	return res.status(200).json({
-		msg: "successful",
-	});
+const signInUser = async (req: Request, res: Response): Promise<any> => {
+	try {
+		if (!process.env.JWT_KEY) {
+			throw new BadRequestError();
+		}
+		const result = validationResult(req);
+		if (!result.isEmpty()) {
+			throw new RequestValidationError(result.array());
+		}
+		const { email, password: suppliedPassword } = req.body;
+		const userData = await User.findOne({ email });
+		if (!userData) {
+			throw new BadRequestError();
+		}
+		const storedPassword = userData.password;
+		const isRightPassword = await Password.compare(
+			storedPassword,
+			suppliedPassword
+		);
+		if (!isRightPassword) {
+			throw new BadRequestError();
+		}
+		const payload = {
+			email: email,
+		};
+		const expiresIn = "15s";
+		const jwtToken = jwt.sign(payload, process.env.JWT_KEY as string, {
+			algorithm: "HS256",
+			expiresIn,
+		});
+		req.session = {
+			jwt: jwtToken,
+		};
+		return res.status(200).json({
+			msg: "successful",
+			data: userData,
+		});
+	} catch (error) {
+		const result = validationResult(req);
+		if (error instanceof BadRequestError) {
+			throw new BadRequestError("Wrong credential");
+		} else if (!result.isEmpty()) {
+			throw new RequestValidationError(result.array());
+		} else {
+			throw new DatabaseConnectionError();
+		}
+	}
 };
 
 const signOutUser = (_req: Request, res: Response): any => {
