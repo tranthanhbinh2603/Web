@@ -6,11 +6,15 @@ import { validationResult } from "express-validator";
 import { UserExistError } from "../error/user-exist-error";
 import { DatabaseConnectionError } from "../error/database-connection-error";
 import { RequestValidationError } from "../error/request-validation-error";
+import { OtherError } from "../error/other-error";
 
 dotenv.config();
 
 const createUser = async (req: Request, res: Response): Promise<any> => {
 	try {
+		if (!process.env.JWT_KEY) {
+			throw new OtherError();
+		}
 		const { email, password } = req.body;
 		const existingUser = await User.findOne({ email });
 		if (existingUser) {
@@ -40,6 +44,8 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 		const result = validationResult(req);
 		if (error instanceof UserExistError) {
 			throw new UserExistError("Email is used");
+		} else if (error instanceof OtherError) {
+			throw new OtherError();
 		} else if (!result.isEmpty()) {
 			throw new RequestValidationError(result.array());
 		} else {
