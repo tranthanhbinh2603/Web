@@ -16,7 +16,7 @@ app.use(
 	})
 );
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(mongoSanitize());
 app.use(helmet({ contentSecurityPolicy: false }));
 
