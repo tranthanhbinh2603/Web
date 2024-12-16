@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import authRoute from "./route/auth";
 import cookieSession from "cookie-session";
 import mongoSanitize from "express-mongo-sanitize";
-import { NotFoundError } from "./error/not-found-error";
+import { NotFoundError } from "./errors/not-found-error";
 import { errorHandler } from "./middleware/error-handler";
 
 const app = express();

@@ -3,10 +3,10 @@ import jwt from "jsonwebtoken";
 import { User } from "../model/user";
 import { Request, Response } from "express";
 import { validationResult } from "express-validator";
-import { UserExistError } from "../error/user-exist-error";
-import { DatabaseConnectionError } from "../error/database-connection-error";
-import { RequestValidationError } from "../error/request-validation-error";
-import { BadRequestError } from "../error/bad-request-error";
+import { UserExistError } from "../errors/user-exist-error";
+import { DatabaseConnectionError } from "../errors/database-connection-error";
+import { RequestValidationError } from "../errors/request-validation-error";
+import { BadRequestError } from "../errors/bad-request-error";
 import { Password } from "../utils/password";
 
 dotenv.config();
@@ -28,6 +28,7 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 		const newUserData = new User({ email, password });
 		await newUserData.save();
 		const payload = {
+			id: newUserData._id,
 			email: email,
 		};
 		const expiresIn = "15s";
@@ -79,6 +80,7 @@ const signInUser = async (req: Request, res: Response): Promise<any> => {
 			throw new BadRequestError();
 		}
 		const payload = {
+			id: userData._id,
 			email: email,
 		};
 		const expiresIn = "15s";
@@ -105,38 +107,24 @@ const signInUser = async (req: Request, res: Response): Promise<any> => {
 	}
 };
 
-const signOutUser = (_req: Request, res: Response): any => {
-	return res.status(200).json({
-		msg: "successful",
-	});
+const signOutUser = (req: Request, res: Response): any => {
+	try {
+		req.session = null;
+		return res.status(200).json({
+			msg: "successful",
+		});
+	} catch {
+		throw new BadRequestError(true);
+	}
 };
 
 const getUserInfo = (req: Request, res: Response): any => {
 	try {
-		if (!req.session || !req.session.jwt) {
-			throw new BadRequestError(false, "You are not logged in");
-		}
-		let decoded;
-		try {
-			decoded = jwt.verify(req.session.jwt, process.env.JWT_KEY as string, {
-				algorithms: ["HS256"],
-			});
-		} catch {
-			return res.status(200).json({
-				current_user: null,
-			});
-		}
-
-		const { iat, exp, ...dataUser } = decoded as { [key: string]: any };
 		return res.status(200).json({
-			current_user: dataUser,
+			current_user: req.currentUser || null,
 		});
 	} catch (error) {
-		if (error instanceof BadRequestError) {
-			throw new BadRequestError(false, "You are not logged in.");
-		} else {
-			throw new BadRequestError(true);
-		}
+		throw new BadRequestError(true);
 	}
 };
 
