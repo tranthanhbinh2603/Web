@@ -8,7 +8,7 @@ WORKDIR /usr/app
 COPY ./package.json ./
 
 # Câu lệnh cập nhật thư viện
-RUN npm install --verbose
+RUN npm install --verbose --omit=dev
 
 # Copy toàn bộ các file
 COPY ./ ./

@@ -1,9 +1,7 @@
-import path from "path";
 import helmet from "helmet";
 import express from "express";
 import "express-async-errors";
-import mongoose from "mongoose";
-import authRoute from "./route/auth";
+import authRoute from "./routes/auth";
 import cookieSession from "cookie-session";
 import mongoSanitize from "express-mongo-sanitize";
 import { NotFoundError } from "./errors/not-found-error";
@@ -17,11 +15,8 @@ app.use(
 		secure: true,
 	})
 );
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname) + "/views");
-app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// app.use(express.urlencoded({ extended: true }));
 app.use(mongoSanitize());
 app.use(helmet({ contentSecurityPolicy: false }));
 
@@ -44,18 +39,4 @@ app.all("*", async (_req, _res) => {
 
 app.use(errorHandler);
 
-app.listen(5050, () => {
-	console.log("Finish start server at port 5050");
-	console.log("===========================");
-	mongoose
-		.connect("mongodb://auth-mongo:27017/ticket_app")
-		.then(async () => {
-			console.log("Connect Successful!");
-			console.log("===========================");
-		})
-		.catch((e) => {
-			console.log("Error when connect");
-			console.log(`This is error: ${e}`);
-			console.log("===========================");
-		});
-});
+export { app };

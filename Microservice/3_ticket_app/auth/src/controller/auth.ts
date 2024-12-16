@@ -48,7 +48,7 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 		if (error instanceof UserExistError) {
 			throw new UserExistError("Email is used");
 		} else if (error instanceof BadRequestError) {
-			throw new BadRequestError();
+			throw new BadRequestError(false, "Missing JWT_KEY");
 		} else if (!result.isEmpty()) {
 			throw new RequestValidationError(result.array());
 		} else {
