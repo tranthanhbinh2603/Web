@@ -96,7 +96,7 @@ const signInUser = async (req: Request, res: Response): Promise<any> => {
 	} catch (error) {
 		const result = validationResult(req);
 		if (error instanceof BadRequestError) {
-			throw new BadRequestError("Wrong credential");
+			throw new BadRequestError(false, "Wrong credential");
 		} else if (!result.isEmpty()) {
 			throw new RequestValidationError(result.array());
 		} else {
@@ -111,10 +111,33 @@ const signOutUser = (_req: Request, res: Response): any => {
 	});
 };
 
-const getUserInfo = (_req: Request, res: Response): any => {
-	return res.status(200).json({
-		msg: "successful",
-	});
+const getUserInfo = (req: Request, res: Response): any => {
+	try {
+		if (!req.session || !req.session.jwt) {
+			throw new BadRequestError(false, "You are not logged in");
+		}
+		let decoded;
+		try {
+			decoded = jwt.verify(req.session.jwt, process.env.JWT_KEY as string, {
+				algorithms: ["HS256"],
+			});
+		} catch {
+			return res.status(200).json({
+				current_user: null,
+			});
+		}
+
+		const { iat, exp, ...dataUser } = decoded as { [key: string]: any };
+		return res.status(200).json({
+			current_user: dataUser,
+		});
+	} catch (error) {
+		if (error instanceof BadRequestError) {
+			throw new BadRequestError(false, "You are not logged in.");
+		} else {
+			throw new BadRequestError(true);
+		}
+	}
 };
 
 export { getUserInfo, createUser, signInUser, signOutUser };
