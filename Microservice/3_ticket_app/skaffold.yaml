@@ -6,6 +6,7 @@ manifests:
     - ./infra/k8s/ingress.yaml
     - ./infra/k8s/mongo-create.yaml
     - ./infra/k8s/secret.yaml
+    - ./infra/k8s/client.yaml
 build:
   local:
     push: false
@@ -17,4 +18,12 @@ build:
       sync:
         manual:
           - src: "src/**/*.ts"
+            dest: .
+    - image: ticket_project/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "src/**/*.js"
             dest: .
