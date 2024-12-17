@@ -1,7 +1,7 @@
 import request from "supertest";
-import { app } from "../../app";
+import { app } from "../app";
 
-it("SIGN UP: Valid data", async () => {
+export const signUpUser = async () => {
 	const response = await request(app).post("/api/users/sign-up").send({
 		email: "test@test.com",
 		password: "password",
@@ -13,6 +13,10 @@ it("SIGN UP: Valid data", async () => {
 	expect(response.body.data.id).toBeDefined();
 	expect(typeof response.body.data.id).toBe("string");
 	expect(response.get("Set-Cookie")).toBeDefined();
+};
+
+it("SIGN UP: Valid data", async () => {
+	await signUpUser();
 });
 
 it("SIGN UP: Not allow two same email", async () => {
