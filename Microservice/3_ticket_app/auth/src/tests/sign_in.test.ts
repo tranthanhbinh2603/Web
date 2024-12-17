@@ -2,7 +2,7 @@ import request from "supertest";
 import { app } from "../app";
 import { signUpUser } from "./sign_up.test";
 
-it("SIGN IN: Login with valid data", async () => {
+export const signInUser = async () => {
 	await signUpUser();
 	const response = await request(app).post("/api/users/sign-in").send({
 		email: "test@test.com",
@@ -15,6 +15,11 @@ it("SIGN IN: Login with valid data", async () => {
 	expect(response.body.data.id).toBeDefined();
 	expect(typeof response.body.data.id).toBe("string");
 	expect(response.get("Set-Cookie")).toBeDefined();
+	return response.get("Set-Cookie");
+};
+
+it("SIGN IN: Login with valid data", async () => {
+	await signInUser();
 });
 
 it("SIGN IN: Login with incorrect email", async () => {

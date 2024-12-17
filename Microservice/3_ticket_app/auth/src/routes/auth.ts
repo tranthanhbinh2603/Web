@@ -16,7 +16,7 @@ const app = express.Router();
 
 app.post("/sign-up", validateRegisterUser, createUser);
 app.post("/sign-in", validateLoginUser, signInUser);
-app.post("/sign-out", signOutUser);
+app.post("/sign-out", getCurrentUser, checkAuth, signOutUser);
 app.get("/current-user", getCurrentUser, checkAuth, getUserInfo);
 
 export default app;
