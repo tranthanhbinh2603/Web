@@ -1,11 +1,11 @@
 export abstract class CustomError extends Error {
 	abstract statusCode: number;
 
-	abstract printLog: boolean;
+	printLog: boolean;
 
-	constructor(message: string) {
+	constructor(message: string, isPrintLog: boolean = false) {
 		super(message);
-
+		this.printLog = isPrintLog;
 		Object.setPrototypeOf(this, CustomError.prototype);
 	}
 

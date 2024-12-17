@@ -28,7 +28,7 @@ const errorHandler = (
 		return res.status(err.statusCode).send({ errors: err.serializeErrors() });
 	}
 
-	res.status(400).send({
+	res.status(500).send({
 		errors: [{ msg: "Something went wrong" }],
 	});
 };

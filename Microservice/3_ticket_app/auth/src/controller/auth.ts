@@ -69,7 +69,7 @@ const signInUser = async (req: Request, res: Response): Promise<any> => {
 		const { email, password: suppliedPassword } = req.body;
 		const userData = await User.findOne({ email });
 		if (!userData) {
-			throw new BadRequestError();
+			throw new BadRequestError(false, "Wrong credential");
 		}
 		const storedPassword = userData.password;
 		const isRightPassword = await Password.compare(

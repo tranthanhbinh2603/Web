@@ -12,7 +12,7 @@ app.set("trust proxy", true);
 app.use(
 	cookieSession({
 		signed: false, //Luu y la chi dung cho viec khong development
-		secure: true,
+		secure: process.env.NODE_ENV !== "test",
 	})
 );
 app.use(express.json());
