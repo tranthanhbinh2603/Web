@@ -1,4 +1,10 @@
 import "./globals.css";
+import localFont from "next/font/local";
+
+const Segoe_UI = localFont({
+	src: "./font/Segoe UI.ttf",
+	display: "swap",
+});
 
 export const metadata = {
 	title: "Ticket App - Fast & Easy Event, Movie, and Travel Ticket Booking",
@@ -9,7 +15,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body>{children}</body>
+			<body className={Segoe_UI.className}>{children}</body>
 		</html>
 	);
 }

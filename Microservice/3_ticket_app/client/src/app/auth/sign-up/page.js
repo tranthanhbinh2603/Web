@@ -2,26 +2,20 @@
 import { useState } from "react";
 import axios from "@/utils/axios.interceptor";
 import { Col, Container, Row } from "react-bootstrap";
+import useRequest from "@/app/customHook/useRequest";
 
 export default function SignUpPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [data, setData] = useState(null);
+	const { data, sendRequest } = useRequest();
 
-	const onSubmit = async (e) => {
+	const handleSummit = (e) => {
 		e.preventDefault();
 		const dataPost = {
 			email,
 			password,
 		};
-		const response = await axios.post(
-			"https://ticket-app.com/api/users/sign-up",
-			dataPost,
-			{
-				validateStatus: () => true,
-			}
-		);
-		setData(response);
+		sendRequest("/api/users/sign-up", "POST", dataPost);
 	};
 
 	return (
@@ -29,7 +23,7 @@ export default function SignUpPage() {
 			<Row>
 				<Col>
 					<h1>Sign Up</h1>
-					<form onSubmit={onSubmit}>
+					<form onSubmit={(e) => handleSummit(e)}>
 						<div className="mb-3">
 							<label htmlFor="exampleInputEmail1" className="form-label">
 								Email address
@@ -65,6 +59,11 @@ export default function SignUpPage() {
 										<li key={index}>{error.msg}</li>
 									))}
 								</ul>
+							</div>
+						)}
+						{data && data.msg && (
+							<div className="alert alert-success" role="alert">
+								Successful Register!
 							</div>
 						)}
 						<button type="submit" className="btn btn-primary">
