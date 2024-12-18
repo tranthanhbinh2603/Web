@@ -1,12 +1,12 @@
 "use client";
 import { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
 import axios from "@/utils/axios.interceptor";
+import { Col, Container, Row } from "react-bootstrap";
 
 export default function SignUpPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [data, setData] = useState("");
+	const [data, setData] = useState(null);
 
 	const onSubmit = async (e) => {
 		e.preventDefault();
@@ -14,11 +14,14 @@ export default function SignUpPage() {
 			email,
 			password,
 		};
-		const data = await axios.post(
+		const response = await axios.post(
 			"https://ticket-app.com/api/users/sign-up",
-			dataPost
+			dataPost,
+			{
+				validateStatus: () => true,
+			}
 		);
-		setData(data);
+		setData(response);
 	};
 
 	return (
@@ -54,7 +57,16 @@ export default function SignUpPage() {
 								}}
 							/>
 						</div>
-						{data ? <p>{data}</p> : <></>}
+						{data && data.errors && (
+							<div className="alert alert-danger mt-3 mb-3">
+								<p>There is some error when register account: </p>
+								<ul>
+									{data.errors.map((error, index) => (
+										<li key={index}>{error.msg}</li>
+									))}
+								</ul>
+							</div>
+						)}
 						<button type="submit" className="btn btn-primary">
 							Submit
 						</button>
