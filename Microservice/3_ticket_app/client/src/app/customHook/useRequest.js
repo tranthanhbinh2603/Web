@@ -5,7 +5,7 @@ const useRequest = () => {
 	const [data, setData] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const sendRequest = async (url, method = "GET", payload = {}) => {
+	const sendRequest = async (url, method = "GET", payload = {}, onSuccess) => {
 		setIsLoading(true);
 		try {
 			const response = await axios({
@@ -15,7 +15,9 @@ const useRequest = () => {
 				validateStatus: () => true,
 			});
 			setData(response);
-			return response.data;
+			if (onSuccess && response?.msg === "successful") {
+				onSuccess(response);
+			}
 		} finally {
 			setIsLoading(false);
 		}

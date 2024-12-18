@@ -1,8 +1,8 @@
 "use client";
 import { useState } from "react";
-import axios from "@/utils/axios.interceptor";
-import { Col, Container, Row } from "react-bootstrap";
+import { redirect } from "next/navigation";
 import useRequest from "@/app/customHook/useRequest";
+import { Col, Container, Row } from "react-bootstrap";
 
 export default function SignUpPage() {
 	const [email, setEmail] = useState("");
@@ -15,7 +15,10 @@ export default function SignUpPage() {
 			email,
 			password,
 		};
-		sendRequest("/api/users/sign-up", "POST", dataPost);
+		sendRequest("/api/users/sign-up", "POST", dataPost, async () => {
+			await new Promise((resolve) => setTimeout(resolve, 400));
+			redirect("/");
+		});
 	};
 
 	return (
@@ -63,7 +66,7 @@ export default function SignUpPage() {
 						)}
 						{data && data.msg && (
 							<div className="alert alert-success" role="alert">
-								Successful Register!
+								Successful Register! We will redirect soon to home page.
 							</div>
 						)}
 						<button type="submit" className="btn btn-primary">
