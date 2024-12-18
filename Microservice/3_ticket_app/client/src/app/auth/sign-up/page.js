@@ -1,19 +1,24 @@
 "use client";
 import { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import axios from "@/utils/axios.interceptor";
 
 export default function SignUpPage() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [data, setData] = useState("");
 
-	const onSubmit = (e) => {
+	const onSubmit = async (e) => {
+		e.preventDefault();
 		const dataPost = {
 			email,
 			password,
 		};
-
-		// Chuyển đối tượng thành chuỗi JSON để dễ hiển thị
-		alert(JSON.stringify(dataPost, null, 2)); // Thêm tham số `null, 2` để dễ đọc
+		const data = await axios.post(
+			"https://ticket-app.com/api/users/sign-up",
+			dataPost
+		);
+		setData(data);
 	};
 
 	return (
@@ -49,6 +54,7 @@ export default function SignUpPage() {
 								}}
 							/>
 						</div>
+						{data ? <p>{data}</p> : <></>}
 						<button type="submit" className="btn btn-primary">
 							Submit
 						</button>

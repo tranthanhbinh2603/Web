@@ -4,8 +4,13 @@ metadata:
   name: ingress-srv
   annotations:
     nginx.ingress.kubernetes.io/use-regex: "true"
+    cert-manager.io/cluster-issuer: "lets_encrypt-prod"
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - ticket-app.com
+      secretName: ticket-app-tls
   rules:
     - host: ticket-app.com
       http:
