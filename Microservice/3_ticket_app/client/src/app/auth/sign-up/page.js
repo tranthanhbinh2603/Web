@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { redirect } from "next/navigation";
-import useRequest from "@/app/customHook/useRequest";
+import useRequest from "../../../customHook/useRequest";
 import { Col, Container, Row } from "react-bootstrap";
 
 export default function SignUpPage() {

@@ -12,26 +12,14 @@ const Home = async () => {
 	try {
 		let response;
 		const serverHeaders = await headers();
-		if (typeof window === "undefined") {
-			response = await axios.get(
-				"https://ingress-nginx-controller.ingress-nginx.svc.cluster.local/api/users/current-user",
-				{
-					headers: {
-						...Object.fromEntries(serverHeaders.entries()),
-					},
-					httpsAgent: agent,
-				}
-			);
-		} else {
-			response = await axios.get(
-				"https://ticket-app.com/api/users/current-user"
-			);
-		}
-		console.log(response);
+		response = await axios.get("/api/users/current-user", {
+			headers: {
+				...Object.fromEntries(serverHeaders.entries()),
+			},
+			httpsAgent: agent,
+		});
 		user = response;
-	} catch (error) {
-		console.error("Error fetching user:", error.message);
-	}
+	} catch (error) {}
 
 	return (
 		<div>
