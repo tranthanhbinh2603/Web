@@ -31,7 +31,7 @@ const createUser = async (req: Request, res: Response): Promise<any> => {
 			id: newUserData._id,
 			email: email,
 		};
-		const expiresIn = "15s";
+		const expiresIn = "1800s";
 		const jwtToken = jwt.sign(payload, process.env.JWT_KEY as string, {
 			algorithm: "HS256",
 			expiresIn,
@@ -83,7 +83,7 @@ const signInUser = async (req: Request, res: Response): Promise<any> => {
 			id: userData._id,
 			email: email,
 		};
-		const expiresIn = "15s";
+		const expiresIn = "1800s";
 		const jwtToken = jwt.sign(payload, process.env.JWT_KEY as string, {
 			algorithm: "HS256",
 			expiresIn,
