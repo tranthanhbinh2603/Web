@@ -27,7 +27,7 @@ export default function SignUpPage() {
 		<Container>
 			<Row>
 				<Col>
-					<h1>Sign Up</h1>
+					<h1>Sign In</h1>
 					<form onSubmit={(e) => handleSummit(e)}>
 						<div className="mb-3">
 							<label htmlFor="exampleInputEmail1" className="form-label">
