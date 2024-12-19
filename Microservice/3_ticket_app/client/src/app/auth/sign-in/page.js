@@ -14,7 +14,7 @@ export default function SignUpPage() {
 			email,
 			password,
 		};
-		sendRequest("/api/users/sign-up", "POST", dataPost, async () => {
+		sendRequest("/api/users/sign-in", "POST", dataPost, async () => {
 			await new Promise((resolve) => setTimeout(resolve, 200));
 			document.body.innerHTML = "";
 			setTimeout(() => {
@@ -58,7 +58,7 @@ export default function SignUpPage() {
 						</div>
 						{data && data.errors && (
 							<div className="alert alert-danger mt-3 mb-3">
-								<p>There is some error when register account: </p>
+								<p>There is some error when login account: </p>
 								<ul>
 									{data.errors.map((error, index) => (
 										<li key={index}>{error.msg}</li>
@@ -68,7 +68,7 @@ export default function SignUpPage() {
 						)}
 						{data && data.msg && (
 							<div className="alert alert-success" role="alert">
-								Successful Register! We will redirect soon to home page.
+								Successful Login! We will redirect soon to home page.
 							</div>
 						)}
 						<button type="submit" className="btn btn-primary">

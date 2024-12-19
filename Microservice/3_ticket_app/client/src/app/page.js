@@ -1,30 +1,11 @@
-const https = require("https");
-import { headers } from "next/headers";
-import axios from "@/utils/axios.interceptor";
-
-const agent = new https.Agent({
-	rejectUnauthorized: false,
-});
+import { getCurrentUser } from "./api/getCurrentUser";
 
 const Home = async () => {
-	let user = null;
-
-	try {
-		let response;
-		const serverHeaders = await headers();
-		response = await axios.get("/api/users/current-user", {
-			headers: {
-				...Object.fromEntries(serverHeaders.entries()),
-			},
-			httpsAgent: agent,
-		});
-		user = response;
-	} catch (error) {}
-
+	const currentUser = await getCurrentUser();
 	return (
 		<div>
 			<h1>Home Page</h1>
-			<p>User: {user ? JSON.stringify(user) : "No user found"}</p>
+			<p>User: {currentUser ? JSON.stringify(currentUser) : "No user found"}</p>
 		</div>
 	);
 };
