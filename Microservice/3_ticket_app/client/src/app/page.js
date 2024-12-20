@@ -1,12 +1,16 @@
+import { Container } from "react-bootstrap";
 import { getCurrentUser } from "./api/getCurrentUser";
 
 const Home = async () => {
 	const currentUser = await getCurrentUser();
 	return (
-		<div>
-			<h1>Home Page</h1>
-			<p>User: {currentUser ? JSON.stringify(currentUser) : "No user found"}</p>
-		</div>
+		<Container>
+			<h1 className="mt-3">
+				{currentUser
+					? "Welcome to GixTix!"
+					: "Please login to use this service!"}
+			</h1>
+		</Container>
 	);
 };
 

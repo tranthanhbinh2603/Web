@@ -1,5 +1,5 @@
-import React from "react";
 import "./globals.css";
+import React from "react";
 import localFont from "next/font/local";
 import Header from "@/components/header";
 

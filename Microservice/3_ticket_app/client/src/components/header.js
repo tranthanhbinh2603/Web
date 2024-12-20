@@ -17,7 +17,9 @@ async function Header() {
 								<li className="nav-item">
 									Welcome, {currentUser.current_user.email}
 								</li>
-								<li className="nav-item">Sign out</li>
+								<li className="nav-item">
+									<Link href="/auth/sign-out">Sign out</Link>
+								</li>
 							</ul>
 						</div>
 					</div>

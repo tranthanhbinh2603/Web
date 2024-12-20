@@ -18,6 +18,7 @@ const useRequest = () => {
 			if (onSuccess && response?.msg === "successful") {
 				onSuccess(response);
 			}
+		} catch (err) {
 		} finally {
 			setIsLoading(false);
 		}

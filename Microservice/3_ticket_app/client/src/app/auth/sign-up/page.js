@@ -19,7 +19,7 @@ export default function SignUpPage() {
 			document.body.innerHTML = "";
 			setTimeout(() => {
 				window.location.href = "/";
-			}, 200);
+			}, 0);
 		});
 	};
 
