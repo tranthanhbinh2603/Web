@@ -1,0 +1,19 @@
+{
+	"name": "@tranthanhbinh2603/ticket_app_library",
+	"version": "1.1.1",
+	"main": "index.js",
+	"scripts": {
+		"release": "standard-version --no-git-tag-version --skip.changelog",
+		"build": "npm run clean && tsc",
+		"clean": "del-cli ./dist/*"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"devDependencies": {
+		"del-cli": "^6.0.0",
+		"standard-version": "^9.5.0",
+		"typescript": "^5.7.2"
+	}
+}

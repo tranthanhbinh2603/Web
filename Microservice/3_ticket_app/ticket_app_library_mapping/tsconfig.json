@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist", //Đường dẫn chứa file cuối cùng (La toan bo tat ca cac file)
+		"rootDir": "./src", //Đường dẫn chứa file Typescript
+		"target": "es6", //Có thể xuống es5 nếu muốn chạy trên các trình duyệt cũ hơn, song cần thư viện nếu muốn sử dụng 1 số tính năng hiện đại
+		"moduleResolution": "Node", //Chỉ dùng khi là project nodejs sử dung typescript
+		"module": "commonjs",
+		"sourceMap": true,
+		"removeComments": true,
+		"noEmitOnError": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"experimentalDecorators": true,
+		"declaration": true
+	},
+	"exclude": ["node_modules", "dist"]
+}
