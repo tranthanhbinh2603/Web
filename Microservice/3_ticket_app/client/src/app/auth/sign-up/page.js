@@ -57,7 +57,7 @@ export default function SignUpPage() {
 							/>
 						</div>
 						{data && data.errors && (
-							<div className="alert alert-danger mt-3">
+							<div className="alert alert-danger mt-3 mb-3">
 								<p>There is some error when register account: </p>
 								<ul>
 									{data.errors.map((error, index) => (

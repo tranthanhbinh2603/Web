@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { NotAuthorizedError } from "../../../ticket_app_library/src/errors/not-authorized-error";
+import { NotAuthorizedError } from "../errors/not-authorized-error";
 
 export const checkAuth = (
 	req: Request,
