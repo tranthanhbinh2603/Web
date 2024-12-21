@@ -57,13 +57,11 @@ export default function SignUpPage() {
 							/>
 						</div>
 						{data && data.errors && (
-							<div className="alert alert-danger mt-3 mb-3">
-								<p>There is some error when login account: </p>
-								<ul>
-									{data.errors.map((error, index) => (
-										<li key={index}>{error.msg}</li>
-									))}
-								</ul>
+							<div className="alert alert-danger mt-3">
+								<p>
+									There is some error when login account. It could be due to
+									incorrect username or password.
+								</p>
 							</div>
 						)}
 						{data && data.msg && (

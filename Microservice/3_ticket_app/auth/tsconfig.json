@@ -12,7 +12,8 @@
 		"skipLibCheck": true,
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
-		"experimentalDecorators": true
+		"experimentalDecorators": true,
+		"declaration": true
 	},
 	"exclude": ["node_modules"]
 }

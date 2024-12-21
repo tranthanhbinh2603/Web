@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { CustomError } from "../errors/custom-error";
+import { CustomError } from "../../../ticket_app_library/src/errors/custom-error";
 
 const red = "\x1b[31m";
 // const green = '\x1b[32m';
